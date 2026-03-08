@@ -32,3 +32,24 @@
 - 数値は週1回程度の確認に留める
 - 必要に応じてWorks / Archiveを拡張
 - 大きな要件変更が出た段階でフレームワークを再検討
+
+## 2026-03-08 追記: 運用ドキュメント整備
+- `docs/` に実務向け最小セットを追加・具体化
+  - `01-project-overview.md`
+  - `02-page-structure.md`
+  - `03-design-guide.md`
+  - `04-seo-and-measurement.md`
+  - `05-release-checklist.md`
+- 現状ギャップを明文化
+  - `#works` / `#contact` の実体セクション未実装（対応済み）
+  - OGP / favicon / robots.txt / sitemap.xml 未設定（対応済み）
+
+## 2026-03-08 追記: 基本導線とSEO基礎の実装
+- 1ページ構成内に `Works` セクション（`#works`）を追加
+- 1ページ構成内に `Contact` セクション（`#contact`）を追加
+- `index.html` に canonical / OGP / Twitter card メタタグを追加
+- `public/` に以下を追加
+  - `favicon.svg`
+  - `og-image.svg`
+  - `robots.txt`
+  - `sitemap.xml`

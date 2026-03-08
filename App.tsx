@@ -5,6 +5,8 @@ import Concept from './components/Concept';
 import FeaturedJournal from './components/FeaturedJournal';
 import LatestJournal from './components/LatestJournal';
 import Profile from './components/Profile';
+import Works from './components/Works';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 const App: React.FC = () => {
@@ -17,6 +19,8 @@ const App: React.FC = () => {
         <FeaturedJournal />
         <LatestJournal />
         <Profile />
+        <Works />
+        <Contact />
       </main>
       <Footer />
     </div>
