@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <footer className="bg-stone-900 text-stone-400 py-16 md:py-24">
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-center">
         
-        <a href="#" className="text-3xl font-serif tracking-widest text-stone-200 mb-8 hover:opacity-80 transition-opacity">
+        <a href="#top" className="text-3xl font-serif tracking-widest text-stone-200 mb-8 hover:opacity-80 transition-opacity">
           Sensoria
         </a>
 
@@ -18,13 +18,29 @@ const Footer: React.FC = () => {
         </nav>
 
         <div className="flex space-x-8 mb-12">
-          <a href="#" className="text-stone-500 hover:text-white transition-colors">
+          <a
+            href="https://example.com/sensoria-instagram"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram (dummy)"
+            className="text-stone-500 hover:text-white transition-colors"
+          >
             <Instagram size={20} />
           </a>
-          <a href="#" className="text-stone-500 hover:text-white transition-colors">
+          <a
+            href="https://example.com/sensoria-facebook"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook (dummy)"
+            className="text-stone-500 hover:text-white transition-colors"
+          >
             <Facebook size={20} />
           </a>
-          <a href="#" className="text-stone-500 hover:text-white transition-colors">
+          <a
+            href="mailto:contact@sensoria.example"
+            aria-label="Mail (dummy)"
+            className="text-stone-500 hover:text-white transition-colors"
+          >
             <Mail size={20} />
           </a>
         </div>

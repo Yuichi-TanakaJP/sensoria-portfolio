@@ -18,7 +18,7 @@ const Profile: React.FC = () => {
 
         {/* Text Area */}
         <div className="w-full lg:w-1/2">
-          <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-4">About & Works</span>
+          <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-4">About</span>
           <h2 className="text-3xl md:text-4xl font-medium font-serif text-stone-800 tracking-widest mb-8">
             五感を通じて、<br />美意識を磨く。
           </h2>
@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
             </a>
           </div>
 
-          {/* Works Summary */}
+          {/* Achievement Summary */}
           <div className="mt-16 pt-8 border-t border-stone-200 grid grid-cols-2 gap-8">
              <div>
                 <span className="block text-3xl font-medium font-serif text-earth-gold mb-1">300+</span>
