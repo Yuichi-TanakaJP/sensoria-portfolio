@@ -3,10 +3,10 @@ import { Menu, Search, Instagram, X } from 'lucide-react';
 import { NavItem } from '../types';
 
 const navItems: NavItem[] = [
-  { label: 'About', href: '#about' },
-  { label: 'Journal', href: '#journal' },
-  { label: 'Works', href: '#works' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Journal', href: '/journal.html' },
+  { label: 'Works', href: '/#works' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 const Header: React.FC = () => {
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#top" className="text-2xl md:text-3xl font-medium font-serif tracking-widest text-stone-900 hover:opacity-80 transition-opacity">
+        <a href="/" className="text-2xl md:text-3xl font-medium font-serif tracking-widest text-stone-900 hover:opacity-80 transition-opacity">
           Sensoria
         </a>
 
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
             </a>
           ))}
           <div className="flex items-center space-x-4 border-l border-stone-300 pl-6">
-            <a href="#journal" aria-label="記事フィルターへ" className="text-stone-500 hover:text-stone-900 transition-colors">
+            <a href="/journal.html" aria-label="記事一覧へ" className="text-stone-500 hover:text-stone-900 transition-colors">
               <Search size={18} />
             </a>
             <a
@@ -83,7 +83,7 @@ const Header: React.FC = () => {
             </a>
           ))}
           <div className="flex justify-center space-x-6 pt-4">
-            <a href="#journal" aria-label="記事フィルターへ" onClick={() => setMobileMenuOpen(false)}>
+            <a href="/journal.html" aria-label="記事一覧へ" onClick={() => setMobileMenuOpen(false)}>
               <Search className="text-stone-500" />
             </a>
             <a

@@ -6,15 +6,15 @@ const Footer: React.FC = () => {
     <footer className="bg-stone-900 text-stone-400 py-16 md:py-24">
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-center">
         
-        <a href="#top" className="text-3xl font-serif tracking-widest text-stone-200 mb-8 hover:opacity-80 transition-opacity">
+        <a href="/" className="text-3xl font-serif tracking-widest text-stone-200 mb-8 hover:opacity-80 transition-opacity">
           Sensoria
         </a>
 
         <nav className="flex flex-wrap justify-center gap-6 md:gap-12 mb-12 text-sm tracking-widest uppercase">
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-          <a href="#journal" className="hover:text-white transition-colors">Journal</a>
-          <a href="#works" className="hover:text-white transition-colors">Works</a>
-          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          <a href="/#about" className="hover:text-white transition-colors">About</a>
+          <a href="/journal.html" className="hover:text-white transition-colors">Journal</a>
+          <a href="/#works" className="hover:text-white transition-colors">Works</a>
+          <a href="/#contact" className="hover:text-white transition-colors">Contact</a>
         </nav>
 
         <div className="flex space-x-8 mb-12">

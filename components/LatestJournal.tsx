@@ -1,35 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Article } from '../types';
+import { journalArticles } from '../data/articles';
 
-const latestArticles: Article[] = [
-  {
-    id: '4',
-    title: '朝の静寂を取り戻す、10分間の「聴覚」デトックス。',
-    category: 'Lifestyle',
-    tags: ['ライフスタイル', '聴覚'],
-    image: 'https://picsum.photos/id/19/400/300',
-    excerpt: '',
-    date: '2023.11.05'
-  },
-  {
-    id: '5',
-    title: '現代アートと食の融合。味覚を刺激する新しいレストラン体験。',
-    category: 'Art',
-    tags: ['アート', '食', '味覚'],
-    image: 'https://picsum.photos/id/431/400/300',
-    excerpt: '',
-    date: '2023.11.02'
-  },
-  {
-    id: '6',
-    title: '週末、スマホを置いて森へ行く。デジタルデトックスのすすめ。',
-    category: 'Travel',
-    tags: ['旅', '自然'],
-    image: 'https://picsum.photos/id/28/400/300',
-    excerpt: '',
-    date: '2023.10.28'
-  }
-];
+const latestArticles: Article[] = journalArticles.slice(3);
 
 const LatestJournal: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<'All' | Article['category']>('All');
@@ -75,9 +48,7 @@ const LatestJournal: React.FC = () => {
           {filteredArticles.map((article) => (
             <a
               key={article.id}
-              href={`https://example.com/sensoria-journal/${article.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`/journal.html#article-${article.id}`}
               className="group block bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="relative overflow-hidden aspect-[3/2] mb-4">
@@ -99,9 +70,9 @@ const LatestJournal: React.FC = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <button className="px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300">
+          <a href="/journal.html" className="inline-block px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300">
             記事一覧を見る
-          </button>
+          </a>
         </div>
       </div>
     </section>

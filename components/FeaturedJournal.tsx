@@ -1,36 +1,9 @@
 import React from 'react';
 import { Article } from '../types';
 import { ArrowRight } from 'lucide-react';
+import { journalArticles } from '../data/articles';
 
-const featuredArticles: Article[] = [
-  {
-    id: '1',
-    title: '瀬戸内の光と影。アートが教えてくれる「見る」ことの豊かさ。',
-    category: 'Art',
-    tags: ['アート', '旅', '視覚'],
-    image: 'https://picsum.photos/id/1040/800/1000', // Castle/Architecture
-    excerpt: '直島の美術館で出会ったのは、静寂の中に浮かび上がる光のアートでした。',
-    date: '2023.10.15'
-  },
-  {
-    id: '2',
-    title: 'なぜ、そのクリームに癒やされるのか。肌が喜ぶ「触り心地」の秘密。',
-    category: 'Beauty',
-    tags: ['美容', 'スキンケア', '触覚'],
-    image: 'https://picsum.photos/id/360/800/1000', // Flower/Texture
-    excerpt: '高機能なだけではない。指先が触れた瞬間に心がほどける、テクスチャの魔法について。',
-    date: '2023.10.22'
-  },
-  {
-    id: '3',
-    title: '記憶を呼び覚ます香り。旅先で出会った一生モノのパフューム。',
-    category: 'Travel',
-    tags: ['旅', '美容', '嗅覚'],
-    image: 'https://picsum.photos/id/292/800/1000', // Spices/Ingredients
-    excerpt: '異国のスパイス市場で出会った香りは、今でも鮮明に旅の記憶を蘇らせてくれます。',
-    date: '2023.10.30'
-  }
-];
+const featuredArticles: Article[] = journalArticles.slice(0, 3);
 
 const FeaturedJournal: React.FC = () => {
   return (
@@ -42,7 +15,7 @@ const FeaturedJournal: React.FC = () => {
             五感を旅する
           </h2>
         </div>
-        <a href="#journal" className="hidden md:flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors mt-4 md:mt-0">
+        <a href="/journal.html" className="hidden md:flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors mt-4 md:mt-0">
           VIEW ALL <ArrowRight size={16} className="ml-2" />
         </a>
       </div>
@@ -81,7 +54,7 @@ const FeaturedJournal: React.FC = () => {
       </div>
 
       <div className="mt-12 md:hidden text-center">
-        <a href="#journal" className="inline-flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors border-b border-stone-300 pb-1">
+        <a href="/journal.html" className="inline-flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors border-b border-stone-300 pb-1">
           VIEW ALL JOURNAL <ArrowRight size={16} className="ml-2" />
         </a>
       </div>
