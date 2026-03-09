@@ -83,7 +83,7 @@ const Header: React.FC = () => {
             </a>
           ))}
           <div className="flex justify-center space-x-6 pt-4">
-            <a href="#journal" aria-label="記事フィルターへ">
+            <a href="#journal" aria-label="記事フィルターへ" onClick={() => setMobileMenuOpen(false)}>
               <Search className="text-stone-500" />
             </a>
             <a
@@ -91,6 +91,7 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram (dummy)"
+              onClick={() => setMobileMenuOpen(false)}
             >
               <Instagram className="text-stone-500" />
             </a>
