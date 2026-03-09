@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     >
       <div className="max-w-screen-xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <a href="#" className="text-2xl md:text-3xl font-medium font-serif tracking-widest text-stone-900 hover:opacity-80 transition-opacity">
+        <a href="#top" className="text-2xl md:text-3xl font-medium font-serif tracking-widest text-stone-900 hover:opacity-80 transition-opacity">
           Sensoria
         </a>
 
@@ -45,12 +45,18 @@ const Header: React.FC = () => {
             </a>
           ))}
           <div className="flex items-center space-x-4 border-l border-stone-300 pl-6">
-            <button className="text-stone-500 hover:text-stone-900 transition-colors">
+            <a href="#journal" aria-label="記事フィルターへ" className="text-stone-500 hover:text-stone-900 transition-colors">
               <Search size={18} />
-            </button>
-            <button className="text-stone-500 hover:text-earth-terra transition-colors">
+            </a>
+            <a
+              href="https://www.instagram.com/?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram (dummy)"
+              className="text-stone-500 hover:text-earth-terra transition-colors"
+            >
               <Instagram size={18} />
-            </button>
+            </a>
           </div>
         </nav>
 
@@ -77,8 +83,18 @@ const Header: React.FC = () => {
             </a>
           ))}
           <div className="flex justify-center space-x-6 pt-4">
-            <Search className="text-stone-500" />
-            <Instagram className="text-stone-500" />
+            <a href="#journal" aria-label="記事フィルターへ" onClick={() => setMobileMenuOpen(false)}>
+              <Search className="text-stone-500" />
+            </a>
+            <a
+              href="https://www.instagram.com/?hl=ja"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram (dummy)"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Instagram className="text-stone-500" />
+            </a>
           </div>
         </div>
       )}

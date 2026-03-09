@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Article } from '../types';
 
 const latestArticles: Article[] = [
@@ -32,17 +32,54 @@ const latestArticles: Article[] = [
 ];
 
 const LatestJournal: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState<'All' | Article['category']>('All');
+
+  const categories = useMemo(
+    () => ['All', ...new Set(latestArticles.map((article) => article.category))] as Array<'All' | Article['category']>,
+    []
+  );
+
+  const filteredArticles = useMemo(
+    () =>
+      selectedCategory === 'All'
+        ? latestArticles
+        : latestArticles.filter((article) => article.category === selectedCategory),
+    [selectedCategory]
+  );
+
   return (
     <section id="journal" className="py-20 bg-stone-100">
       <div className="max-w-screen-xl mx-auto px-6">
         <div className="text-center mb-16">
            <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-3">Latest Journal</span>
           <h2 className="text-2xl md:text-3xl font-medium font-serif text-stone-800 tracking-wider">最新の記事</h2>
+          <div className="mt-8 flex justify-center">
+            <label className="text-sm text-stone-600 flex items-center gap-3">
+              <span className="tracking-widest uppercase">Category</span>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value as 'All' | Article['category'])}
+                className="bg-white border border-stone-300 text-stone-800 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-earth-terra/40"
+              >
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {latestArticles.map((article) => (
-            <a key={article.id} href="#" className="group block bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
+          {filteredArticles.map((article) => (
+            <a
+              key={article.id}
+              href={`https://example.com/sensoria-journal/${article.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
+            >
               <div className="relative overflow-hidden aspect-[3/2] mb-4">
                 <img 
                   src={article.image} 

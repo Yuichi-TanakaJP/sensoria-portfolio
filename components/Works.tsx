@@ -14,14 +14,14 @@ const workItems: WorkItem[] = [
     type: 'Editorial',
     summary: 'アート・旅・美容領域での執筆実績。読後に感覚が残る文章設計を重視。',
     linkLabel: '掲載実績を見る',
-    href: '#',
+    href: 'https://example.com/sensoria-nikkei',
   },
   {
     title: 'ブランドコンセプト設計',
     type: 'Direction',
     summary: '言葉・体験・ビジュアルを一体で設計し、ブランドの一貫性を構築。',
     linkLabel: 'プロジェクト概要を見る',
-    href: '#',
+    href: 'https://example.com/sensoria-concept',
   },
   {
     title: 'Webメディア監修',
@@ -53,6 +53,8 @@ const Works: React.FC = () => {
             <p className="text-sm md:text-base text-stone-600 leading-loose flex-grow">{work.summary}</p>
             <a
               href={work.href}
+              target={work.href.startsWith('http') ? '_blank' : undefined}
+              rel={work.href.startsWith('http') ? 'noopener noreferrer' : undefined}
               className="mt-8 inline-block text-sm tracking-widest text-stone-800 border-b border-stone-300 pb-1 hover:text-earth-terra hover:border-earth-terra transition-colors"
             >
               {work.linkLabel}

@@ -16,13 +16,15 @@ const Contact: React.FC = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="mailto:hello@sensoria.example"
+            href="mailto:contact@sensoria.example"
             className="px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300"
           >
             メールで連絡する
           </a>
           <a
-            href="#"
+            href="https://example.com/sensoria-instagram"
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-8 py-3 border border-stone-400 text-stone-700 text-sm tracking-widest hover:border-earth-terra hover:text-earth-terra transition-colors duration-300"
           >
             Instagramを見る
