@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
             メールで連絡する
           </a>
           <a
-            href="https://example.com/sensoria-instagram"
+            href="https://www.instagram.com/rika05181"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 border border-stone-400 text-stone-700 text-sm tracking-widest hover:border-earth-terra hover:text-earth-terra transition-colors duration-300"

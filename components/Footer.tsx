@@ -19,10 +19,10 @@ const Footer: React.FC = () => {
 
         <div className="flex space-x-8 mb-12">
           <a
-            href="https://example.com/sensoria-instagram"
+            href="https://www.instagram.com/rika05181"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram (dummy)"
+            aria-label="Instagram"
             className="text-stone-500 hover:text-white transition-colors"
           >
             <Instagram size={20} />
