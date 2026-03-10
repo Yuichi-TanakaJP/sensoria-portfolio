@@ -8,6 +8,7 @@
 - `#` or no hash: Home（1ページ構成）
 - `#/works`: 活動と実績の専用ページ
 - `#/journal`: 記事一覧の専用ページ
+- `#/featured`: 特集一覧の専用ページ
 
 ## 3. Home Structure (Top to Bottom)
 1. Header (`#top` 起点)
@@ -29,8 +30,9 @@
 
 ## 5. CTA Rules (Current)
 - Featured Journal
-  - CTA: `記事一覧を見る`
-  - Destination: `#/journal`
+  - 各カード: `#/featured`
+  - CTA: `特集一覧を見る`
+  - Destination: `#/featured`
 - Latest Journal
   - 各記事カード: `#/journal`
   - セクション末尾ボタン: `#/journal`

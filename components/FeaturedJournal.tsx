@@ -45,7 +45,7 @@ const FeaturedJournal: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
         {featuredArticles.map((article) => (
-          <article key={article.id} className="group cursor-pointer flex flex-col h-full">
+          <a key={article.id} href="#/featured" className="group block flex flex-col h-full">
             <div className="relative overflow-hidden aspect-[4/5] mb-6">
               <img 
                 src={article.image} 
@@ -72,16 +72,16 @@ const FeaturedJournal: React.FC = () => {
                 {article.date}
               </div>
             </div>
-          </article>
+          </a>
         ))}
       </div>
 
       <div className="mt-16 text-center">
         <a
-          href="#/journal"
+          href="#/featured"
           className="inline-block px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300"
         >
-          記事一覧を見る
+          特集一覧を見る
         </a>
       </div>
 
