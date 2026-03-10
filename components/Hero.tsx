@@ -30,11 +30,6 @@ const Hero: React.FC = () => {
           Five Senses Beauty
         </p>
         
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium font-serif text-stone-900 leading-tight mb-8 fade-in-up" style={{ animationDelay: '0.4s' }}>
-          <span className="block mb-2 md:mb-4">視覚を磨き、</span>
-          <span className="block">触覚を癒やす。</span>
-        </h1>
-
         <div className="h-12 w-[1px] bg-stone-400 mx-auto mb-8 fade-in-up" style={{ animationDelay: '0.6s' }}></div>
 
         <p className="text-stone-800 text-lg md:text-xl font-serif leading-relaxed tracking-wider fade-in-up" style={{ animationDelay: '0.8s' }}>
