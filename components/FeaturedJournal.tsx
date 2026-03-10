@@ -1,6 +1,5 @@
 import React from 'react';
 import { Article } from '../types';
-import { ArrowRight } from 'lucide-react';
 
 const featuredArticles: Article[] = [
   {
@@ -35,16 +34,13 @@ const featuredArticles: Article[] = [
 const FeaturedJournal: React.FC = () => {
   return (
     <section id="featured" className="py-20 md:py-32 px-6 max-w-screen-xl mx-auto">
-       <div className="flex flex-col md:flex-row justify-between items-end mb-12 md:mb-20">
+       <div className="mb-12 md:mb-20">
         <div>
           <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-3">Featured Journal</span>
           <h2 className="text-3xl md:text-4xl font-medium font-serif text-stone-800 tracking-wider">
             五感を旅する
           </h2>
         </div>
-        <a href="#journal" className="hidden md:flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors mt-4 md:mt-0">
-          VIEW ALL <ArrowRight size={16} className="ml-2" />
-        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
@@ -80,11 +76,15 @@ const FeaturedJournal: React.FC = () => {
         ))}
       </div>
 
-      <div className="mt-12 md:hidden text-center">
-        <a href="#journal" className="inline-flex items-center text-sm tracking-widest text-stone-500 hover:text-earth-terra transition-colors border-b border-stone-300 pb-1">
-          VIEW ALL JOURNAL <ArrowRight size={16} className="ml-2" />
+      <div className="mt-16 text-center">
+        <a
+          href="#/journal"
+          className="inline-block px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300"
+        >
+          記事一覧を見る
         </a>
       </div>
+
     </section>
   );
 };

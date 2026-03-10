@@ -41,7 +41,7 @@ const Profile: React.FC = () => {
           </div>
 
           <div className="mt-10">
-            <a href="#contact" className="inline-block border-b border-stone-800 pb-1 text-stone-800 tracking-widest hover:text-earth-terra hover:border-earth-terra transition-colors">
+            <a href="#/works" className="inline-block border-b border-stone-800 pb-1 text-stone-800 tracking-widest hover:text-earth-terra hover:border-earth-terra transition-colors">
               詳しいプロフィール・実績を見る →
             </a>
           </div>

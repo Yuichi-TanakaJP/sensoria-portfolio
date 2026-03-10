@@ -75,9 +75,7 @@ const LatestJournal: React.FC = () => {
           {filteredArticles.map((article) => (
             <a
               key={article.id}
-              href={`https://example.com/sensoria-journal/${article.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#/journal"
               className="group block bg-white p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
               <div className="relative overflow-hidden aspect-[3/2] mb-4">
@@ -99,10 +97,14 @@ const LatestJournal: React.FC = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <button className="px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300">
+          <a
+            href="#/journal"
+            className="inline-block px-8 py-3 bg-stone-800 text-stone-50 text-sm tracking-widest hover:bg-earth-terra transition-colors duration-300"
+          >
             記事一覧を見る
-          </button>
+          </a>
         </div>
+
       </div>
     </section>
   );
