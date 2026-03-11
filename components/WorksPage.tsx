@@ -12,6 +12,12 @@ type LinkItem = {
   url: string;
 };
 
+type LinkCategory = {
+  name: string;
+  lead: string;
+  items: LinkItem[];
+};
+
 const detailItems: DetailItem[] = [
   {
     title: 'Nikkei Web 連載',
@@ -45,43 +51,79 @@ const detailItems: DetailItem[] = [
   },
 ];
 
-const achievementLinks: LinkItem[] = [
-  { title: 'Instagram', url: 'https://instagram.com/rika05181' },
-  { title: '楽活', url: 'https://rakukatsu.jp/author/takahashi-rika' },
-  { title: 'りかたんの五感美容旅 | トラベルコ', url: 'https://www.tour.ne.jp/blog/rikatan/' },
-  { title: '日常に五感のスイッチを｜シティリビングWeb', url: 'https://city.living.jp/citymate/citymate415/' },
-  { title: '美的', url: 'https://www.biteki.com/' },
-  { title: '日経x womanアンバサダー', url: 'https://woman.nikkei.com/' },
-  { title: 'anan Beauty ＋', url: 'https://plus.ananweb.jp/' },
-  { title: 'CREAアンバサダー', url: 'https://crea.bunshun.jp/list/author/64993f21b576224852000012' },
-  { title: 'ハナコラボJOURNAL | Hanako Web', url: 'https://hanako.tokyo/tags/hanako-lab-journal/' },
-  { title: '米肌 beauty channel', url: 'https://www.instagram.com/' },
-  { title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com', url: 'https://www.biteki.com/life-style/others/1661397' },
-  { title: '〖GW1泊2日の美トリップ〗美肌整う鹿児島県・霧島の温泉旅｜天然の“泥パック”で全身すべすべに♪ | 美的.com', url: 'https://www.biteki.com/life-style/others/1660535' },
-  { title: '〖14のおすすめ〗ネイルオイル、人気で優秀なヤツ集めました！ | 美的.com', url: 'https://www.biteki.com/nail/nail-howto/292503' },
-  { title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019' },
-  { title: 'Voicy 〖美容健康〗二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984' },
-  { title: 'Voicy 〖美容健康〗まずはお口から！大病防ぐオーラルケア', url: 'https://voicy.jp/channel/1073/220292' },
-  { title: 'Voicy 〖美容健康〗りんご酢の取り入れ方について', url: 'https://voicy.jp/channel/1073/218281' },
-  { title: 'Voicy 〖美容健康〗意外と知らない！？日本茶の魅力について', url: 'https://voicy.jp/channel/1073/214884' },
-  { title: 'Voicy 〖美容健康〗人気読者モデルオススメ美容法とは？', url: 'https://voicy.jp/channel/1073/198824' },
-  { title: 'Voicy 〖美容健康〗健康美容の味方！マヌカハニーについて', url: 'https://voicy.jp/channel/1073/200159' },
-  { title: 'Voicy 〖美容健康〗うま味の秘密を知る！かつお節の魅力', url: 'https://voicy.jp/channel/1073/198829' },
-  { title: 'Voicy 〖美容健康〗もっと大切にしたい！睡眠の改善法', url: 'https://voicy.jp/channel/1073/194995' },
-  { title: 'Voicy 〖美容健康〗早期発見に必要ながん検診について', url: 'https://voicy.jp/channel/1073/192909' },
-  { title: 'Voicy 〖美容健康〗美と健康に欠かせない味噌の魅力とは？', url: 'https://voicy.jp/channel/1073/191567' },
-  { title: 'Voicy 〖美容健康〗歯周病も口臭もあいうべ体操で予防！？', url: 'https://voicy.jp/channel/1073/188336' },
-  { title: 'Voicy 〖美容健康〗毎日1分！身体が軽くなる習慣', url: 'https://voicy.jp/channel/1073/171131' },
-  { title: 'Voicy 〖美容健康〗胃カメラの受け方と胃の健康を守る方法', url: 'https://voicy.jp/channel/1073/178254' },
-  { title: 'Voicy 〖美容健康〗香りの活用法で人生が豊かになる方法', url: 'https://voicy.jp/channel/1073/179146' },
-  { title: 'Voicy 〖美容健康〗好感度UP！自分に似合う色の見つけ方', url: 'https://voicy.jp/channel/1073/172049' },
-  { title: 'Voicy 〖美容健康〗見た目の印象を変える髪のお手入れ方法', url: 'https://voicy.jp/channel/1073/167200' },
-  { title: 'Voicy 〖美容健康〗呼吸法で不安を瞬間リフレッシュ！', url: 'https://voicy.jp/channel/1073/170892' },
-  { title: '伝統工芸インタビュー', url: 'https://girlsartalk.com/column/16874.html' },
-  { title: 'ヤマハ音楽教室アンバサダーインタビュー', url: 'https://www.yamaha-ongaku.com/music-school/why_yamaha/ambassador/article08.html' },
-  { title: 'シティリビング横浜版', url: 'https://book.living.jp/ebooks/cityliving/yokohama/20190208/index_h5.html' },
-  { title: '書き残すことで気持ちがスッキリする手帳活用術［PR］（2ページ目）：日経xwoman', url: 'https://woman.nikkei.com/atcl/cons/051300011/101300034/?P=2' },
-  { title: '突然の予定変更もOK！卓上カレンダーの活用法とは〖日経WOMAN16年6月号〗：日経xwoman', url: 'https://woman.nikkei.com/atcl/doors/wol/magazine/15/113000009/042000022/' },
+const achievementLinkCategories: LinkCategory[] = [
+  {
+    name: 'SNS',
+    lead: 'Instagramを起点に、日々の発信と最新情報を更新しています。',
+    items: [
+      { title: 'Instagram', url: 'https://instagram.com/rika05181' },
+    ],
+  },
+  {
+    name: '美容・ライフスタイル系メディア',
+    lead: '美容、ウェルネス旅、体験レポートを中心にした掲載先です。',
+    items: [
+      { title: '美的', url: 'https://www.biteki.com/' },
+      { title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com', url: 'https://www.biteki.com/life-style/others/1661397' },
+      { title: '〖GW1泊2日の美トリップ〗美肌整う鹿児島県・霧島の温泉旅｜天然の“泥パック”で全身すべすべに♪ | 美的.com', url: 'https://www.biteki.com/life-style/others/1660535' },
+      { title: '〖14のおすすめ〗ネイルオイル、人気で優秀なヤツ集めました！ | 美的.com', url: 'https://www.biteki.com/nail/nail-howto/292503' },
+      { title: 'anan Beauty ＋', url: 'https://plus.ananweb.jp/' },
+      { title: 'CREAアンバサダー', url: 'https://crea.bunshun.jp/list/author/64993f21b576224852000012' },
+      { title: 'ハナコラボJOURNAL | Hanako Web', url: 'https://hanako.tokyo/tags/hanako-lab-journal/' },
+      { title: '米肌 beauty channel', url: 'https://www.instagram.com/' },
+    ],
+  },
+  {
+    name: '新聞・雑誌・女性向けメディア',
+    lead: '女性向け媒体を中心に、アンバサダー・連載・記事掲載の導線をまとめています。',
+    items: [
+      { title: '日経x womanアンバサダー', url: 'https://woman.nikkei.com/' },
+      { title: '書き残すことで気持ちがスッキリする手帳活用術［PR］（2ページ目）：日経xwoman', url: 'https://woman.nikkei.com/atcl/cons/051300011/101300034/?P=2' },
+      { title: '突然の予定変更もOK！卓上カレンダーの活用法とは〖日経WOMAN16年6月号〗：日経xwoman', url: 'https://woman.nikkei.com/atcl/doors/wol/magazine/15/113000009/042000022/' },
+      { title: '日常に五感のスイッチを｜シティリビングWeb', url: 'https://city.living.jp/citymate/citymate415/' },
+      { title: 'シティリビング横浜版', url: 'https://book.living.jp/ebooks/cityliving/yokohama/20190208/index_h5.html' },
+    ],
+  },
+  {
+    name: '旅行・ブログ系',
+    lead: '旅と感性をテーマにしたブログ・著者ページのアーカイブです。',
+    items: [
+      { title: 'りかたんの五感美容旅 | トラベルコ', url: 'https://www.tour.ne.jp/blog/rikatan/' },
+      { title: '楽活', url: 'https://rakukatsu.jp/author/takahashi-rika' },
+    ],
+  },
+  {
+    name: '音声メディア',
+    lead: 'Voicyでの美容健康コンテンツを中心に、継続発信のアーカイブをまとめています。',
+    items: [
+      { title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019' },
+      { title: 'Voicy 〖美容健康〗二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984' },
+      { title: 'Voicy 〖美容健康〗まずはお口から！大病防ぐオーラルケア', url: 'https://voicy.jp/channel/1073/220292' },
+      { title: 'Voicy 〖美容健康〗りんご酢の取り入れ方について', url: 'https://voicy.jp/channel/1073/218281' },
+      { title: 'Voicy 〖美容健康〗意外と知らない！？日本茶の魅力について', url: 'https://voicy.jp/channel/1073/214884' },
+      { title: 'Voicy 〖美容健康〗人気読者モデルオススメ美容法とは？', url: 'https://voicy.jp/channel/1073/198824' },
+      { title: 'Voicy 〖美容健康〗健康美容の味方！マヌカハニーについて', url: 'https://voicy.jp/channel/1073/200159' },
+      { title: 'Voicy 〖美容健康〗うま味の秘密を知る！かつお節の魅力', url: 'https://voicy.jp/channel/1073/198829' },
+      { title: 'Voicy 〖美容健康〗もっと大切にしたい！睡眠の改善法', url: 'https://voicy.jp/channel/1073/194995' },
+      { title: 'Voicy 〖美容健康〗早期発見に必要ながん検診について', url: 'https://voicy.jp/channel/1073/192909' },
+      { title: 'Voicy 〖美容健康〗美と健康に欠かせない味噌の魅力とは？', url: 'https://voicy.jp/channel/1073/191567' },
+      { title: 'Voicy 〖美容健康〗歯周病も口臭もあいうべ体操で予防！？', url: 'https://voicy.jp/channel/1073/188336' },
+      { title: 'Voicy 〖美容健康〗毎日1分！身体が軽くなる習慣', url: 'https://voicy.jp/channel/1073/171131' },
+      { title: 'Voicy 〖美容健康〗胃カメラの受け方と胃の健康を守る方法', url: 'https://voicy.jp/channel/1073/178254' },
+      { title: 'Voicy 〖美容健康〗香りの活用法で人生が豊かになる方法', url: 'https://voicy.jp/channel/1073/179146' },
+      { title: 'Voicy 〖美容健康〗好感度UP！自分に似合う色の見つけ方', url: 'https://voicy.jp/channel/1073/172049' },
+      { title: 'Voicy 〖美容健康〗見た目の印象を変える髪のお手入れ方法', url: 'https://voicy.jp/channel/1073/167200' },
+      { title: 'Voicy 〖美容健康〗呼吸法で不安を瞬間リフレッシュ！', url: 'https://voicy.jp/channel/1073/170892' },
+    ],
+  },
+  {
+    name: 'インタビュー・その他外部掲載',
+    lead: '外部サイトでのインタビュー掲載・アンバサダー掲載です。',
+    items: [
+      { title: '伝統工芸インタビュー', url: 'https://girlsartalk.com/column/16874.html' },
+      { title: 'ヤマハ音楽教室アンバサダーインタビュー', url: 'https://www.yamaha-ongaku.com/music-school/why_yamaha/ambassador/article08.html' },
+    ],
+  },
 ];
 
 const WorksPage: React.FC = () => {
@@ -125,17 +167,28 @@ const WorksPage: React.FC = () => {
 
         <section className="mt-16 md:mt-20">
           <h2 className="text-2xl md:text-3xl font-serif text-stone-900 mb-6">リンク集</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-            {achievementLinks.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block bg-white border border-stone-200 px-5 py-4 text-sm md:text-base text-stone-700 leading-relaxed hover:border-earth-terra/50 hover:text-earth-terra transition-colors"
-              >
-                {link.title}
-              </a>
+          <p className="text-sm md:text-base text-stone-600 leading-loose mb-8">
+            Instagram・美容メディア・女性向け媒体・旅行ブログ・音声配信を軸に、活動実績をカテゴリ別に整理しています。
+          </p>
+          <div className="space-y-10">
+            {achievementLinkCategories.map((category) => (
+              <section key={category.name}>
+                <h3 className="text-xl md:text-2xl font-serif text-stone-900 mb-2">{category.name}</h3>
+                <p className="text-sm md:text-base text-stone-600 leading-loose mb-4">{category.lead}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                  {category.items.map((link) => (
+                    <a
+                      key={`${category.name}-${link.title}`}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block bg-white border border-stone-200 px-5 py-4 text-sm md:text-base text-stone-700 leading-relaxed hover:border-earth-terra/50 hover:text-earth-terra transition-colors"
+                    >
+                      {link.title}
+                    </a>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         </section>
