@@ -9,21 +9,33 @@ type WorkItem = {
 
 const workItems: WorkItem[] = [
   {
-    title: 'Nikkei Web 連載',
+    title: '美容・ライフスタイル系メディア掲載',
+    type: 'Beauty Media',
+    summary: '美的、anan Beauty＋、CREA、Hanakoなどで美容・体験レポートを継続発信。',
+    href: '#/works',
+  },
+  {
+    title: '新聞・雑誌・女性向け媒体での連載/寄稿',
     type: 'Editorial',
-    summary: 'アート・旅・美容領域での執筆実績。読後に感覚が残る文章設計を重視。',
+    summary: '日経x woman、シティリビングなどで、日常に寄り添う五感テーマの記事を掲載。',
     href: '#/works',
   },
   {
-    title: 'ブランドコンセプト設計',
-    type: 'Direction',
-    summary: '言葉・体験・ビジュアルを一体で設計し、ブランドの一貫性を構築。',
+    title: '旅行・ブログ領域の発信',
+    type: 'Travel Blog',
+    summary: 'トラベルコ「りかたんの五感美容旅」や著者ページで旅と美容の記録を継続掲載。',
     href: '#/works',
   },
   {
-    title: 'Webメディア監修',
-    type: 'Consulting',
-    summary: '編集方針とUI体験の接続を支援し、読みやすさと世界観を両立。',
+    title: '音声メディアでの継続配信',
+    type: 'Audio',
+    summary: 'Voicyで美容健康を軸に、習慣・栄養・睡眠・セルフケアなどのテーマを継続発信。',
+    href: '#/works',
+  },
+  {
+    title: 'インタビュー・外部掲載',
+    type: 'Interview',
+    summary: '伝統工芸、ヤマハ音楽教室アンバサダーなど、外部インタビュー・掲載実績を展開。',
     href: '#/works',
   },
 ];
@@ -38,7 +50,7 @@ const Works: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {workItems.map((work) => (
           <a
             key={work.title}
