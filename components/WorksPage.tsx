@@ -10,12 +10,39 @@ type DetailItem = {
 type LinkItem = {
   title: string;
   url: string;
+  publishedAt?: string;
+  cta?: 'Visit' | 'Read' | 'Listen' | 'Follow';
 };
 
 type LinkCategory = {
   name: string;
   lead: string;
+  accent: string;
   items: LinkItem[];
+};
+
+const sortByRecent = (items: LinkItem[]): LinkItem[] => {
+  return [...items].sort((a, b) => {
+    const ad = a.publishedAt ? Date.parse(a.publishedAt) : Number.NEGATIVE_INFINITY;
+    const bd = b.publishedAt ? Date.parse(b.publishedAt) : Number.NEGATIVE_INFINITY;
+    return bd - ad;
+  });
+};
+
+const getCta = (item: LinkItem): LinkItem['cta'] => {
+  if (item.cta) {
+    return item.cta;
+  }
+  if (item.url.includes('instagram.com')) {
+    return 'Follow';
+  }
+  if (item.url.includes('voicy.jp')) {
+    return 'Listen';
+  }
+  if (item.url.includes('biteki.com') || item.url.includes('nikkei.com')) {
+    return 'Read';
+  }
+  return 'Visit';
 };
 
 const detailItems: DetailItem[] = [
@@ -75,13 +102,13 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: 'SNS',
     lead: 'Instagramを起点に、日々の発信と最新情報を更新しています。',
-    items: [
-      { title: 'Instagram', url: 'https://instagram.com/rika05181' },
-    ],
+    accent: 'from-rose-100 via-orange-50 to-stone-50',
+    items: [{ title: 'Instagram', url: 'https://instagram.com/rika05181', cta: 'Follow' }],
   },
   {
     name: '美容・ライフスタイル系メディア',
     lead: '美容、ウェルネス旅、体験レポートを中心にした掲載先です。',
+    accent: 'from-amber-50 via-orange-50 to-stone-50',
     items: [
       { title: '美的', url: 'https://www.biteki.com/' },
       { title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com', url: 'https://www.biteki.com/life-style/others/1661397' },
@@ -96,6 +123,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '新聞・雑誌・女性向けメディア',
     lead: '女性向け媒体を中心に、アンバサダー・連載・記事掲載の導線をまとめています。',
+    accent: 'from-sky-50 via-cyan-50 to-stone-50',
     items: [
       { title: '日経x womanアンバサダー', url: 'https://woman.nikkei.com/' },
       { title: '書き残すことで気持ちがスッキリする手帳活用術［PR］（2ページ目）：日経xwoman', url: 'https://woman.nikkei.com/atcl/cons/051300011/101300034/?P=2' },
@@ -107,6 +135,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '旅行・ブログ系',
     lead: '旅と感性をテーマにしたブログ・著者ページのアーカイブです。',
+    accent: 'from-emerald-50 via-teal-50 to-stone-50',
     items: [
       { title: 'りかたんの五感美容旅 | トラベルコ', url: 'https://www.tour.ne.jp/blog/rikatan/' },
       { title: '楽活', url: 'https://rakukatsu.jp/author/takahashi-rika' },
@@ -115,6 +144,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '音声メディア',
     lead: 'Voicyでの美容健康コンテンツを中心に、継続発信のアーカイブをまとめています。',
+    accent: 'from-violet-50 via-fuchsia-50 to-stone-50',
     items: [
       { title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019' },
       { title: 'Voicy 〖美容健康〗二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984' },
@@ -139,6 +169,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: 'インタビュー・その他外部掲載',
     lead: '外部サイトでのインタビュー掲載・アンバサダー掲載です。',
+    accent: 'from-stone-100 via-zinc-50 to-stone-50',
     items: [
       { title: '伝統工芸インタビュー', url: 'https://girlsartalk.com/column/16874.html' },
       { title: 'ヤマハ音楽教室アンバサダーインタビュー', url: 'https://www.yamaha-ongaku.com/music-school/why_yamaha/ambassador/article08.html' },
@@ -146,9 +177,27 @@ const achievementLinkCategories: LinkCategory[] = [
   },
 ];
 
+const featuredLinks: LinkItem[] = [
+  {
+    title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com',
+    url: 'https://www.biteki.com/life-style/others/1661397',
+    cta: 'Read',
+  },
+  {
+    title: '日経x womanアンバサダー',
+    url: 'https://woman.nikkei.com/',
+    cta: 'Visit',
+  },
+  {
+    title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！',
+    url: 'https://voicy.jp/channel/1073/227019',
+    cta: 'Listen',
+  },
+];
+
 const WorksPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-stone-50 text-stone-800">
+    <div className="min-h-screen bg-gradient-to-b from-stone-100 via-stone-50 to-stone-50 text-stone-800">
       <header className="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200">
         <div className="max-w-screen-xl mx-auto px-6 py-5 flex items-center justify-between">
           <a href="#" className="text-sm tracking-widest text-stone-600 hover:text-earth-terra transition-colors uppercase">
@@ -161,50 +210,116 @@ const WorksPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-screen-xl mx-auto px-6 py-16 md:py-24">
-        <p className="text-sm md:text-base text-stone-600 leading-loose mb-12 md:mb-16 max-w-3xl">
-          Sensoriaの活動履歴を、美容・女性向け媒体・旅行ブログ・音声配信・外部インタビューの5カテゴリで整理しています。媒体ごとの読者体験に合わせて、伝わる文脈設計を重視してきた実績です。
-        </p>
+      <main className="max-w-screen-xl mx-auto px-6 py-14 md:py-20">
+        <section className="relative overflow-hidden rounded-2xl border border-stone-200 bg-white/80 p-8 md:p-12 mb-16">
+          <div className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-earth-terra/10 blur-2xl" />
+          <div className="absolute -bottom-24 -left-8 h-56 w-56 rounded-full bg-earth-sage/10 blur-2xl" />
+          <div className="relative">
+            <span className="text-xs tracking-[0.3em] text-earth-sage uppercase">Portfolio Links</span>
+            <h2 className="mt-4 text-3xl md:text-5xl font-serif leading-tight text-stone-900">
+              掲載実績とSNSを、
+              <br />
+              ひとつのページで美しく整理。
+            </h2>
+            <p className="mt-5 max-w-3xl text-sm md:text-base text-stone-600 leading-loose">
+              美容・ライフスタイル系メディア、女性向け媒体、旅行ブログ、音声配信、外部インタビューまで、活動実績をカテゴリ別にまとめています。
+              目的に合わせてすぐアクセスできる、ポートフォリオ型のリンク集です。
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              {achievementLinkCategories.map((category) => (
+                <span key={category.name} className="px-4 py-2 text-xs md:text-sm bg-stone-100 text-stone-700 rounded-full">
+                  {category.name} ({category.items.length})
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        <div className="space-y-8 md:space-y-10">
-          {detailItems.map((item) => (
-            <article key={item.title} className="border border-stone-200 bg-white p-6 md:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-4 mb-5">
-                <h2 className="text-2xl font-serif text-stone-900">{item.title}</h2>
-                <span className="text-xs tracking-widest uppercase text-earth-terra">{item.category}</span>
-              </div>
-              <p className="text-stone-600 leading-loose mb-6">{item.overview}</p>
-              <ul className="space-y-3">
-                {item.achievements.map((achievement) => (
-                  <li key={achievement} className="text-sm md:text-base text-stone-700 leading-relaxed">
-                    ・{achievement}
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
+        <section className="mb-16">
+          <div className="flex items-end justify-between mb-6">
+            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">Featured</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {featuredLinks.map((item) => (
+              <a
+                key={item.title}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-xl border border-stone-200 bg-white p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              >
+                <p className="text-sm leading-relaxed text-stone-700 mb-4">{item.title}</p>
+                <span className="inline-flex items-center text-xs tracking-widest uppercase text-earth-terra">
+                  {getCta(item)} →
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
 
-        <section className="mt-16 md:mt-20">
-          <h2 className="text-2xl md:text-3xl font-serif text-stone-900 mb-6">リンク集</h2>
+        <section className="mb-16">
+          <h3 className="text-2xl md:text-3xl font-serif text-stone-900 mb-6">活動カテゴリ</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {detailItems.map((item) => (
+              <article key={item.title} className="rounded-xl border border-stone-200 bg-white p-6">
+                <div className="flex items-center justify-between gap-4 mb-4">
+                  <h4 className="text-xl font-serif text-stone-900">{item.title}</h4>
+                  <span className="text-xs tracking-widest uppercase text-earth-terra">{item.category}</span>
+                </div>
+                <p className="text-sm text-stone-600 leading-loose mb-4">{item.overview}</p>
+                <ul className="space-y-2">
+                  {item.achievements.map((achievement) => (
+                    <li key={achievement} className="text-sm text-stone-700 leading-relaxed">
+                      ・{achievement}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h3 className="text-2xl md:text-3xl font-serif text-stone-900 mb-3">リンク集</h3>
           <p className="text-sm md:text-base text-stone-600 leading-loose mb-8">
-            Instagram・美容メディア・女性向け媒体・旅行ブログ・音声配信を軸に、活動実績をカテゴリ別に整理しています。
+            Link in bio の分かりやすさと、ポートフォリオの上品さを両立する構成で、カテゴリ別に掲載先へアクセスできます。
           </p>
+
           <div className="space-y-10">
             {achievementLinkCategories.map((category) => (
-              <section key={category.name}>
-                <h3 className="text-xl md:text-2xl font-serif text-stone-900 mb-2">{category.name}</h3>
-                <p className="text-sm md:text-base text-stone-600 leading-loose mb-4">{category.lead}</p>
+              <section key={category.name} className={`rounded-2xl border border-stone-200 bg-gradient-to-r ${category.accent} p-6 md:p-8`}>
+                <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+                  <div>
+                    <h4 className="text-xl md:text-2xl font-serif text-stone-900">
+                      {category.name}
+                    </h4>
+                    <p className="text-sm text-stone-600 mt-2 leading-relaxed">{category.lead}</p>
+                  </div>
+                  <span className="px-3 py-1.5 rounded-full bg-white text-xs tracking-widest text-stone-700">
+                    {category.items.length} LINKS
+                  </span>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  {category.items.map((link) => (
+                  {sortByRecent(category.items).map((link) => (
                     <a
                       key={`${category.name}-${link.title}`}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block bg-white border border-stone-200 px-5 py-4 text-sm md:text-base text-stone-700 leading-relaxed hover:border-earth-terra/50 hover:text-earth-terra transition-colors"
+                      className="group rounded-lg border border-stone-200 bg-white px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
                     >
-                      {link.title}
+                      <div className="flex items-start justify-between gap-4">
+                        <p className="text-sm md:text-base text-stone-700 leading-relaxed">{link.title}</p>
+                        {link.publishedAt && (
+                          <span className="text-xs tracking-widest text-stone-400 whitespace-nowrap">
+                            {link.publishedAt}
+                          </span>
+                        )}
+                      </div>
+                      <span className="mt-3 inline-flex text-xs tracking-widest uppercase text-earth-terra">
+                        {getCta(link)} →
+                      </span>
                     </a>
                   ))}
                 </div>
