@@ -45,6 +45,14 @@ const getCta = (item: LinkItem): LinkItem['cta'] => {
   return 'Visit';
 };
 
+const getDomainLabel = (url: string): string => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
+
 const detailItems: DetailItem[] = [
   {
     title: '美容・ライフスタイル系メディア掲載',
@@ -100,13 +108,7 @@ const detailItems: DetailItem[] = [
 
 const achievementLinkCategories: LinkCategory[] = [
   {
-    name: 'SNS',
-    lead: 'Instagramを起点に、日々の発信と最新情報を更新しています。',
-    accent: 'from-rose-100 via-orange-50 to-stone-50',
-    items: [{ title: 'Instagram', url: 'https://instagram.com/rika05181', cta: 'Follow' }],
-  },
-  {
-    name: '美容・ライフスタイル系メディア',
+    name: '美容/ライフ',
     lead: '美容、ウェルネス旅、体験レポートを中心にした掲載先です。',
     accent: 'from-amber-50 via-orange-50 to-stone-50',
     items: [
@@ -121,7 +123,7 @@ const achievementLinkCategories: LinkCategory[] = [
     ],
   },
   {
-    name: '新聞・雑誌・女性向けメディア',
+    name: '新聞/雑誌',
     lead: '女性向け媒体を中心に、アンバサダー・連載・記事掲載の導線をまとめています。',
     accent: 'from-sky-50 via-cyan-50 to-stone-50',
     items: [
@@ -133,7 +135,7 @@ const achievementLinkCategories: LinkCategory[] = [
     ],
   },
   {
-    name: '旅行・ブログ系',
+    name: '旅ブログ',
     lead: '旅と感性をテーマにしたブログ・著者ページのアーカイブです。',
     accent: 'from-emerald-50 via-teal-50 to-stone-50',
     items: [
@@ -142,7 +144,7 @@ const achievementLinkCategories: LinkCategory[] = [
     ],
   },
   {
-    name: '音声メディア',
+    name: 'Voicy',
     lead: 'Voicyでの美容健康コンテンツを中心に、継続発信のアーカイブをまとめています。',
     accent: 'from-violet-50 via-fuchsia-50 to-stone-50',
     items: [
@@ -167,7 +169,7 @@ const achievementLinkCategories: LinkCategory[] = [
     ],
   },
   {
-    name: 'インタビュー・その他外部掲載',
+    name: 'その他',
     lead: '外部サイトでのインタビュー掲載・アンバサダー掲載です。',
     accent: 'from-stone-100 via-zinc-50 to-stone-50',
     items: [
@@ -196,6 +198,17 @@ const featuredLinks: LinkItem[] = [
 ];
 
 const WorksPage: React.FC = () => {
+  const [activeCategory, setActiveCategory] = React.useState(achievementLinkCategories[0]?.name ?? '');
+
+  const currentCategory =
+    achievementLinkCategories.find((category) => category.name === activeCategory) ?? achievementLinkCategories[0];
+
+  const sortedCurrentItems = React.useMemo(() => {
+    return currentCategory ? sortByRecent(currentCategory.items) : [];
+  }, [currentCategory]);
+
+  const [leadFeatured, ...sideFeatured] = featuredLinks;
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-stone-100 via-stone-50 to-stone-50 text-stone-800">
       <header className="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200">
@@ -217,7 +230,7 @@ const WorksPage: React.FC = () => {
           <div className="relative">
             <span className="text-xs tracking-[0.3em] text-earth-sage uppercase">Portfolio Links</span>
             <h2 className="mt-4 text-3xl md:text-5xl font-serif leading-tight text-stone-900">
-              掲載実績とSNSを、
+              掲載実績を、
               <br />
               ひとつのページで美しく整理。
             </h2>
@@ -239,21 +252,47 @@ const WorksPage: React.FC = () => {
           <div className="flex items-end justify-between mb-6">
             <h3 className="text-2xl md:text-3xl font-serif text-stone-900">Featured</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {featuredLinks.map((item) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+            {leadFeatured && (
               <a
-                key={item.title}
-                href={item.url}
+                href={leadFeatured.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-xl border border-stone-200 bg-white p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                className="group md:col-span-2 rounded-2xl border border-stone-200 bg-gradient-to-br from-white to-orange-50/60 p-6 md:p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
               >
-                <p className="text-sm leading-relaxed text-stone-700 mb-4">{item.title}</p>
-                <span className="inline-flex items-center text-xs tracking-widest uppercase text-earth-terra">
-                  {getCta(item)} →
+                <span className="inline-flex items-center rounded-full bg-earth-terra/10 px-3 py-1 text-[11px] tracking-widest uppercase text-earth-terra mb-5">
+                  Editor&apos;s Pick
                 </span>
+                <p className="text-lg md:text-2xl font-serif leading-relaxed text-stone-900 mb-5">{leadFeatured.title}</p>
+                <div className="flex items-center justify-between gap-3 text-xs tracking-widest uppercase text-stone-500">
+                  <span>{getDomainLabel(leadFeatured.url)}</span>
+                  <span className="text-earth-terra">{getCta(leadFeatured)} →</span>
+                </div>
               </a>
-            ))}
+            )}
+
+            <div className="grid grid-cols-1 gap-5">
+              {sideFeatured.map((item) => (
+                <a
+                  key={item.title}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group rounded-xl border border-stone-200 bg-white p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                >
+                  <p
+                    className="text-sm leading-relaxed text-stone-700 mb-4"
+                    style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                  >
+                    {item.title}
+                  </p>
+                  <div className="flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
+                    <span className="text-stone-400">{getDomainLabel(item.url)}</span>
+                    <span className="text-earth-terra">{getCta(item)} →</span>
+                  </div>
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -285,47 +324,73 @@ const WorksPage: React.FC = () => {
             Link in bio の分かりやすさと、ポートフォリオの上品さを両立する構成で、カテゴリ別に掲載先へアクセスできます。
           </p>
 
-          <div className="space-y-10">
-            {achievementLinkCategories.map((category) => (
-              <section key={category.name} className={`rounded-2xl border border-stone-200 bg-gradient-to-r ${category.accent} p-6 md:p-8`}>
-                <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
-                  <div>
-                    <h4 className="text-xl md:text-2xl font-serif text-stone-900">
-                      {category.name}
-                    </h4>
-                    <p className="text-sm text-stone-600 mt-2 leading-relaxed">{category.lead}</p>
-                  </div>
-                  <span className="px-3 py-1.5 rounded-full bg-white text-xs tracking-widest text-stone-700">
-                    {category.items.length} LINKS
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                  {sortByRecent(category.items).map((link) => (
-                    <a
-                      key={`${category.name}-${link.title}`}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group rounded-lg border border-stone-200 bg-white px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <p className="text-sm md:text-base text-stone-700 leading-relaxed">{link.title}</p>
-                        {link.publishedAt && (
-                          <span className="text-xs tracking-widest text-stone-400 whitespace-nowrap">
-                            {link.publishedAt}
-                          </span>
-                        )}
-                      </div>
-                      <span className="mt-3 inline-flex text-xs tracking-widest uppercase text-earth-terra">
-                        {getCta(link)} →
-                      </span>
-                    </a>
-                  ))}
-                </div>
-              </section>
-            ))}
+          <div className="mb-6 -mx-1 px-1 overflow-x-auto">
+            <div className="inline-flex items-center gap-2 min-w-max">
+              {achievementLinkCategories.map((category) => {
+                const isActive = category.name === currentCategory?.name;
+                return (
+                  <button
+                    key={category.name}
+                    type="button"
+                    onClick={() => setActiveCategory(category.name)}
+                    className={`rounded-full px-4 py-2 text-xs md:text-sm tracking-widest transition-colors border ${
+                      isActive
+                        ? 'bg-stone-900 text-stone-50 border-stone-900'
+                        : 'bg-white text-stone-600 border-stone-200 hover:border-stone-400'
+                    }`}
+                  >
+                    {category.name} ({category.items.length})
+                  </button>
+                );
+              })}
+            </div>
           </div>
+
+          {currentCategory && (
+            <section className={`rounded-2xl border border-stone-200 bg-gradient-to-r ${currentCategory.accent} p-6 md:p-8`}>
+              <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+                <div>
+                  <h4 className="text-xl md:text-2xl font-serif text-stone-900">
+                    {currentCategory.name}
+                  </h4>
+                  <p className="text-sm text-stone-600 mt-2 leading-relaxed">{currentCategory.lead}</p>
+                </div>
+                <span className="px-3 py-1.5 rounded-full bg-white text-xs tracking-widest text-stone-700">
+                  {currentCategory.items.length} LINKS
+                </span>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                {sortedCurrentItems.map((link) => (
+                  <a
+                    key={`${currentCategory.name}-${link.title}`}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group rounded-lg border border-stone-200 bg-white px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <p
+                        className="text-sm md:text-base text-stone-700 leading-relaxed"
+                        style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                      >
+                        {link.title}
+                      </p>
+                      {link.publishedAt && (
+                        <span className="text-xs tracking-widest text-stone-400 whitespace-nowrap">
+                          {link.publishedAt}
+                        </span>
+                      )}
+                    </div>
+                    <div className="mt-3 flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
+                      <span className="text-stone-400">{getDomainLabel(link.url)}</span>
+                      <span className="text-earth-terra">{getCta(link)} →</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
         </section>
       </main>
     </div>
