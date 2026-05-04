@@ -28,7 +28,8 @@
   - CTA: `詳しいプロフィール・実績を見る →`
   - Destination: `#/works`
 - Works
-  - セクション内の主CTAのみで遷移
+  - Home側は概要・数値・主CTAのみを表示する
+  - 活動カテゴリの説明や外部掲載リンクはWorks Pageへ集約する
   - Destination: `#/works`
 - Works Page
   - ページ冒頭でカテゴリへの主要リンクを提示

@@ -22,7 +22,7 @@
   2. Hero
   3. Concept (`#concept`)
   4. Profile (`#about`)
-  5. Works (`#works`)
+  5. Works (`#works`, overview + CTA only)
   6. Contact (`#contact`)
   7. Footer
 - Required assets:
