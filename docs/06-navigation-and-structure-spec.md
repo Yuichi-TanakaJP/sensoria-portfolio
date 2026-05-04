@@ -7,40 +7,28 @@
 ## 2. Route Map
 - `#` or no hash: Home（1ページ構成）
 - `#/works`: 活動と実績の専用ページ
-- `#/journal`: 記事一覧の専用ページ
-- `#/featured`: 特集一覧の専用ページ
 
 ## 3. Home Structure (Top to Bottom)
 1. Header (`#top` 起点)
 2. Hero
 3. Concept
-4. Featured Journal
-5. Latest Journal (`#journal`)
-6. Profile (`#about`)
-7. Works (`#works`)
-8. Contact (`#contact`)
-9. Footer
+4. Profile (`#about`)
+5. Works (`#works`)
+6. Contact (`#contact`)
+7. Footer
 
 ## 4. Primary Navigation
 - Header / Footer のグローバルナビはセクションアンカーを使用する。
   - `About` -> `#about`
-  - `Journal` -> `#journal`
   - `Works` -> `#works`
   - `Contact` -> `#contact`
 
 ## 5. CTA Rules (Current)
-- Featured Journal
-  - 各カード: `#/featured`
-  - CTA: `特集一覧を見る`
-  - Destination: `#/featured`
-- Latest Journal
-  - 各記事カード: `#/journal`
-  - セクション末尾ボタン: `#/journal`
 - Profile
   - CTA: `詳しいプロフィール・実績を見る →`
   - Destination: `#/works`
 - Works
-  - 3カードすべてカード全体クリックで遷移
+  - セクション内の主CTAのみで遷移
   - Destination: `#/works`
 
 ## 6. Duplicate-CTA Policy
@@ -53,13 +41,10 @@
 ## 7. Component Ownership
 - Routing switch: [App.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/App.tsx)
 - Home sections:
-  - [components/FeaturedJournal.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/FeaturedJournal.tsx)
-  - [components/LatestJournal.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/LatestJournal.tsx)
   - [components/Profile.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Profile.tsx)
   - [components/Works.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Works.tsx)
 - Dedicated pages:
   - [components/WorksPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/WorksPage.tsx)
-  - [components/JournalPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/JournalPage.tsx)
 
 ## 8. Change Checklist
 - 新しいCTAを追加する場合:

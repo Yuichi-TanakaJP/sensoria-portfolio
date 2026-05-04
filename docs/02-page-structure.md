@@ -6,45 +6,46 @@
 - Current map:
   - `/` Home (single page)
   - `/#concept` Concept
-  - `/#featured` Featured Journal
-  - `/#journal` Latest Journal
   - `/#about` Profile
   - `/#works` Works
   - `/#contact` Contact
+  - `/#/works` Works Page
 
 ## 2. Page Definitions
 ### Page: `/`
 - Goal: 五感美容の世界観と実績を短時間で伝える
-- Primary CTA: `記事一覧を見る`（Latest Journal末尾）
+- Primary CTA: `実績ページを見る`（Works）
 - Secondary CTA:
-  - `VIEW ALL JOURNAL`（Featured -> Journal）
   - `詳しいプロフィール・実績を見る`
 - Main sections (top to bottom):
   1. Header (fixed nav)
   2. Hero
   3. Concept (`#concept`)
-  4. Featured Journal (`#featured`)
-  5. Latest Journal (`#journal`)
-  6. Profile (`#about`)
-  7. Works (`#works`)
-  8. Contact (`#contact`)
-  9. Footer
+  4. Profile (`#about`)
+  5. Works (`#works`)
+  6. Contact (`#contact`)
+  7. Footer
 - Required assets:
   - Hero image
-  - Featured article images x3
-  - Latest article images x3
   - Profile image x1
 - Success condition:
   - 主要CTAクリックが継続発生
   - Profileセクションまでの到達率が一定以上
+
+### Page: `/#/works`
+- Goal: 掲載実績、外部リンク、取材実績を集約して確認できるようにする
+- Primary CTA: 各外部掲載リンク
+- Main sections:
+  1. Portfolio Links hero
+  2. Featured
+  3. 活動カテゴリ
+  4. リンク集
 
 ## 3. Component Notes
 - Reusable components:
   - [Header.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Header.tsx)
   - [Hero.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Hero.tsx)
   - [Concept.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Concept.tsx)
-  - [FeaturedJournal.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/FeaturedJournal.tsx)
-  - [LatestJournal.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/LatestJournal.tsx)
   - [Profile.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Profile.tsx)
   - [Works.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Works.tsx)
   - [Contact.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Contact.tsx)
