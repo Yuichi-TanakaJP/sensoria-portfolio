@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Search, Instagram, X } from 'lucide-react';
+import { Instagram, Menu, X } from 'lucide-react';
 import { NavItem } from '../types';
 
 const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
-  { label: 'Journal', href: '#journal' },
   { label: 'Works', href: '#works' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -44,10 +43,7 @@ const Header: React.FC = () => {
               {item.label}
             </a>
           ))}
-          <div className="flex items-center space-x-4 border-l border-stone-300 pl-6">
-            <a href="#journal" aria-label="記事フィルターへ" className="text-stone-500 hover:text-stone-900 transition-colors">
-              <Search size={18} />
-            </a>
+          <div className="flex items-center border-l border-stone-300 pl-6">
             <a
               href="https://www.instagram.com/?hl=ja"
               target="_blank"
@@ -82,10 +78,7 @@ const Header: React.FC = () => {
               {item.label}
             </a>
           ))}
-          <div className="flex justify-center space-x-6 pt-4">
-            <a href="#journal" aria-label="記事フィルターへ" onClick={() => setMobileMenuOpen(false)}>
-              <Search className="text-stone-500" />
-            </a>
+          <div className="flex justify-center pt-4">
             <a
               href="https://www.instagram.com/?hl=ja"
               target="_blank"
