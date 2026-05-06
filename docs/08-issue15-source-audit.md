@@ -9,6 +9,7 @@
 - Route: `#/issue15-audit`
 - Data source: `data/issue15SourceCandidates.ts`
 - Page component: `components/Issue15AuditPage.tsx`
+- Edited audit state is saved in browser `localStorage` under `issue15-source-audit-state-v1`.
 
 ## Check Run Order
 1. URL生存確認
@@ -41,4 +42,5 @@
 - 候補URLを `data/issue15SourceCandidates.ts` に登録済み。
 - すべて未確認状態から開始する。
 - 次の作業は URL生存確認のみ。本人記事確認や抽出・採用判定にはまだ進まない。
-
+- 確認ページ上で URL / AUTHOR / EXTRACTION / DECISION / CHECKED AT / MEMO を変更できる。
+- 画面上の変更はブラウザ内に保存されるため、正式反映時は内容をデータファイルへ転記する。

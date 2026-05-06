@@ -5,9 +5,12 @@ import {
   type AuthorCheckStatus,
   type ExtractionStatus,
   type Issue15AuditCategory,
+  type Issue15SourceCandidate,
   issue15SourceCandidates,
   type UrlCheckStatus,
 } from '../data/issue15SourceCandidates';
+
+const storageKey = 'issue15-source-audit-state-v1';
 
 const categoryLabels: Record<Issue15AuditCategory, string> = {
   museum: '美術館',
@@ -82,11 +85,76 @@ const StatusPill: React.FC<{ label: string }> = ({ label }) => (
   </span>
 );
 
+type SelectFieldProps<Value extends string> = {
+  label: string;
+  value: Value;
+  labels: Record<Value, string>;
+  onChange: (value: Value) => void;
+};
+
+const SelectField = <Value extends string>({ label, value, labels, onChange }: SelectFieldProps<Value>) => (
+  <label className="block border border-stone-100 bg-stone-50 p-3">
+    <span className="block text-[11px] tracking-widest text-stone-400">{label}</span>
+    <select
+      value={value}
+      onChange={(event) => onChange(event.target.value as Value)}
+      className="mt-2 w-full border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+    >
+      {Object.entries(labels).map(([optionValue, optionLabel]) => (
+        <option key={optionValue} value={optionValue}>
+          {optionLabel as string}
+        </option>
+      ))}
+    </select>
+  </label>
+);
+
+const loadCandidates = (): Issue15SourceCandidate[] => {
+  try {
+    const stored = window.localStorage.getItem(storageKey);
+    if (!stored) {
+      return issue15SourceCandidates;
+    }
+
+    const savedCandidates = JSON.parse(stored) as Issue15SourceCandidate[];
+    const savedById = new Map(savedCandidates.map((item) => [item.id, item]));
+
+    return issue15SourceCandidates.map((candidate) => ({
+      ...candidate,
+      ...savedById.get(candidate.id),
+      expectedCategories: candidate.expectedCategories,
+      title: candidate.title,
+      url: candidate.url,
+      sourceGroup: candidate.sourceGroup,
+    }));
+  } catch {
+    return issue15SourceCandidates;
+  }
+};
+
 const Issue15AuditPage: React.FC = () => {
-  const total = issue15SourceCandidates.length;
-  const unchecked = issue15SourceCandidates.filter((item) => item.urlStatus === 'unchecked').length;
-  const confirmed = issue15SourceCandidates.filter((item) => item.authorStatus === 'confirmed').length;
-  const pending = issue15SourceCandidates.filter((item) => item.decision === 'unreviewed').length;
+  const [candidates, setCandidates] = React.useState<Issue15SourceCandidate[]>(loadCandidates);
+
+  React.useEffect(() => {
+    window.localStorage.setItem(storageKey, JSON.stringify(candidates));
+  }, [candidates]);
+
+  const updateCandidate = <Key extends keyof Issue15SourceCandidate>(
+    id: string,
+    key: Key,
+    value: Issue15SourceCandidate[Key],
+  ) => {
+    setCandidates((current) => current.map((item) => (item.id === id ? { ...item, [key]: value } : item)));
+  };
+
+  const markCheckedNow = (id: string) => {
+    updateCandidate(id, 'checkedAt', new Date().toISOString().slice(0, 10));
+  };
+
+  const total = candidates.length;
+  const unchecked = candidates.filter((item) => item.urlStatus === 'unchecked').length;
+  const confirmed = candidates.filter((item) => item.authorStatus === 'confirmed').length;
+  const pending = candidates.filter((item) => item.decision === 'unreviewed').length;
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
@@ -114,7 +182,7 @@ const Issue15AuditPage: React.FC = () => {
           </div>
           <p className="text-sm leading-loose text-stone-600 md:text-base">
             このページは本番掲載前の確認ビューです。URLの生存確認、本人記事確認、抽出候補、採用判断を分けて記録し、
-            根拠が弱い情報を実績ページへ混ぜないために使います。
+            根拠が弱い情報を実績ページへ混ぜないために使います。画面上の変更はこのブラウザに保存されます。
           </p>
         </section>
 
@@ -146,7 +214,7 @@ const Issue15AuditPage: React.FC = () => {
         </section>
 
         <section className="space-y-4">
-          {issue15SourceCandidates.map((item) => (
+          {candidates.map((item) => (
             <article key={item.id} className="border border-stone-200 bg-white p-5 md:p-6">
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1fr_220px]">
                 <div>
@@ -175,28 +243,62 @@ const Issue15AuditPage: React.FC = () => {
               </div>
 
               <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-3">
+                <SelectField
+                  label="URL"
+                  value={item.urlStatus}
+                  labels={urlStatusLabels}
+                  onChange={(value) => updateCandidate(item.id, 'urlStatus', value)}
+                />
+                <SelectField
+                  label="AUTHOR"
+                  value={item.authorStatus}
+                  labels={authorStatusLabels}
+                  onChange={(value) => updateCandidate(item.id, 'authorStatus', value)}
+                />
+                <SelectField
+                  label="EXTRACTION"
+                  value={item.extractionStatus}
+                  labels={extractionStatusLabels}
+                  onChange={(value) => updateCandidate(item.id, 'extractionStatus', value)}
+                />
+              </div>
+
+              <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-[1fr_220px]">
+                <SelectField
+                  label="DECISION"
+                  value={item.decision}
+                  labels={decisionLabels}
+                  onChange={(value) => updateCandidate(item.id, 'decision', value)}
+                />
                 <div className="border border-stone-100 bg-stone-50 p-3">
-                  <p className="text-[11px] tracking-widest text-stone-400">URL</p>
-                  <p className="mt-1 text-sm text-stone-700">{urlStatusLabels[item.urlStatus]}</p>
-                </div>
-                <div className="border border-stone-100 bg-stone-50 p-3">
-                  <p className="text-[11px] tracking-widest text-stone-400">AUTHOR</p>
-                  <p className="mt-1 text-sm text-stone-700">{authorStatusLabels[item.authorStatus]}</p>
-                </div>
-                <div className="border border-stone-100 bg-stone-50 p-3">
-                  <p className="text-[11px] tracking-widest text-stone-400">EXTRACTION</p>
-                  <p className="mt-1 text-sm text-stone-700">{extractionStatusLabels[item.extractionStatus]}</p>
+                  <p className="text-[11px] tracking-widest text-stone-400">CHECKED AT</p>
+                  <div className="mt-2 flex items-center gap-2">
+                    <input
+                      type="date"
+                      value={item.checkedAt ?? ''}
+                      onChange={(event) => updateCandidate(item.id, 'checkedAt', event.target.value || null)}
+                      className="min-w-0 flex-1 border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => markCheckedNow(item.id)}
+                      className="border border-stone-300 bg-white px-3 py-2 text-xs tracking-widest text-stone-600 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                    >
+                      今日
+                    </button>
+                  </div>
                 </div>
               </div>
 
-              <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[1fr_180px]">
+              <div className="mt-5">
                 <div>
                   <p className="text-[11px] tracking-widest text-stone-400">MEMO</p>
-                  <p className="mt-2 text-sm leading-loose text-stone-600">{item.notes}</p>
-                </div>
-                <div>
-                  <p className="text-[11px] tracking-widest text-stone-400">CHECKED AT</p>
-                  <p className="mt-2 text-sm text-stone-600">{item.checkedAt ?? '未実施'}</p>
+                  <textarea
+                    value={item.notes}
+                    onChange={(event) => updateCandidate(item.id, 'notes', event.target.value)}
+                    rows={3}
+                    className="mt-2 w-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm leading-loose text-stone-700 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+                  />
                 </div>
               </div>
 
@@ -221,4 +323,3 @@ const Issue15AuditPage: React.FC = () => {
 };
 
 export default Issue15AuditPage;
-
