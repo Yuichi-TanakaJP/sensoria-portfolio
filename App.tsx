@@ -7,8 +7,12 @@ import Works from './components/Works';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WorksPage from './components/WorksPage';
+import Issue15AuditPage from './components/Issue15AuditPage';
 
-const getRoute = (): 'home' | 'works' => {
+const getRoute = (): 'home' | 'works' | 'issue15Audit' => {
+  if (window.location.hash.startsWith('#/issue15-audit')) {
+    return 'issue15Audit';
+  }
   if (window.location.hash.startsWith('#/works')) {
     return 'works';
   }
@@ -16,7 +20,7 @@ const getRoute = (): 'home' | 'works' => {
 };
 
 const App: React.FC = () => {
-  const [route, setRoute] = React.useState<'home' | 'works'>(getRoute);
+  const [route, setRoute] = React.useState<'home' | 'works' | 'issue15Audit'>(getRoute);
 
   React.useEffect(() => {
     const handleHashChange = () => setRoute(getRoute());
@@ -30,6 +34,10 @@ const App: React.FC = () => {
 
   if (route === 'works') {
     return <WorksPage />;
+  }
+
+  if (route === 'issue15Audit') {
+    return <Issue15AuditPage />;
   }
 
   return (
