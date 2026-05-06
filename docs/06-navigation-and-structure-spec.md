@@ -25,8 +25,7 @@
 
 ## 5. CTA Rules (Current)
 - Profile
-  - CTA: `詳しいプロフィール・実績を見る →`
-  - Destination: `#/works`
+  - CTAは置かず、人物紹介と実績サマリーに役割を限定する
 - Works
   - Home側は概要・数値・主CTAのみを表示する
   - 活動カテゴリの説明や外部掲載リンクはWorks Pageへ集約する

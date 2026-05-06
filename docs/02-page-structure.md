@@ -15,8 +15,7 @@
 ### Page: `/`
 - Goal: 五感美容の世界観と実績を短時間で伝える
 - Primary CTA: `実績ページを見る`（Works）
-- Secondary CTA:
-  - `詳しいプロフィール・実績を見る`
+- Secondary CTA: none
 - Main sections (top to bottom):
   1. Header (fixed nav)
   2. Hero
