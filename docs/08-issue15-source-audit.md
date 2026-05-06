@@ -10,6 +10,7 @@
 - Data source: `data/issue15SourceCandidates.ts`
 - Page component: `components/Issue15AuditPage.tsx`
 - Edited audit state is saved in browser `localStorage` under `issue15-source-audit-state-v1`.
+- The audit page can export/import the current state as JSON.
 
 ## Check Run Order
 1. URL生存確認
@@ -44,3 +45,4 @@
 - 次の作業は URL生存確認のみ。本人記事確認や抽出・採用判定にはまだ進まない。
 - 確認ページ上で URL / AUTHOR / EXTRACTION / DECISION / CHECKED AT / MEMO を変更できる。
 - 画面上の変更はブラウザ内に保存されるため、正式反映時は内容をデータファイルへ転記する。
+- `JSONをコピー` または `JSONを保存` で確認結果を取り出し、次回作業時は `JSONを取り込む` で復元できる。

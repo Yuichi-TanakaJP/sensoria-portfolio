@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertTriangle, CheckCircle2, CircleDashed, ExternalLink, FileSearch } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, CircleDashed, Copy, Download, ExternalLink, FileSearch, Upload } from 'lucide-react';
 import {
   type AuditDecision,
   type AuthorCheckStatus,
@@ -134,6 +134,8 @@ const loadCandidates = (): Issue15SourceCandidate[] => {
 
 const Issue15AuditPage: React.FC = () => {
   const [candidates, setCandidates] = React.useState<Issue15SourceCandidate[]>(loadCandidates);
+  const [importText, setImportText] = React.useState('');
+  const [feedback, setFeedback] = React.useState('');
 
   React.useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(candidates));
@@ -149,6 +151,65 @@ const Issue15AuditPage: React.FC = () => {
 
   const markCheckedNow = (id: string) => {
     updateCandidate(id, 'checkedAt', new Date().toISOString().slice(0, 10));
+  };
+
+  const exportJson = React.useMemo(() => JSON.stringify(candidates, null, 2), [candidates]);
+
+  const copyExportJson = async () => {
+    try {
+      await window.navigator.clipboard.writeText(exportJson);
+      setFeedback('JSONをクリップボードへコピーしました。');
+    } catch {
+      setFeedback('コピーできませんでした。下のJSONを手動でコピーしてください。');
+    }
+  };
+
+  const downloadExportJson = () => {
+    const blob = new Blob([exportJson], { type: 'application/json' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `issue15-source-audit-${new Date().toISOString().slice(0, 10)}.json`;
+    link.click();
+    window.URL.revokeObjectURL(url);
+    setFeedback('JSONファイルを保存しました。');
+  };
+
+  const importJson = () => {
+    try {
+      const parsed = JSON.parse(importText) as unknown;
+      if (!Array.isArray(parsed)) {
+        setFeedback('インポートできませんでした。JSON配列を貼り付けてください。');
+        return;
+      }
+
+      const importedById = new Map(
+        parsed
+          .filter((item): item is Partial<Issue15SourceCandidate> & { id: string } => {
+            return Boolean(item && typeof item === 'object' && 'id' in item && typeof item.id === 'string');
+          })
+          .map((item) => [item.id, item]),
+      );
+
+      if (importedById.size === 0) {
+        setFeedback('インポートできませんでした。候補IDを含むJSONを貼り付けてください。');
+        return;
+      }
+
+      setCandidates((current) =>
+        current.map((candidate) => ({
+          ...candidate,
+          ...importedById.get(candidate.id),
+          expectedCategories: candidate.expectedCategories,
+          title: candidate.title,
+          url: candidate.url,
+          sourceGroup: candidate.sourceGroup,
+        })),
+      );
+      setFeedback(`${importedById.size}件の候補データを取り込みました。`);
+    } catch {
+      setFeedback('インポートできませんでした。JSONの形式を確認してください。');
+    }
   };
 
   const total = candidates.length;
@@ -209,6 +270,64 @@ const Issue15AuditPage: React.FC = () => {
                 1. URL生存確認 → 2. 本人記事確認 → 3. 抽出候補作成 → 4. 正規化 → 5. 採用判定。
                 採用判定が終わるまで、Works本番表示データには反映しません。
               </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-8 border border-stone-200 bg-white p-5 md:p-6">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+            <div>
+              <h2 className="font-serif text-xl text-stone-900">Export</h2>
+              <p className="mt-2 text-sm leading-loose text-stone-600">
+                更新済みの確認結果をJSONとして取り出します。次回作業やデータファイルへの反映に使います。
+              </p>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={copyExportJson}
+                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                >
+                  <Copy className="h-4 w-4" aria-hidden="true" />
+                  JSONをコピー
+                </button>
+                <button
+                  type="button"
+                  onClick={downloadExportJson}
+                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                >
+                  <Download className="h-4 w-4" aria-hidden="true" />
+                  JSONを保存
+                </button>
+              </div>
+              <textarea
+                readOnly
+                value={exportJson}
+                rows={8}
+                className="mt-4 w-full border border-stone-200 bg-stone-50 px-3 py-2 font-mono text-xs leading-relaxed text-stone-600 outline-none"
+              />
+            </div>
+
+            <div>
+              <h2 className="font-serif text-xl text-stone-900">Import</h2>
+              <p className="mt-2 text-sm leading-loose text-stone-600">
+                保存済みJSONを貼り付けると、このブラウザ上の確認状態へ復元できます。
+              </p>
+              <textarea
+                value={importText}
+                onChange={(event) => setImportText(event.target.value)}
+                rows={8}
+                placeholder="保存済みのJSONを貼り付け"
+                className="mt-4 w-full border border-stone-200 bg-stone-50 px-3 py-2 font-mono text-xs leading-relaxed text-stone-700 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+              />
+              <button
+                type="button"
+                onClick={importJson}
+                className="mt-3 inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+              >
+                <Upload className="h-4 w-4" aria-hidden="true" />
+                JSONを取り込む
+              </button>
+              {feedback && <p className="mt-3 text-sm leading-loose text-stone-600">{feedback}</p>}
             </div>
           </div>
         </section>
