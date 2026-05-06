@@ -40,14 +40,8 @@ const Profile: React.FC = () => {
             </p>
           </div>
 
-          <div className="mt-10">
-            <a href="#/works" className="inline-block border-b border-stone-800 pb-1 text-stone-800 tracking-widest hover:text-earth-terra hover:border-earth-terra transition-colors">
-              詳しいプロフィール・実績を見る →
-            </a>
-          </div>
-
           {/* Achievement Summary */}
-          <div className="mt-16 pt-8 border-t border-stone-200 grid grid-cols-2 gap-8">
+          <div className="mt-12 pt-8 border-t border-stone-200 grid grid-cols-2 gap-8">
              <div>
                 <span className="block text-3xl font-medium font-serif text-earth-gold mb-1">300+</span>
                 <span className="text-xs tracking-widest text-stone-500">ARTICLES WRITTEN</span>

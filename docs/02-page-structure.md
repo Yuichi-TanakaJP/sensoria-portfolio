@@ -15,14 +15,13 @@
 ### Page: `/`
 - Goal: 五感美容の世界観と実績を短時間で伝える
 - Primary CTA: `実績ページを見る`（Works）
-- Secondary CTA:
-  - `詳しいプロフィール・実績を見る`
+- Secondary CTA: none
 - Main sections (top to bottom):
   1. Header (fixed nav)
   2. Hero
   3. Concept (`#concept`)
   4. Profile (`#about`)
-  5. Works (`#works`)
+  5. Works (`#works`, overview + CTA only)
   6. Contact (`#contact`)
   7. Footer
 - Required assets:
@@ -34,12 +33,12 @@
 
 ### Page: `/#/works`
 - Goal: 掲載実績、外部リンク、取材実績を集約して確認できるようにする
-- Primary CTA: 各外部掲載リンク
+- Primary CTA: 主要リンク / カテゴリ別掲載リンク
 - Main sections:
-  1. Portfolio Links hero
-  2. Featured
-  3. 活動カテゴリ
-  4. リンク集
+  1. Works intro
+  2. 主要リンク（カテゴリへのページ内ショートカット）
+  3. 活動カテゴリ（活動領域の説明）
+  4. 掲載リンク（外部URLの正本）
 
 ## 3. Component Notes
 - Reusable components:

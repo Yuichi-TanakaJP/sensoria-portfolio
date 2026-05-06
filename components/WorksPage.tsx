@@ -17,16 +17,8 @@ type LinkItem = {
 type LinkCategory = {
   name: string;
   lead: string;
-  accent: string;
+  slug: string;
   items: LinkItem[];
-};
-
-const sortByRecent = (items: LinkItem[]): LinkItem[] => {
-  return [...items].sort((a, b) => {
-    const ad = a.publishedAt ? Date.parse(a.publishedAt) : Number.NEGATIVE_INFINITY;
-    const bd = b.publishedAt ? Date.parse(b.publishedAt) : Number.NEGATIVE_INFINITY;
-    return bd - ad;
-  });
 };
 
 const getCta = (item: LinkItem): LinkItem['cta'] => {
@@ -110,7 +102,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '美容/ライフ',
     lead: '美容、ウェルネス旅、体験レポートを中心にした掲載先です。',
-    accent: 'from-amber-50 via-orange-50 to-stone-50',
+    slug: 'beauty-life',
     items: [
       { title: '美的', url: 'https://www.biteki.com/' },
       { title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com', url: 'https://www.biteki.com/life-style/others/1661397' },
@@ -125,7 +117,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '新聞/雑誌',
     lead: '女性向け媒体を中心に、アンバサダー・連載・記事掲載の導線をまとめています。',
-    accent: 'from-sky-50 via-cyan-50 to-stone-50',
+    slug: 'editorial',
     items: [
       { title: '日経x womanアンバサダー', url: 'https://woman.nikkei.com/' },
       { title: '書き残すことで気持ちがスッキリする手帳活用術［PR］（2ページ目）：日経xwoman', url: 'https://woman.nikkei.com/atcl/cons/051300011/101300034/?P=2' },
@@ -137,7 +129,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: '旅ブログ',
     lead: '旅と感性をテーマにしたブログ・著者ページのアーカイブです。',
-    accent: 'from-emerald-50 via-teal-50 to-stone-50',
+    slug: 'travel-blog',
     items: [
       { title: 'りかたんの五感美容旅 | トラベルコ', url: 'https://www.tour.ne.jp/blog/rikatan/' },
       { title: '楽活', url: 'https://rakukatsu.jp/author/takahashi-rika' },
@@ -146,7 +138,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: 'Voicy',
     lead: 'Voicyでの美容健康コンテンツを中心に、継続発信のアーカイブをまとめています。',
-    accent: 'from-violet-50 via-fuchsia-50 to-stone-50',
+    slug: 'voicy',
     items: [
       { title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019' },
       { title: 'Voicy 〖美容健康〗二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984' },
@@ -171,7 +163,7 @@ const achievementLinkCategories: LinkCategory[] = [
   {
     name: 'その他',
     lead: '外部サイトでのインタビュー掲載・アンバサダー掲載です。',
-    accent: 'from-stone-100 via-zinc-50 to-stone-50',
+    slug: 'other',
     items: [
       { title: '伝統工芸インタビュー', url: 'https://girlsartalk.com/column/16874.html' },
       { title: 'ヤマハ音楽教室アンバサダーインタビュー', url: 'https://www.yamaha-ongaku.com/music-school/why_yamaha/ambassador/article08.html' },
@@ -179,38 +171,11 @@ const achievementLinkCategories: LinkCategory[] = [
   },
 ];
 
-const featuredLinks: LinkItem[] = [
-  {
-    title: 'GWや夏休みはどう過ごす？ 心も体もイキイキと過ごせる1泊2日のウェルネスプランを美容賢者が提案 | 美的.com',
-    url: 'https://www.biteki.com/life-style/others/1661397',
-    cta: 'Read',
-  },
-  {
-    title: '日経x womanアンバサダー',
-    url: 'https://woman.nikkei.com/',
-    cta: 'Visit',
-  },
-  {
-    title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！',
-    url: 'https://voicy.jp/channel/1073/227019',
-    cta: 'Listen',
-  },
-];
-
 const WorksPage: React.FC = () => {
-  const [activeCategory, setActiveCategory] = React.useState(achievementLinkCategories[0]?.name ?? '');
-
-  const currentCategory =
-    achievementLinkCategories.find((category) => category.name === activeCategory) ?? achievementLinkCategories[0];
-
-  const sortedCurrentItems = React.useMemo(() => {
-    return currentCategory ? sortByRecent(currentCategory.items) : [];
-  }, [currentCategory]);
-
-  const [leadFeatured, ...sideFeatured] = featuredLinks;
+  const totalLinks = achievementLinkCategories.reduce((sum, category) => sum + category.items.length, 0);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-stone-100 via-stone-50 to-stone-50 text-stone-800">
+    <div className="min-h-screen bg-stone-50 text-stone-800">
       <header className="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200">
         <div className="max-w-screen-xl mx-auto px-6 py-5 flex items-center justify-between">
           <a href="#" className="text-sm tracking-widest text-stone-600 hover:text-earth-terra transition-colors uppercase">
@@ -224,173 +189,94 @@ const WorksPage: React.FC = () => {
       </header>
 
       <main className="max-w-screen-xl mx-auto px-6 py-14 md:py-20">
-        <section className="relative overflow-hidden rounded-2xl border border-stone-200 bg-white/80 p-8 md:p-12 mb-16">
-          <div className="absolute -top-16 -right-16 h-48 w-48 rounded-full bg-earth-terra/10 blur-2xl" />
-          <div className="absolute -bottom-24 -left-8 h-56 w-56 rounded-full bg-earth-sage/10 blur-2xl" />
-          <div className="relative">
-            <span className="text-xs tracking-[0.3em] text-earth-sage uppercase">Portfolio Links</span>
-            <h2 className="mt-4 text-3xl md:text-5xl font-serif leading-tight text-stone-900">
-              掲載実績を、
+        <section className="mb-14 md:mb-20">
+          <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-4">Works</span>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16 items-end">
+            <h2 className="text-3xl md:text-5xl font-serif leading-tight text-stone-900">
+              活動と実績を、
               <br />
-              ひとつのページで美しく整理。
+              必要な順に。
             </h2>
-            <p className="mt-5 max-w-3xl text-sm md:text-base text-stone-600 leading-loose">
-              美容・ライフスタイル系メディア、女性向け媒体、旅行ブログ、音声配信、外部インタビューまで、活動実績をカテゴリ別にまとめています。
-              目的に合わせてすぐアクセスできる、ポートフォリオ型のリンク集です。
+            <p className="text-sm md:text-base text-stone-600 leading-loose">
+              掲載媒体、連載、旅ブログ、音声配信、外部インタビューへのリンクをカテゴリ別に整理しています。
+              主要リンクからカテゴリを選び、活動の全体像と掲載リンクを順に確認できます。
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              {achievementLinkCategories.map((category) => (
-                <span key={category.name} className="px-4 py-2 text-xs md:text-sm bg-stone-100 text-stone-700 rounded-full">
-                  {category.name} ({category.items.length})
-                </span>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className="mb-16">
-          <div className="flex items-end justify-between mb-6">
-            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">Featured</h3>
+        <section className="mb-14 md:mb-20">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-stone-200 pb-4 mb-6">
+            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">主要リンク</h3>
+            <span className="text-xs tracking-widest text-stone-500">{achievementLinkCategories.length} CATEGORIES</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
-            {leadFeatured && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
+            {achievementLinkCategories.map((category) => (
               <a
-                href={leadFeatured.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group md:col-span-2 rounded-2xl border border-stone-200 bg-gradient-to-br from-white to-orange-50/60 p-6 md:p-8 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                key={category.name}
+                href={`#works-${category.slug}`}
+                className="group border border-stone-200 bg-stone-50 p-5 md:p-6 transition-colors hover:border-earth-terra/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
               >
-                <span className="inline-flex items-center rounded-full bg-earth-terra/10 px-3 py-1 text-[11px] tracking-widest uppercase text-earth-terra mb-5">
-                  Editor&apos;s Pick
-                </span>
-                <p className="text-lg md:text-2xl font-serif leading-relaxed text-stone-900 mb-5">{leadFeatured.title}</p>
-                <div className="flex items-center justify-between gap-3 text-xs tracking-widest uppercase text-stone-500">
-                  <span>{getDomainLabel(leadFeatured.url)}</span>
-                  <span className="text-earth-terra">{getCta(leadFeatured)} →</span>
-                </div>
+                <span className="block text-base font-serif text-stone-900 leading-relaxed">{category.name}</span>
+                <span className="mt-3 block text-xs tracking-widest text-earth-terra">{category.items.length} LINKS</span>
               </a>
-            )}
-
-            <div className="grid grid-cols-1 gap-5">
-              {sideFeatured.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group rounded-xl border border-stone-200 bg-white p-5 md:p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                >
-                  <p
-                    className="text-sm leading-relaxed text-stone-700 mb-4"
-                    style={{ display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
-                  >
-                    {item.title}
-                  </p>
-                  <div className="flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
-                    <span className="text-stone-400">{getDomainLabel(item.url)}</span>
-                    <span className="text-earth-terra">{getCta(item)} →</span>
-                  </div>
-                </a>
-              ))}
-            </div>
+            ))}
           </div>
         </section>
 
-        <section className="mb-16">
-          <h3 className="text-2xl md:text-3xl font-serif text-stone-900 mb-6">活動カテゴリ</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <section className="mb-14 md:mb-20">
+          <div className="border-b border-stone-200 pb-4 mb-6">
+            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">活動カテゴリ</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {detailItems.map((item) => (
-              <article key={item.title} className="rounded-xl border border-stone-200 bg-white p-6">
-                <div className="flex items-center justify-between gap-4 mb-4">
-                  <h4 className="text-xl font-serif text-stone-900">{item.title}</h4>
-                  <span className="text-xs tracking-widest uppercase text-earth-terra">{item.category}</span>
+              <article key={item.title} className="border border-stone-200 bg-stone-50 p-5 md:p-6">
+                <div className="mb-4">
+                  <span className="block text-xs tracking-widest uppercase text-earth-terra mb-2">{item.category}</span>
+                  <h4 className="text-lg font-serif text-stone-900 leading-relaxed">{item.title}</h4>
                 </div>
-                <p className="text-sm text-stone-600 leading-loose mb-4">{item.overview}</p>
-                <ul className="space-y-2">
-                  {item.achievements.map((achievement) => (
-                    <li key={achievement} className="text-sm text-stone-700 leading-relaxed">
-                      ・{achievement}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-sm text-stone-600 leading-loose">{item.overview}</p>
               </article>
             ))}
           </div>
         </section>
 
         <section>
-          <h3 className="text-2xl md:text-3xl font-serif text-stone-900 mb-3">リンク集</h3>
-          <p className="text-sm md:text-base text-stone-600 leading-loose mb-8">
-            Link in bio の分かりやすさと、ポートフォリオの上品さを両立する構成で、カテゴリ別に掲載先へアクセスできます。
-          </p>
-
-          <div className="mb-6 -mx-1 px-1 overflow-x-auto">
-            <div className="inline-flex items-center gap-2 min-w-max">
-              {achievementLinkCategories.map((category) => {
-                const isActive = category.name === currentCategory?.name;
-                return (
-                  <button
-                    key={category.name}
-                    type="button"
-                    onClick={() => setActiveCategory(category.name)}
-                    className={`rounded-full px-4 py-2 text-xs md:text-sm tracking-widest transition-colors border ${
-                      isActive
-                        ? 'bg-stone-900 text-stone-50 border-stone-900'
-                        : 'bg-white text-stone-600 border-stone-200 hover:border-stone-400'
-                    }`}
-                  >
-                    {category.name} ({category.items.length})
-                  </button>
-                );
-              })}
-            </div>
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-stone-200 pb-4 mb-8">
+            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">掲載リンク</h3>
+            <span className="text-xs tracking-widest text-stone-500">{totalLinks} LINKS</span>
           </div>
 
-          {currentCategory && (
-            <section className={`rounded-2xl border border-stone-200 bg-gradient-to-r ${currentCategory.accent} p-6 md:p-8`}>
-              <div className="flex flex-wrap items-end justify-between gap-4 mb-5">
+          <div className="space-y-12">
+            {achievementLinkCategories.map((category) => (
+              <section key={category.name} id={`works-${category.slug}`}>
+                <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-5 lg:gap-8">
                 <div>
-                  <h4 className="text-xl md:text-2xl font-serif text-stone-900">
-                    {currentCategory.name}
-                  </h4>
-                  <p className="text-sm text-stone-600 mt-2 leading-relaxed">{currentCategory.lead}</p>
+                    <h4 className="text-xl font-serif text-stone-900">{category.name}</h4>
+                    <p className="text-sm text-stone-600 mt-2 leading-loose">{category.lead}</p>
+                    <p className="text-xs tracking-widest text-stone-400 mt-3">{category.items.length} LINKS</p>
                 </div>
-                <span className="px-3 py-1.5 rounded-full bg-white text-xs tracking-widest text-stone-700">
-                  {currentCategory.items.length} LINKS
-                </span>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-                {sortedCurrentItems.map((link) => (
-                  <a
-                    key={`${currentCategory.name}-${link.title}`}
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group rounded-lg border border-stone-200 bg-white px-5 py-4 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <p
-                        className="text-sm md:text-base text-stone-700 leading-relaxed"
-                        style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {category.items.map((link) => (
+                      <a
+                        key={`${category.name}-${link.title}`}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
                       >
-                        {link.title}
-                      </p>
-                      {link.publishedAt && (
-                        <span className="text-xs tracking-widest text-stone-400 whitespace-nowrap">
-                          {link.publishedAt}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-3 flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
-                      <span className="text-stone-400">{getDomainLabel(link.url)}</span>
-                      <span className="text-earth-terra">{getCta(link)} →</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </section>
-          )}
+                        <p className="text-sm md:text-base text-stone-800 leading-relaxed">{link.title}</p>
+                        <div className="mt-3 flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
+                          <span className="text-stone-400">{getDomainLabel(link.url)}</span>
+                          <span className="text-earth-terra">{getCta(link)} →</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </section>
+            ))}
+          </div>
         </section>
       </main>
     </div>
