@@ -105,27 +105,55 @@ const WorksPage: React.FC = () => {
             <span className="text-xs uppercase tracking-widest text-stone-500">{featuredWorks.length} Highlights</span>
           </div>
 
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-            {featuredWorks.map((work, index) => (
-              <a
-                key={work.title}
-                href={work.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group min-h-[260px] border border-stone-200 bg-stone-100 p-6 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-xs uppercase tracking-widest text-earth-terra">{work.label}</span>
-                  <span className="font-serif text-3xl text-stone-300">0{index + 1}</span>
-                </div>
-                <h4 className="mt-14 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
-                <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
-                <span className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-earth-terra">
-                  View
-                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                </span>
-              </a>
-            ))}
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {featuredWorks.map((work, index) => {
+              const meta = [work.year ? String(work.year) : null, work.mediaName ?? null].filter(Boolean) as string[];
+              return (
+                <a
+                  key={work.title}
+                  href={work.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex flex-col overflow-hidden border border-stone-200 bg-stone-50 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300">
+                    {work.keyVisual ? (
+                      <img
+                        src={work.keyVisual}
+                        alt=""
+                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span aria-hidden="true" className="select-none font-serif text-[8rem] leading-none text-stone-400/60 transition-transform duration-700 ease-out group-hover:scale-105">
+                          0{index + 1}
+                        </span>
+                      </div>
+                    )}
+                    <span className="absolute left-4 top-4 inline-flex items-center bg-stone-900/85 px-3 py-1 text-[11px] uppercase tracking-widest text-stone-50 backdrop-blur">
+                      {work.label}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    {meta.length > 0 && (
+                      <span className="text-[11px] uppercase tracking-widest text-stone-500">{meta.join(' · ')}</span>
+                    )}
+                    <h4 className="mt-3 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
+                    <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
+                    {work.quote && (
+                      <blockquote className="mt-5 border-l-2 border-earth-terra pl-4 font-serif text-sm italic leading-loose text-earth-sage">
+                        “{work.quote}”
+                      </blockquote>
+                    )}
+                    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-earth-terra">
+                      View
+                      <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                    </span>
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </section>
 

@@ -24,6 +24,10 @@ export interface FeaturedWork {
   label: string;
   summary: string;
   url: string;
+  mediaName?: string;
+  year?: number;
+  quote?: string;
+  keyVisual?: string;
 }
 
 export interface WorksDetailItem {
