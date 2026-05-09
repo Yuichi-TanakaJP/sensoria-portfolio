@@ -29,18 +29,24 @@ export const featuredWorks: FeaturedWork[] = [
     label: 'Beauty Trip',
     summary: '美容視点で旅の体験価値を編み直し、読者が行動に移しやすい導線へ。',
     url: 'https://www.biteki.com/life-style/others/1661397',
+    mediaName: '美的.com',
+    quote: '泊まる、食べる、巡る。すべてを美容のレンズで読み解く。',
   },
   {
     title: 'りかたんの五感美容旅',
     label: 'Travel Journal',
     summary: '土地の空気、食、香り、肌感覚を拾い上げる旅ブログのアーカイブ。',
     url: 'https://www.tour.ne.jp/blog/rikatan/',
+    mediaName: 'トラベルコ',
+    quote: '旅は感覚の記録。情報ではなく体温を残す。',
   },
   {
     title: 'Voicy 美容健康アーカイブ',
     label: 'Audio',
     summary: '日々のセルフケアを、声でやわらかく届ける継続配信。',
     url: 'https://voicy.jp/channel/1073/227019',
+    mediaName: 'Voicy 美容健康',
+    quote: '読むのが疲れる日も、声なら届く。',
   },
 ];
 
