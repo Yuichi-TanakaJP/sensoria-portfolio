@@ -25,7 +25,7 @@ const Profile: React.FC = () => {
           
           <div className="space-y-6 text-stone-600 leading-loose font-serif text-sm md:text-base">
             <p>
-              <strong>Profile Name</strong>
+              <strong>ぺんぺんすけ</strong>
               <br />
               アート、旅、美容をテーマに執筆活動を行うライター・エディター。
             </p>
