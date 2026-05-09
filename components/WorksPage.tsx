@@ -160,6 +160,22 @@ const WorksPage: React.FC = () => {
           </div>
         </section>
 
+        <section aria-label="Editor's Note" className="border-b border-stone-200 bg-stone-100/70">
+          <div className="mx-auto max-w-screen-md px-6 py-14 text-center md:py-20">
+            <span className="block text-[11px] uppercase tracking-[0.3em] text-earth-sage">Editor's Note</span>
+            <p className="mt-6 font-serif text-xl leading-loose text-stone-800 md:text-3xl">
+              数値ではなく、
+              <br className="md:hidden" />
+              五感で読み解いた体験を編集する。
+            </p>
+            <p className="mt-6 text-sm leading-loose text-stone-500 md:text-base">
+              媒体ごとの空気を読み、生活者の感覚に翻訳する。
+              <br className="hidden md:block" />
+              静かに伝わる文章を選び続けてきました。
+            </p>
+          </div>
+        </section>
+
         <section id="featured-works" className="mx-auto max-w-screen-xl px-6 py-16 md:py-20">
           <div className="mb-8 grid grid-cols-1 gap-6 border-b border-stone-200 pb-5 md:grid-cols-[1fr_auto] md:items-end">
             <div>
