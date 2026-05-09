@@ -103,6 +103,12 @@ const WorksPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
+      <a
+        href="#link-library"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-stone-900 focus:px-4 focus:py-2 focus:text-sm focus:tracking-widest focus:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra"
+      >
+        Skip to categories
+      </a>
       <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95 backdrop-blur">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-5">
           <a href="#" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
@@ -255,7 +261,7 @@ const WorksPage: React.FC = () => {
                 return (
                   <article key={item.title} className="bg-stone-50 p-5 md:p-6">
                     <Icon className="h-5 w-5 text-earth-terra" aria-hidden="true" />
-                    <span className="mt-5 block text-xs uppercase tracking-widest text-stone-400">{item.category}</span>
+                    <span className="mt-5 block text-xs uppercase tracking-widest text-stone-500">{item.category}</span>
                     <h4 className="mt-3 font-serif text-lg leading-relaxed text-stone-900">{item.title}</h4>
                     <p className="mt-4 text-sm leading-loose text-stone-600">{item.overview}</p>
                     <p className="mt-5 border-t border-stone-200 pt-4 text-sm leading-loose text-earth-sage">{item.tone}</p>
@@ -332,7 +338,7 @@ const WorksPage: React.FC = () => {
                   }
                 >
                   <span className="font-serif text-sm">{category.name}</span>
-                  <span className="ml-2 text-[10px] text-stone-400">{category.items.length}</span>
+                  <span className="ml-2 text-[10px] text-stone-500">{category.items.length}</span>
                 </a>
               );
             })}
@@ -358,12 +364,19 @@ const WorksPage: React.FC = () => {
                 id={`works-${category.slug}`}
                 data-category-section
                 data-category-slug={category.slug}
+                aria-labelledby={`works-heading-${category.slug}`}
                 className="scroll-mt-32"
               >
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-[280px_1fr] lg:gap-10">
                   <div>
                     <span className="text-xs uppercase tracking-widest text-earth-terra">{category.items.length} Links</span>
-                    <h4 className="mt-3 font-serif text-2xl text-stone-900">{category.name}</h4>
+                    <h4
+                      id={`works-heading-${category.slug}`}
+                      tabIndex={-1}
+                      className="mt-3 font-serif text-2xl text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                    >
+                      {category.name}
+                    </h4>
                     <p className="mt-3 text-sm leading-loose text-stone-600">{category.lead}</p>
                   </div>
 
@@ -389,7 +402,7 @@ const WorksPage: React.FC = () => {
                             </p>
                           )}
                           <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
-                            <span className="min-w-0 truncate text-stone-400">{getDomainLabel(link.url)}</span>
+                            <span className="min-w-0 truncate text-stone-500">{getDomainLabel(link.url)}</span>
                             <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
                               {getCta(link)}
                               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -409,7 +422,7 @@ const WorksPage: React.FC = () => {
                           {category.viewAllLabel ?? 'すべて見る'}
                         </p>
                         <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
-                          <span className="min-w-0 truncate text-stone-400">{getDomainLabel(category.viewAllUrl)}</span>
+                          <span className="min-w-0 truncate text-stone-500">{getDomainLabel(category.viewAllUrl)}</span>
                           <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
                             View all
                             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />

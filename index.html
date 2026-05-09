@@ -69,6 +69,24 @@
       a.work-link:visited .work-title {
         color: #78716c; /* stone-500 */
       }
+      /* Reduced motion: silence non-essential transitions and animations */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .fade-in-up {
+          animation: none;
+          opacity: 1;
+          transform: none;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
       @keyframes fadeInUp {
         from {
           opacity: 0;
