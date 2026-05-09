@@ -37,6 +37,10 @@ export interface WorksLinkItem {
   title: string;
   url: string;
   cta?: 'Visit' | 'Read' | 'Listen' | 'Follow';
+  year?: number;
+  topic?: string[];
+  mediaName?: string;
+  excerpt?: string;
 }
 
 export interface WorksLinkCategory {

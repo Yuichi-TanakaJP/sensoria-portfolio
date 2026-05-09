@@ -191,24 +191,36 @@ const WorksPage: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {(category.displayLimit ? category.items.slice(0, category.displayLimit) : category.items).map((link) => (
-                      <a
-                        key={`${category.name}-${link.title}`}
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
-                      >
-                        <p className="text-sm leading-relaxed text-stone-800 md:text-base">{link.title}</p>
-                        <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
-                          <span className="min-w-0 truncate text-stone-400">{getDomainLabel(link.url)}</span>
-                          <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
-                            {getCta(link)}
-                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-                          </span>
-                        </div>
-                      </a>
-                    ))}
+                    {(category.displayLimit ? category.items.slice(0, category.displayLimit) : category.items).map((link) => {
+                      const metaParts = [
+                        link.year ? String(link.year) : null,
+                        link.mediaName ?? null,
+                        link.topic?.length ? link.topic.join(' / ') : null,
+                      ].filter(Boolean) as string[];
+                      return (
+                        <a
+                          key={`${category.name}-${link.title}`}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="work-link group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                        >
+                          <p className="work-title text-sm leading-relaxed text-stone-800 md:text-base">{link.title}</p>
+                          {metaParts.length > 0 && (
+                            <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                              {metaParts.join(' · ')}
+                            </p>
+                          )}
+                          <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
+                            <span className="min-w-0 truncate text-stone-400">{getDomainLabel(link.url)}</span>
+                            <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
+                              {getCta(link)}
+                              <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                            </span>
+                          </div>
+                        </a>
+                      );
+                    })}
                     {category.viewAllUrl && (
                       <a
                         href={category.viewAllUrl}

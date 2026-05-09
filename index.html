@@ -65,6 +65,10 @@
         animation: fadeInUp 1s ease-out forwards;
         opacity: 0;
       }
+      /* Works link visited state — only color is allowed by browser :visited rules */
+      a.work-link:visited .work-title {
+        color: #78716c; /* stone-500 */
+      }
       @keyframes fadeInUp {
         from {
           opacity: 0;
