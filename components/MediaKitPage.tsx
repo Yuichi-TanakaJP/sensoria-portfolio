@@ -33,10 +33,13 @@ const MediaKitPage: React.FC = () => {
       </header>
 
       <main>
-        <section className="relative overflow-hidden border-b border-stone-200">
-          <div className="absolute inset-0 opacity-20">
-            <img src="/hero-snoopy.jpg" alt="" className="h-full w-full object-cover" />
-          </div>
+        <section className="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-stone-50 via-stone-50 to-stone-100">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-[-3rem] top-4 hidden select-none font-serif text-[12rem] leading-none text-stone-200/70 lg:block"
+          >
+            Kit
+          </span>
           <div className="relative mx-auto grid max-w-screen-xl grid-cols-1 gap-10 px-6 py-16 md:py-24 lg:grid-cols-[1fr_380px] lg:items-end">
             <div>
               <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-earth-sage">For Editors / Partners</span>
