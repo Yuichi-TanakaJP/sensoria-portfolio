@@ -33,6 +33,17 @@ const App: React.FC = () => {
   }, []);
 
   React.useEffect(() => {
+    if (route === 'home') {
+      const hash = window.location.hash;
+      if (hash && !hash.startsWith('#/')) {
+        const id = hash.slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView();
+          return;
+        }
+      }
+    }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [route]);
 
