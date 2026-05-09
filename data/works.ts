@@ -116,8 +116,11 @@ export const achievementLinkCategories: WorksLinkCategory[] = [
   },
   {
     name: 'Voicy',
-    lead: 'Voicyでの美容健康コンテンツを中心に、継続発信のアーカイブをまとめています。',
+    lead: 'Voicy「美容健康」チャンネルで、習慣・栄養・睡眠・セルフケアを継続配信。代表的な回をピックアップしています。',
     slug: 'voicy',
+    displayLimit: 4,
+    viewAllUrl: 'https://voicy.jp/channel/1073',
+    viewAllLabel: '全 18 エピソードを Voicy で聴く',
     items: [
       { title: 'Voicy 〖美容健康〗アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019' },
       { title: 'Voicy 〖美容健康〗二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984' },

@@ -44,4 +44,7 @@ export interface WorksLinkCategory {
   lead: string;
   slug: string;
   items: WorksLinkItem[];
+  displayLimit?: number;
+  viewAllUrl?: string;
+  viewAllLabel?: string;
 }

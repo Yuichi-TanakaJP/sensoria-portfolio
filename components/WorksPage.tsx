@@ -53,11 +53,13 @@ const WorksPage: React.FC = () => {
       </header>
 
       <main>
-        <section className="relative overflow-hidden border-b border-stone-200">
-          <div className="absolute inset-y-0 right-0 hidden w-[42%] lg:block">
-            <img src="/hero-snoopy.jpg" alt="" className="h-full w-full object-cover opacity-80" />
-            <div className="absolute inset-0 bg-stone-50/35" />
-          </div>
+        <section className="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-stone-50 via-stone-50 to-stone-100">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute right-[-2rem] top-8 hidden select-none font-serif text-[10rem] leading-none text-stone-200/70 lg:block"
+          >
+            Vol.
+          </span>
           <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-12 px-6 py-16 md:py-24 lg:grid-cols-[1fr_360px] lg:items-end">
             <div className="relative z-10 max-w-3xl">
               <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-earth-sage">Works Portfolio</span>
@@ -189,7 +191,7 @@ const WorksPage: React.FC = () => {
                   </div>
 
                   <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                    {category.items.map((link) => (
+                    {(category.displayLimit ? category.items.slice(0, category.displayLimit) : category.items).map((link) => (
                       <a
                         key={`${category.name}-${link.title}`}
                         href={link.url}
@@ -207,6 +209,25 @@ const WorksPage: React.FC = () => {
                         </div>
                       </a>
                     ))}
+                    {category.viewAllUrl && (
+                      <a
+                        href={category.viewAllUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group flex flex-col justify-between border border-dashed border-stone-300 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60 md:col-span-2"
+                      >
+                        <p className="font-serif text-base leading-relaxed text-stone-800 md:text-lg">
+                          {category.viewAllLabel ?? 'すべて見る'}
+                        </p>
+                        <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
+                          <span className="min-w-0 truncate text-stone-400">{getDomainLabel(category.viewAllUrl)}</span>
+                          <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
+                            View all
+                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </span>
+                        </div>
+                      </a>
+                    )}
                   </div>
                 </div>
               </section>
@@ -220,7 +241,7 @@ const WorksPage: React.FC = () => {
               <span className="block text-xs uppercase tracking-[0.3em] text-stone-400">Next</span>
               <h3 className="mt-3 font-serif text-3xl leading-tight md:text-4xl">媒体資料としても、実績集としても使えるページへ。</h3>
               <p className="mt-4 max-w-2xl text-sm leading-loose text-stone-300">
-                #15 の確認が進んだら、美術館・ホテル・伝統工芸を根拠URL付きで追加し、より専門性の見えるページに育てます。
+                掲載媒体や取材記録は順次更新しています。お気軽に取材・寄稿のご相談をお寄せください。
               </p>
             </div>
             <a href="#contact" className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
