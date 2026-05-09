@@ -34,8 +34,72 @@ const getDomainLabel = (url: string): string => {
 
 const categoryIcons = [BookOpenText, Newspaper, Landmark, Headphones, Sparkles];
 
+const allTopics = Array.from(
+  new Set(
+    achievementLinkCategories.flatMap((category) => category.items.flatMap((item) => item.topic ?? []))
+  )
+).sort();
+
+const readTopicsFromUrl = (): string[] => {
+  if (typeof window === 'undefined') return [];
+  const params = new URLSearchParams(window.location.search);
+  const raw = params.get('topics');
+  return raw ? raw.split(',').filter(Boolean) : [];
+};
+
 const WorksPage: React.FC = () => {
+  const [activeTopics, setActiveTopics] = React.useState<string[]>(readTopicsFromUrl);
+  const [activeCategorySlug, setActiveCategorySlug] = React.useState<string | null>(null);
   const totalLinks = achievementLinkCategories.reduce((sum, category) => sum + category.items.length, 0);
+
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (activeTopics.length === 0) {
+      params.delete('topics');
+    } else {
+      params.set('topics', activeTopics.join(','));
+    }
+    const search = params.toString();
+    const next = window.location.pathname + (search ? `?${search}` : '') + window.location.hash;
+    window.history.replaceState(null, '', next);
+  }, [activeTopics]);
+
+  const toggleTopic = React.useCallback((topic: string) => {
+    setActiveTopics((prev) => (prev.includes(topic) ? prev.filter((t) => t !== topic) : [...prev, topic]));
+  }, []);
+
+  const clearTopics = React.useCallback(() => setActiveTopics([]), []);
+
+  const filteredCategories = React.useMemo(() => {
+    if (activeTopics.length === 0) return achievementLinkCategories;
+    return achievementLinkCategories
+      .map((category) => ({
+        ...category,
+        items: category.items.filter((item) => item.topic?.some((t) => activeTopics.includes(t))),
+      }))
+      .filter((category) => category.items.length > 0);
+  }, [activeTopics]);
+
+  const noResults = activeTopics.length > 0 && filteredCategories.length === 0;
+  const filteredCount = filteredCategories.reduce((sum, c) => sum + c.items.length, 0);
+
+  React.useEffect(() => {
+    const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-category-section]'));
+    if (sections.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (a.target as HTMLElement).offsetTop - (b.target as HTMLElement).offsetTop);
+        if (visible[0]) {
+          setActiveCategorySlug(visible[0].target.getAttribute('data-category-slug'));
+        }
+      },
+      { rootMargin: '-30% 0px -55% 0px' }
+    );
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [filteredCategories.length]);
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
@@ -192,25 +256,94 @@ const WorksPage: React.FC = () => {
               <span className="block text-xs uppercase tracking-[0.3em] text-earth-sage">Archive</span>
               <h3 className="mt-3 font-serif text-3xl text-stone-900 md:text-4xl">掲載リンク</h3>
             </div>
-            <span className="text-xs uppercase tracking-widest text-stone-500">{totalLinks} Links</span>
+            <span className="text-xs uppercase tracking-widest text-stone-500">
+              {activeTopics.length > 0 ? `${filteredCount} / ${totalLinks}` : `${totalLinks}`} Links
+            </span>
           </div>
 
-          <nav aria-label="掲載リンクカテゴリ" className="mb-12 grid grid-cols-2 gap-2 md:grid-cols-5">
-            {achievementLinkCategories.map((category) => (
-              <a
-                key={category.name}
-                href={`#works-${category.slug}`}
-                className="border border-stone-200 bg-stone-50 px-4 py-4 transition-colors hover:border-earth-terra/60 hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
-              >
-                <span className="block font-serif text-base text-stone-900">{category.name}</span>
-                <span className="mt-2 block text-[11px] uppercase tracking-widest text-stone-400">{category.items.length} Links</span>
-              </a>
-            ))}
+          {/* Topic filter chips */}
+          <div className="mb-6">
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-[11px] uppercase tracking-widest text-stone-500">Filter by topic</span>
+              {activeTopics.length > 0 && (
+                <button
+                  type="button"
+                  onClick={clearTopics}
+                  className="text-[11px] uppercase tracking-widest text-earth-terra transition-colors hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                >
+                  Clear ({activeTopics.length})
+                </button>
+              )}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {allTopics.map((topic) => {
+                const isActive = activeTopics.includes(topic);
+                return (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => toggleTopic(topic)}
+                    aria-pressed={isActive}
+                    className={
+                      isActive
+                        ? 'border border-earth-terra bg-earth-terra px-3 py-1.5 text-xs text-stone-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60'
+                        : 'border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60'
+                    }
+                  >
+                    {topic}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Sticky category TOC (horizontal scroll on mobile) */}
+          <nav
+            aria-label="掲載リンクカテゴリ"
+            className="sticky top-[56px] z-10 -mx-6 mb-10 flex gap-2 overflow-x-auto border-y border-stone-200 bg-stone-50/95 px-6 py-3 backdrop-blur md:top-[64px]"
+          >
+            {filteredCategories.map((category) => {
+              const isActive = activeCategorySlug === category.slug;
+              return (
+                <a
+                  key={category.name}
+                  href={`#works-${category.slug}`}
+                  className={
+                    'flex-none border px-4 py-2 text-xs uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60 ' +
+                    (isActive
+                      ? 'border-earth-terra bg-earth-terra/10 text-earth-terra'
+                      : 'border-stone-200 bg-stone-50 text-stone-700 hover:border-earth-terra/60 hover:text-earth-terra')
+                  }
+                >
+                  <span className="font-serif text-sm">{category.name}</span>
+                  <span className="ml-2 text-[10px] text-stone-400">{category.items.length}</span>
+                </a>
+              );
+            })}
           </nav>
 
+          {noResults ? (
+            <div className="border border-dashed border-stone-300 bg-stone-50 px-6 py-12 text-center">
+              <p className="font-serif text-lg text-stone-700">該当する掲載が見つかりませんでした。</p>
+              <p className="mt-3 text-sm leading-loose text-stone-500">フィルタを解除すると、すべての掲載リンクが表示されます。</p>
+              <button
+                type="button"
+                onClick={clearTopics}
+                className="mt-6 inline-flex items-center gap-2 border border-stone-400 px-5 py-2 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+              >
+                Clear filters
+              </button>
+            </div>
+          ) : (
           <div className="space-y-14">
-            {achievementLinkCategories.map((category) => (
-              <section key={category.name} id={`works-${category.slug}`} className="scroll-mt-24">
+            {filteredCategories.map((category) => (
+              <section
+                key={category.name}
+                id={`works-${category.slug}`}
+                data-category-section
+                data-category-slug={category.slug}
+                className="scroll-mt-32"
+              >
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-[280px_1fr] lg:gap-10">
                   <div>
                     <span className="text-xs uppercase tracking-widest text-earth-terra">{category.items.length} Links</span>
@@ -273,6 +406,7 @@ const WorksPage: React.FC = () => {
               </section>
             ))}
           </div>
+          )}
         </section>
 
         <section className="border-t border-stone-200 bg-stone-900 text-stone-50">
