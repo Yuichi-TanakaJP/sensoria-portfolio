@@ -31,6 +31,8 @@ export const featuredWorks: FeaturedWork[] = [
     url: 'https://www.biteki.com/life-style/others/1661397',
     mediaName: '美的.com',
     quote: '泊まる、食べる、巡る。すべてを美容のレンズで読み解く。',
+    // 暫定: 温泉/水辺イメージ。本番素材投入時に差し替え予定
+    keyVisual: 'https://picsum.photos/id/1015/800/1000',
   },
   {
     title: 'りかたんの五感美容旅',
@@ -39,6 +41,8 @@ export const featuredWorks: FeaturedWork[] = [
     url: 'https://www.tour.ne.jp/blog/rikatan/',
     mediaName: 'トラベルコ',
     quote: '旅は感覚の記録。情報ではなく体温を残す。',
+    // 暫定: 風景/旅情イメージ
+    keyVisual: 'https://picsum.photos/id/1018/800/1000',
   },
   {
     title: 'Voicy 美容健康アーカイブ',
@@ -47,6 +51,8 @@ export const featuredWorks: FeaturedWork[] = [
     url: 'https://voicy.jp/channel/1073/227019',
     mediaName: 'Voicy 美容健康',
     quote: '読むのが疲れる日も、声なら届く。',
+    // 暫定: 落ち着いた抽象/光イメージ
+    keyVisual: 'https://picsum.photos/id/96/800/1000',
   },
 ];
 
