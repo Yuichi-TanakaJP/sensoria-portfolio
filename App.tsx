@@ -8,8 +8,12 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WorksPage from './components/WorksPage';
 import Issue15AuditPage from './components/Issue15AuditPage';
+import MediaKitPage from './components/MediaKitPage';
 
-const getRoute = (): 'home' | 'works' | 'issue15Audit' => {
+const getRoute = (): 'home' | 'works' | 'issue15Audit' | 'mediaKit' => {
+  if (window.location.hash.startsWith('#/media-kit')) {
+    return 'mediaKit';
+  }
   if (window.location.hash.startsWith('#/issue15-audit')) {
     return 'issue15Audit';
   }
@@ -20,7 +24,7 @@ const getRoute = (): 'home' | 'works' | 'issue15Audit' => {
 };
 
 const App: React.FC = () => {
-  const [route, setRoute] = React.useState<'home' | 'works' | 'issue15Audit'>(getRoute);
+  const [route, setRoute] = React.useState<'home' | 'works' | 'issue15Audit' | 'mediaKit'>(getRoute);
 
   React.useEffect(() => {
     const handleHashChange = () => setRoute(getRoute());
@@ -38,6 +42,10 @@ const App: React.FC = () => {
 
   if (route === 'issue15Audit') {
     return <Issue15AuditPage />;
+  }
+
+  if (route === 'mediaKit') {
+    return <MediaKitPage />;
   }
 
   return (
