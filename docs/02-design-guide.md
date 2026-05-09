@@ -64,9 +64,14 @@ Accessibility notes:
   - Latest: `3:2`
   - Profile: `3:4`
 - Compression policy:
-  - 本番はWebP/AVIF優先、LCP画像は優先最適化
+  - 本番は WebP/AVIF 優先、LCP 画像は優先最適化
+  - 配信は `<picture>` で AVIF → WebP → JPEG/PNG のフォールバック順で並べる
+- Loading attributes:
+  - LCP 候補（Hero / Featured 1 枚目）: `loading="eager"` + `decoding="sync"` + `fetchpriority="high"`
+  - それ以外: `loading="lazy"` + `decoding="async"`
 - Alt text policy:
   - 装飾以外は意味のある代替テキストを付与
+  - 装飾画像は `alt=""` + `aria-hidden="true"` を併用
 
 ## 7. Motion
 - Transition style: `fade-in-up` + gentle hover transitions
