@@ -236,22 +236,35 @@ const WorksPage: React.FC = () => {
         </section>
 
         <section className="border-t border-stone-200 bg-stone-900 text-stone-50">
-          <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-6 py-14 md:grid-cols-[1fr_auto] md:items-center">
-            <div>
-              <span className="block text-xs uppercase tracking-[0.3em] text-stone-400">Next</span>
-              <h3 className="mt-3 font-serif text-3xl leading-tight md:text-4xl">媒体資料としても、実績集としても使えるページへ。</h3>
-              <p className="mt-4 max-w-2xl text-sm leading-loose text-stone-300">
-                掲載媒体や取材記録は順次更新しています。お気軽に取材・寄稿のご相談をお寄せください。
-              </p>
+          <div className="mx-auto max-w-screen-xl px-6 py-14 md:py-20">
+            <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:items-center">
+              <div>
+                <span className="block text-xs uppercase tracking-[0.3em] text-earth-gold">For Editors / Partners</span>
+                <h3 className="mt-3 font-serif text-3xl leading-tight md:text-4xl">取材・寄稿・依頼の方へ</h3>
+                <p className="mt-4 max-w-2xl text-sm leading-loose text-stone-300">
+                  媒体やテーマに合わせた企画にも対応しています。まずはメディアキットで概要をご確認の上、ご相談ください。
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 bg-stone-50 px-6 py-3 text-xs uppercase tracking-widest text-stone-900 transition-colors hover:bg-earth-terra hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                >
+                  Contact
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <a
+                  href="#/media-kit"
+                  className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                >
+                  Media Kit
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+              </div>
             </div>
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
-              Contact
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-            <a href="#/media-kit" className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
-              Media Kit
-              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-            </a>
+            <p className="mt-10 border-t border-stone-700 pt-6 text-xs leading-relaxed text-stone-500">
+              掲載媒体や取材記録は順次更新しています。
+            </p>
           </div>
         </section>
       </main>
