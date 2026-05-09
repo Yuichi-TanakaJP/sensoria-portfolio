@@ -7,6 +7,8 @@
 ## 2. Route Map
 - `#` or no hash: Home（1ページ構成）
 - `#/works`: 活動と実績の専用ページ
+- `#/media-kit`: 取材・寄稿・紹介用の簡易メディアキットページ
+- `#/issue15-audit`: Issue #15 の採用前確認ページ（内部確認用）
 
 ## 3. Home Structure (Top to Bottom)
 1. Header (`#top` 起点)
@@ -31,9 +33,12 @@
   - 活動カテゴリの説明や外部掲載リンクはWorks Pageへ集約する
   - Destination: `#/works`
 - Works Page
-  - ページ冒頭でカテゴリへの主要リンクを提示
+  - ページ冒頭で Featured / Link Library / Media Kit への導線を提示
   - カテゴリ別リンクはタブ化せず、縦方向にすべて展開する
   - 外部掲載先URLは掲載リンクセクションに集約する
+- Media Kit Page
+  - Works Page から導線を置く
+  - 取材・寄稿・紹介前に必要な概要、話せるテーマ、掲載先、問い合わせ導線をまとめる
 
 ## 6. Duplicate-CTA Policy
 - 同一目的のCTAは「近接エリアに2つ以上置かない」を原則とする。
@@ -49,6 +54,8 @@
   - [components/Works.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Works.tsx)
 - Dedicated pages:
   - [components/WorksPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/WorksPage.tsx)
+  - [components/MediaKitPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/MediaKitPage.tsx)
+  - [components/Issue15AuditPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Issue15AuditPage.tsx)
 
 ## 8. Change Checklist
 - 新しいCTAを追加する場合:

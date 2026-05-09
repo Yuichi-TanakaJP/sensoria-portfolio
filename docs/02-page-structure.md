@@ -10,6 +10,8 @@
   - `/#works` Works
   - `/#contact` Contact
   - `/#/works` Works Page
+  - `/#/media-kit` Media Kit Page
+  - `/#/issue15-audit` Issue #15 audit page (internal)
 
 ## 2. Page Definitions
 ### Page: `/`
@@ -33,12 +35,22 @@
 
 ### Page: `/#/works`
 - Goal: 掲載実績、外部リンク、取材実績を集約して確認できるようにする
-- Primary CTA: 主要リンク / カテゴリ別掲載リンク
+- Primary CTA: Featured / Link Library / Media Kit
 - Main sections:
-  1. Works intro
-  2. 主要リンク（カテゴリへのページ内ショートカット）
-  3. 活動カテゴリ（活動領域の説明）
-  4. 掲載リンク（外部URLの正本）
+  1. Editorial hero（活動の立ち位置 + 実績サマリー）
+  2. Selected Works（代表導線）
+  3. Expertise（活動領域の説明）
+  4. Archive（外部URLの正本）
+  5. Next（Issue #15 の根拠付き実績追加への接続）
+
+### Page: `/#/media-kit`
+- Goal: 取材・寄稿・紹介前に必要な概要を短時間で確認できるようにする
+- Primary CTA: Contact / Works
+- Main sections:
+  1. Media kit hero
+  2. Profile facts
+  3. Topics / press mentions / inquiry cue
+  4. Assets note
 
 ## 3. Component Notes
 - Reusable components:
@@ -49,6 +61,8 @@
   - [Works.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Works.tsx)
   - [Contact.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Contact.tsx)
   - [Footer.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/Footer.tsx)
+  - [WorksPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/WorksPage.tsx)
+  - [MediaKitPage.tsx](/c:/Users/yutaz/dev/sensoria-portfolio/components/MediaKitPage.tsx)
 - Section naming rule:
   - `id` はナビゲーションリンクと一致させる（`href="#xxx"` <-> `section id="xxx"`）
 - Mobile-first notes:

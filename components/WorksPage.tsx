@@ -1,16 +1,16 @@
 import React from 'react';
+import { ArrowUpRight, BookOpenText, Headphones, Landmark, Mail, Newspaper, Sparkles } from 'lucide-react';
 
 type DetailItem = {
   title: string;
   category: string;
   overview: string;
-  achievements: string[];
+  tone: string;
 };
 
 type LinkItem = {
   title: string;
   url: string;
-  publishedAt?: string;
   cta?: 'Visit' | 'Read' | 'Listen' | 'Follow';
 };
 
@@ -19,6 +19,19 @@ type LinkCategory = {
   lead: string;
   slug: string;
   items: LinkItem[];
+};
+
+type FeaturedWork = {
+  title: string;
+  label: string;
+  summary: string;
+  url: string;
+};
+
+type Metric = {
+  value: string;
+  label: string;
+  note: string;
 };
 
 const getCta = (item: LinkItem): LinkItem['cta'] => {
@@ -45,56 +58,75 @@ const getDomainLabel = (url: string): string => {
   }
 };
 
+const metrics: Metric[] = [
+  {
+    value: '300+',
+    label: 'Articles',
+    note: '美容、旅、暮らし、文化を横断する記事制作',
+  },
+  {
+    value: '5',
+    label: 'Fields',
+    note: 'Beauty / Travel / Editorial / Audio / Interview',
+  },
+  {
+    value: '1',
+    label: 'Sensory Lens',
+    note: '五感で体験を読み解き、伝わる言葉へ整える視点',
+  },
+];
+
+const featuredWorks: FeaturedWork[] = [
+  {
+    title: '美的.com ウェルネス旅企画',
+    label: 'Beauty Trip',
+    summary: '美容視点で旅の体験価値を編み直し、読者が行動に移しやすい導線へ。',
+    url: 'https://www.biteki.com/life-style/others/1661397',
+  },
+  {
+    title: 'りかたんの五感美容旅',
+    label: 'Travel Journal',
+    summary: '土地の空気、食、香り、肌感覚を拾い上げる旅ブログのアーカイブ。',
+    url: 'https://www.tour.ne.jp/blog/rikatan/',
+  },
+  {
+    title: 'Voicy 美容健康アーカイブ',
+    label: 'Audio',
+    summary: '日々のセルフケアを、声でやわらかく届ける継続配信。',
+    url: 'https://voicy.jp/channel/1073/227019',
+  },
+];
+
 const detailItems: DetailItem[] = [
   {
     title: '美容・ライフスタイル系メディア掲載',
     category: 'Beauty Media',
     overview: '美的、anan Beauty＋、CREA、Hanakoなどで、美容・ライフスタイルを軸にした体験型コンテンツを継続発信。',
-    achievements: [
-      '美容・ウェルネス領域での取材記事・特集記事を掲載',
-      '体験価値が伝わる構成とコピーの設計',
-      '媒体トーンに沿った継続的な寄稿',
-    ],
+    tone: '体験を読者の暮らしへ接続する、やわらかな実用性。',
   },
   {
     title: '新聞・雑誌・女性向け媒体での連載/寄稿',
     category: 'Editorial',
     overview: '日経x woman、シティリビングなどで、日常と美意識を結ぶテーマの記事を掲載。',
-    achievements: [
-      'アンバサダー・寄稿記事を通じた継続発信',
-      '読者層に合わせた実用テーマの企画',
-      '紙面・Web両方での掲載実績',
-    ],
+    tone: '媒体トーンを尊重しながら、生活者の視点で整理。',
   },
   {
     title: '旅行・ブログ領域の発信',
     category: 'Travel Blog',
     overview: 'トラベルコ「りかたんの五感美容旅」や著者ページを通じて、旅と美容を横断したコンテンツを発信。',
-    achievements: [
-      '旅先体験を美容視点で再構成した記事展開',
-      'シリーズ運用によるテーマ蓄積',
-      'プロフィール導線からの一覧回遊',
-    ],
+    tone: '土地の魅力を五感で拾い、読み物として残す視点。',
   },
   {
     title: '音声メディアでの継続配信',
     category: 'Audio',
     overview: 'Voicyで美容健康を軸に、習慣・栄養・睡眠・セルフケアなど幅広いテーマを継続発信。',
-    achievements: [
-      '単発ではなく連続企画として配信アーカイブを構築',
-      '日常で実践しやすい健康美容テーマを選定',
-      '視聴しやすい短尺構成で情報を整理',
-    ],
+    tone: '短く聞けて、今日の行動に移しやすい健康美容の話題。',
   },
   {
     title: 'インタビュー・外部掲載',
     category: 'Interview',
     overview: '伝統工芸、ヤマハ音楽教室アンバサダーなど、外部サイトでのインタビュー・掲載実績。',
-    achievements: [
-      '専門分野・文化領域を横断した取材対応',
-      'アンバサダーとしての活動背景を発信',
-      '第三者媒体での信頼性強化に寄与',
-    ],
+    tone: '文化や活動背景を、第三者媒体の文脈で届ける実績。',
   },
 ];
 
@@ -171,104 +203,178 @@ const achievementLinkCategories: LinkCategory[] = [
   },
 ];
 
+const categoryIcons = [BookOpenText, Newspaper, Landmark, Headphones, Sparkles];
+
 const WorksPage: React.FC = () => {
   const totalLinks = achievementLinkCategories.reduce((sum, category) => sum + category.items.length, 0);
 
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
-      <header className="sticky top-0 z-20 bg-stone-50/95 backdrop-blur border-b border-stone-200">
-        <div className="max-w-screen-xl mx-auto px-6 py-5 flex items-center justify-between">
-          <a href="#" className="text-sm tracking-widest text-stone-600 hover:text-earth-terra transition-colors uppercase">
-            Top Page
+      <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95 backdrop-blur">
+        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-5">
+          <a href="#" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
+            Top
           </a>
-          <h1 className="text-lg md:text-2xl font-serif tracking-widest text-stone-900">活動と実績</h1>
-          <a href="#contact" className="text-sm tracking-widest text-stone-600 hover:text-earth-terra transition-colors uppercase">
+          <h1 className="text-base tracking-widest text-stone-900 md:text-xl">活動と実績</h1>
+          <a href="#contact" className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
+            <Mail className="h-4 w-4" aria-hidden="true" />
             Contact
           </a>
         </div>
       </header>
 
-      <main className="max-w-screen-xl mx-auto px-6 py-14 md:py-20">
-        <section className="mb-14 md:mb-20">
-          <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-4">Works</span>
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-16 items-end">
-            <h2 className="text-3xl md:text-5xl font-serif leading-tight text-stone-900">
-              活動と実績を、
-              <br />
-              必要な順に。
-            </h2>
-            <p className="text-sm md:text-base text-stone-600 leading-loose">
-              掲載媒体、連載、旅ブログ、音声配信、外部インタビューへのリンクをカテゴリ別に整理しています。
-              主要リンクからカテゴリを選び、活動の全体像と掲載リンクを順に確認できます。
-            </p>
+      <main>
+        <section className="relative overflow-hidden border-b border-stone-200">
+          <div className="absolute inset-y-0 right-0 hidden w-[42%] lg:block">
+            <img src="/hero-snoopy.jpg" alt="" className="h-full w-full object-cover opacity-80" />
+            <div className="absolute inset-0 bg-stone-50/35" />
+          </div>
+          <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-12 px-6 py-16 md:py-24 lg:grid-cols-[1fr_360px] lg:items-end">
+            <div className="relative z-10 max-w-3xl">
+              <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-earth-sage">Works Portfolio</span>
+              <h2 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
+                五感で見つけた価値を、
+                <br />
+                読みたくなる実績へ。
+              </h2>
+              <p className="mt-8 max-w-2xl text-sm leading-loose text-stone-600 md:text-base">
+                美容、旅、アート、文化、音声配信まで。媒体ごとの文脈に寄り添いながら、体験を言葉と導線に整えてきた活動をまとめています。
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href="#featured-works" className="border border-stone-800 bg-stone-800 px-5 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:bg-earth-terra">
+                  Featured
+                </a>
+                <a href="#link-library" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra">
+                  Link Library
+                </a>
+                <a href="#/media-kit" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra">
+                  Media Kit
+                </a>
+              </div>
+            </div>
+
+            <div className="relative z-10 grid grid-cols-1 gap-3">
+              {metrics.map((metric) => (
+                <div key={metric.label} className="border border-stone-200 bg-stone-50/90 p-5 backdrop-blur">
+                  <span className="block font-serif text-4xl text-earth-gold">{metric.value}</span>
+                  <span className="mt-2 block text-xs uppercase tracking-widest text-stone-500">{metric.label}</span>
+                  <p className="mt-3 text-sm leading-relaxed text-stone-600">{metric.note}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section className="mb-14 md:mb-20">
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-stone-200 pb-4 mb-6">
-            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">主要リンク</h3>
-            <span className="text-xs tracking-widest text-stone-500">{achievementLinkCategories.length} CATEGORIES</span>
+        <section id="featured-works" className="mx-auto max-w-screen-xl px-6 py-16 md:py-20">
+          <div className="mb-8 grid grid-cols-1 gap-6 border-b border-stone-200 pb-5 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <span className="block text-xs uppercase tracking-[0.3em] text-earth-sage">Selected Works</span>
+              <h3 className="mt-3 font-serif text-3xl text-stone-900 md:text-4xl">代表的な導線</h3>
+            </div>
+            <span className="text-xs uppercase tracking-widest text-stone-500">{featuredWorks.length} Highlights</span>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
-            {achievementLinkCategories.map((category) => (
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {featuredWorks.map((work, index) => (
               <a
-                key={category.name}
-                href={`#works-${category.slug}`}
-                className="group border border-stone-200 bg-stone-50 p-5 md:p-6 transition-colors hover:border-earth-terra/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                key={work.title}
+                href={work.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group min-h-[260px] border border-stone-200 bg-stone-100 p-6 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
               >
-                <span className="block text-base font-serif text-stone-900 leading-relaxed">{category.name}</span>
-                <span className="mt-3 block text-xs tracking-widest text-earth-terra">{category.items.length} LINKS</span>
+                <div className="flex items-start justify-between gap-4">
+                  <span className="text-xs uppercase tracking-widest text-earth-terra">{work.label}</span>
+                  <span className="font-serif text-3xl text-stone-300">0{index + 1}</span>
+                </div>
+                <h4 className="mt-14 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
+                <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
+                <span className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-earth-terra">
+                  View
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                </span>
               </a>
             ))}
           </div>
         </section>
 
-        <section className="mb-14 md:mb-20">
-          <div className="border-b border-stone-200 pb-4 mb-6">
-            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">活動カテゴリ</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {detailItems.map((item) => (
-              <article key={item.title} className="border border-stone-200 bg-stone-50 p-5 md:p-6">
-                <div className="mb-4">
-                  <span className="block text-xs tracking-widest uppercase text-earth-terra mb-2">{item.category}</span>
-                  <h4 className="text-lg font-serif text-stone-900 leading-relaxed">{item.title}</h4>
-                </div>
-                <p className="text-sm text-stone-600 leading-loose">{item.overview}</p>
-              </article>
-            ))}
+        <section className="border-y border-stone-200 bg-stone-100/70">
+          <div className="mx-auto max-w-screen-xl px-6 py-16 md:py-20">
+            <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-[320px_1fr]">
+              <div>
+                <span className="block text-xs uppercase tracking-[0.3em] text-earth-sage">Expertise</span>
+                <h3 className="mt-3 font-serif text-3xl text-stone-900">活動カテゴリ</h3>
+              </div>
+              <p className="text-sm leading-loose text-stone-600">
+                どの媒体でも、単なる情報整理ではなく、体験の輪郭と読者の行動をつなげることを大切にしています。
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-px overflow-hidden border border-stone-200 bg-stone-200 md:grid-cols-2 lg:grid-cols-5">
+              {detailItems.map((item, index) => {
+                const Icon = categoryIcons[index] ?? Sparkles;
+                return (
+                  <article key={item.title} className="bg-stone-50 p-5 md:p-6">
+                    <Icon className="h-5 w-5 text-earth-terra" aria-hidden="true" />
+                    <span className="mt-5 block text-xs uppercase tracking-widest text-stone-400">{item.category}</span>
+                    <h4 className="mt-3 font-serif text-lg leading-relaxed text-stone-900">{item.title}</h4>
+                    <p className="mt-4 text-sm leading-loose text-stone-600">{item.overview}</p>
+                    <p className="mt-5 border-t border-stone-200 pt-4 text-sm leading-loose text-earth-sage">{item.tone}</p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </section>
 
-        <section>
-          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-stone-200 pb-4 mb-8">
-            <h3 className="text-2xl md:text-3xl font-serif text-stone-900">掲載リンク</h3>
-            <span className="text-xs tracking-widest text-stone-500">{totalLinks} LINKS</span>
+        <section id="link-library" className="mx-auto max-w-screen-xl px-6 py-16 md:py-20">
+          <div className="mb-8 grid grid-cols-1 gap-6 border-b border-stone-200 pb-5 md:grid-cols-[1fr_auto] md:items-end">
+            <div>
+              <span className="block text-xs uppercase tracking-[0.3em] text-earth-sage">Archive</span>
+              <h3 className="mt-3 font-serif text-3xl text-stone-900 md:text-4xl">掲載リンク</h3>
+            </div>
+            <span className="text-xs uppercase tracking-widest text-stone-500">{totalLinks} Links</span>
           </div>
 
-          <div className="space-y-12">
+          <nav aria-label="掲載リンクカテゴリ" className="mb-12 grid grid-cols-2 gap-2 md:grid-cols-5">
             {achievementLinkCategories.map((category) => (
-              <section key={category.name} id={`works-${category.slug}`}>
-                <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-5 lg:gap-8">
-                <div>
-                    <h4 className="text-xl font-serif text-stone-900">{category.name}</h4>
-                    <p className="text-sm text-stone-600 mt-2 leading-loose">{category.lead}</p>
-                    <p className="text-xs tracking-widest text-stone-400 mt-3">{category.items.length} LINKS</p>
-                </div>
+              <a
+                key={category.name}
+                href={`#works-${category.slug}`}
+                className="border border-stone-200 bg-stone-50 px-4 py-4 transition-colors hover:border-earth-terra/60 hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+              >
+                <span className="block font-serif text-base text-stone-900">{category.name}</span>
+                <span className="mt-2 block text-[11px] uppercase tracking-widest text-stone-400">{category.items.length} Links</span>
+              </a>
+            ))}
+          </nav>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <div className="space-y-14">
+            {achievementLinkCategories.map((category) => (
+              <section key={category.name} id={`works-${category.slug}`} className="scroll-mt-24">
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-[280px_1fr] lg:gap-10">
+                  <div>
+                    <span className="text-xs uppercase tracking-widest text-earth-terra">{category.items.length} Links</span>
+                    <h4 className="mt-3 font-serif text-2xl text-stone-900">{category.name}</h4>
+                    <p className="mt-3 text-sm leading-loose text-stone-600">{category.lead}</p>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                     {category.items.map((link) => (
                       <a
                         key={`${category.name}-${link.title}`}
                         href={link.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                        className="group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
                       >
-                        <p className="text-sm md:text-base text-stone-800 leading-relaxed">{link.title}</p>
-                        <div className="mt-3 flex items-center justify-between gap-3 text-xs tracking-widest uppercase">
-                          <span className="text-stone-400">{getDomainLabel(link.url)}</span>
-                          <span className="text-earth-terra">{getCta(link)} →</span>
+                        <p className="text-sm leading-relaxed text-stone-800 md:text-base">{link.title}</p>
+                        <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
+                          <span className="min-w-0 truncate text-stone-400">{getDomainLabel(link.url)}</span>
+                          <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
+                            {getCta(link)}
+                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </span>
                         </div>
                       </a>
                     ))}
@@ -276,6 +382,26 @@ const WorksPage: React.FC = () => {
                 </div>
               </section>
             ))}
+          </div>
+        </section>
+
+        <section className="border-t border-stone-200 bg-stone-900 text-stone-50">
+          <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-6 py-14 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <span className="block text-xs uppercase tracking-[0.3em] text-stone-400">Next</span>
+              <h3 className="mt-3 font-serif text-3xl leading-tight md:text-4xl">媒体資料としても、実績集としても使えるページへ。</h3>
+              <p className="mt-4 max-w-2xl text-sm leading-loose text-stone-300">
+                #15 の確認が進んだら、美術館・ホテル・伝統工芸を根拠URL付きで追加し、より専門性の見えるページに育てます。
+              </p>
+            </div>
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
+              Contact
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <a href="#/media-kit" className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
+              Media Kit
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
           </div>
         </section>
       </main>
