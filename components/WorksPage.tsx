@@ -209,6 +209,8 @@ const WorksPage: React.FC = () => {
                         alt=""
                         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         loading={index === 0 ? 'eager' : 'lazy'}
+                        decoding={index === 0 ? 'sync' : 'async'}
+                        {...(index === 0 ? { fetchpriority: 'high' as const } : {})}
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
