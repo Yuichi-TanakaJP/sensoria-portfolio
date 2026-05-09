@@ -2,54 +2,68 @@ import React from 'react';
 
 const Profile: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 px-6 max-w-screen-xl mx-auto">
-      <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-        {/* Image Area */}
-        <div className="w-full lg:w-1/2 relative">
-          <div className="relative aspect-[3/4] w-full max-w-md mx-auto lg:mr-auto">
-             <img 
-              src="https://picsum.photos/id/64/800/1067" 
-              alt="Profile Portrait" 
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 ease-out"
-            />
-            <div className="absolute -bottom-6 -right-6 w-full h-full border border-stone-300 -z-10"></div>
-          </div>
+    <section id="about" className="bg-stone-50 py-24 md:py-32">
+      <div className="mx-auto max-w-screen-xl px-6">
+        {/* Section header */}
+        <div className="mb-12 grid grid-cols-1 gap-3 md:mb-16 md:grid-cols-[auto_1fr_auto] md:items-end">
+          <span className="text-[11px] uppercase tracking-[0.4em] text-earth-sage">Chapter 02 — Profile</span>
+          <div aria-hidden="true" className="hidden h-[1px] bg-stone-300 md:block" />
+          <span className="text-[11px] uppercase tracking-[0.4em] text-stone-400">ぺんぺんすけ</span>
         </div>
 
-        {/* Text Area */}
-        <div className="w-full lg:w-1/2">
-          <span className="block text-xs tracking-[0.3em] text-earth-sage uppercase mb-4">About</span>
-          <h2 className="text-3xl md:text-4xl font-medium font-serif text-stone-800 tracking-widest mb-8">
-            五感を通じて、<br />美意識を磨く。
-          </h2>
-          
-          <div className="space-y-6 text-stone-600 leading-loose font-serif text-sm md:text-base">
+        {/* Pull-quote: the main visual element */}
+        <blockquote className="mx-auto max-w-3xl text-center">
+          <p className="font-serif text-3xl leading-snug text-stone-900 md:text-5xl md:leading-tight">
+            五感を通じて、<br />
+            <span className="text-earth-terra">美意識を磨く</span>。
+          </p>
+          <footer className="mt-8 text-sm tracking-widest text-stone-500 uppercase">— Editorial Stance</footer>
+        </blockquote>
+
+        {/* Asymmetric: small portrait left, copy right (lg only) */}
+        <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
+          <div className="mx-auto lg:mx-0 w-full max-w-[240px]">
+            <div className="relative aspect-[3/4] w-full">
+              <img
+                src="https://picsum.photos/id/64/480/640"
+                alt="Portrait of ぺんぺんすけ (placeholder)"
+                className="h-full w-full object-cover grayscale transition-all duration-700 ease-out hover:grayscale-0"
+              />
+              <div aria-hidden="true" className="absolute -bottom-3 -right-3 h-full w-full border border-stone-300 -z-10" />
+            </div>
+            <div className="mt-6 text-center text-xs tracking-widest text-stone-400 uppercase lg:text-left">
+              Writer / Editor
+            </div>
+          </div>
+
+          <div className="space-y-6 font-serif text-sm leading-loose text-stone-700 md:text-base">
             <p>
-              <strong>ぺんぺんすけ</strong>
-              <br />
               アート、旅、美容をテーマに執筆活動を行うライター・エディター。
-            </p>
-            <p>
               「五感を通じて美意識を磨く」をライフテーマとし、美術館の静寂、異国の風の匂い、上質な化粧品のテクスチャなど、感覚に響く体験を言葉に紡いでいる。
             </p>
             <p>
-              日本経済新聞電子版（日経Web）にてコラムを連載し、通算300本以上の記事を執筆。数字やスペックだけでなく、「どう感じるか」という情緒的価値を伝える執筆スタイルに定評がある。
+              日本経済新聞電子版（日経Web）にてコラムを連載し、通算 300 本以上の記事を執筆。
+              数字やスペックだけでなく、「どう感じるか」という情緒的価値を伝える執筆スタイルに定評がある。
             </p>
             <p>
-              現在はWebメディアのディレクションや、ブランドのコンセプトメイキングを中心に活動中。
+              現在は Web メディアのディレクションや、ブランドのコンセプトメイキングを中心に活動中。
             </p>
-          </div>
 
-          {/* Achievement Summary */}
-          <div className="mt-12 pt-8 border-t border-stone-200 grid grid-cols-2 gap-8">
-             <div>
-                <span className="block text-3xl font-medium font-serif text-earth-gold mb-1">300+</span>
-                <span className="text-xs tracking-widest text-stone-500">ARTICLES WRITTEN</span>
-             </div>
-             <div>
-                <span className="block text-3xl font-medium font-serif text-earth-gold mb-1">10yr</span>
-                <span className="text-xs tracking-widest text-stone-500">EXPERIENCE</span>
-             </div>
+            {/* Achievement strip — minimal, no boxes */}
+            <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-stone-200 pt-8 md:grid-cols-3">
+              <div>
+                <dt className="text-[11px] uppercase tracking-widest text-stone-500">Articles</dt>
+                <dd className="mt-2 font-serif text-3xl text-earth-gold md:text-4xl">300+</dd>
+              </div>
+              <div>
+                <dt className="text-[11px] uppercase tracking-widest text-stone-500">Experience</dt>
+                <dd className="mt-2 font-serif text-3xl text-earth-gold md:text-4xl">10yr</dd>
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <dt className="text-[11px] uppercase tracking-widest text-stone-500">Themes</dt>
+                <dd className="mt-2 font-serif text-base text-stone-800 leading-relaxed">Beauty / Travel / Editorial</dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
