@@ -1,5 +1,6 @@
 import React from 'react';
-import { ArrowUpRight, BookOpenText, Headphones, Landmark, Mail, Newspaper, Sparkles } from 'lucide-react';
+import { ArrowUpRight, BookOpenText, Headphones, Landmark, Newspaper, Sparkles } from 'lucide-react';
+import Header from './Header';
 import { WorksLinkItem } from '../types';
 import {
   achievementLinkCategories,
@@ -109,18 +110,7 @@ const WorksPage: React.FC = () => {
       >
         Skip to categories
       </a>
-      <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95 backdrop-blur">
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-5">
-          <a href="#" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
-            Top
-          </a>
-          <h1 className="text-base tracking-widest text-stone-900 md:text-xl">活動と実績</h1>
-          <a href="#contact" className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
-            <Mail className="h-4 w-4" aria-hidden="true" />
-            Contact
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main>
         <section className="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-stone-50 via-stone-50 to-stone-100">
@@ -130,14 +120,14 @@ const WorksPage: React.FC = () => {
           >
             Vol.
           </span>
-          <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-12 px-6 py-16 md:py-24 lg:grid-cols-[1fr_360px] lg:items-end">
+          <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-12 px-6 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1fr_360px] lg:items-end">
             <div className="relative z-10 max-w-3xl">
               <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-earth-sage">Works Portfolio</span>
-              <h2 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
+              <h1 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
                 五感で見つけた価値を、
                 <br />
                 読みたくなる実績へ。
-              </h2>
+              </h1>
               <p className="mt-8 max-w-2xl text-sm leading-loose text-stone-600 md:text-base">
                 美容、旅、アート、文化、音声配信まで。媒体ごとの文脈に寄り添いながら、体験を言葉と導線に整えてきた活動をまとめています。
               </p>
