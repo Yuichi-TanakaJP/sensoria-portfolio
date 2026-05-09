@@ -45,10 +45,10 @@ const Header: React.FC = () => {
           ))}
           <div className="flex items-center border-l border-stone-300 pl-6">
             <a
-              href="https://www.instagram.com/?hl=ja"
+              href="https://www.instagram.com/rika05181/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram (dummy)"
+              aria-label="Instagram"
               className="text-stone-500 hover:text-earth-terra transition-colors"
             >
               <Instagram size={18} />
@@ -80,10 +80,10 @@ const Header: React.FC = () => {
           ))}
           <div className="flex justify-center pt-4">
             <a
-              href="https://www.instagram.com/?hl=ja"
+              href="https://www.instagram.com/rika05181/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram (dummy)"
+              aria-label="Instagram"
               onClick={() => setMobileMenuOpen(false)}
             >
               <Instagram className="text-stone-500" />
