@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, BriefcaseBusiness, Download, Mail, MessageSquareText, Newspaper, Sparkles } from 'lucide-react';
+import Header from './Header';
 
 const profileFacts = [
   ['Theme', '五感美容 / 旅 / アート / 暮らし'],
@@ -19,18 +20,7 @@ const pressMentions = ['美的', '日経x woman', 'CREA', 'Hanako', 'シティ�
 const MediaKitPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-stone-50 text-stone-800">
-      <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95 backdrop-blur">
-        <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-5">
-          <a href="#/works" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
-            Works
-          </a>
-          <h1 className="text-base tracking-widest text-stone-900 md:text-xl">Media Kit</h1>
-          <a href="#contact" className="inline-flex items-center gap-2 text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
-            <Mail className="h-4 w-4" aria-hidden="true" />
-            Contact
-          </a>
-        </div>
-      </header>
+      <Header />
 
       <main>
         <section className="relative overflow-hidden border-b border-stone-200 bg-gradient-to-br from-stone-50 via-stone-50 to-stone-100">
@@ -40,14 +30,14 @@ const MediaKitPage: React.FC = () => {
           >
             Kit
           </span>
-          <div className="relative mx-auto grid max-w-screen-xl grid-cols-1 gap-10 px-6 py-16 md:py-24 lg:grid-cols-[1fr_380px] lg:items-end">
+          <div className="relative mx-auto grid max-w-screen-xl grid-cols-1 gap-10 px-6 pt-32 pb-16 md:pt-40 md:pb-24 lg:grid-cols-[1fr_380px] lg:items-end">
             <div>
               <span className="mb-5 block text-xs uppercase tracking-[0.3em] text-earth-sage">For Editors / Partners</span>
-              <h2 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
+              <h1 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
                 紹介しやすく、
                 <br />
                 依頼しやすい資料室。
-              </h2>
+              </h1>
               <p className="mt-8 max-w-2xl text-sm leading-loose text-stone-600 md:text-base">
                 プロフィール、得意テーマ、掲載媒体、問い合わせ導線をまとめた簡易メディアキットです。取材、寄稿、アンバサダー、音声企画などの検討に使えます。
               </p>
