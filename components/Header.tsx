@@ -4,7 +4,8 @@ import { NavItem } from '../types';
 
 const navItems: NavItem[] = [
   { label: 'About', href: '#about' },
-  { label: 'Works', href: '#works' },
+  { label: 'Works', href: '#/works' },
+  { label: 'Media Kit', href: '#/media-kit' },
   { label: 'Contact', href: '#contact' },
 ];
 
