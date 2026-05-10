@@ -35,7 +35,7 @@ const Contact: React.FC = () => {
               href="https://www.instagram.com/rika05181/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 border border-stone-400 px-6 py-5 text-sm tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+              className="group flex items-center justify-between gap-4 border border-stone-400 px-6 py-5 text-sm tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
             >
               <span className="uppercase inline-flex items-center gap-3">
                 <Instagram className="h-4 w-4" aria-hidden="true" />

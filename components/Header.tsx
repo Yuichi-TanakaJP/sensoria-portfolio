@@ -39,7 +39,7 @@ const Header: React.FC = () => {
             <a
               key={item.label}
               href={item.href}
-              className="text-sm font-medium tracking-widest text-stone-600 hover:text-earth-terra transition-colors uppercase"
+              className="text-sm font-medium tracking-widest text-stone-600 hover:text-stone-900 transition-colors uppercase"
             >
               {item.label}
             </a>
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="text-stone-500 hover:text-earth-terra transition-colors"
+              className="text-stone-500 hover:text-stone-900 transition-colors"
             >
               <Instagram size={18} />
             </a>

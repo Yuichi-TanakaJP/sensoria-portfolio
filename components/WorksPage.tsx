@@ -106,7 +106,7 @@ const WorksPage: React.FC = () => {
     <div className="min-h-screen bg-stone-50 text-stone-800">
       <a
         href="#link-library"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-stone-900 focus:px-4 focus:py-2 focus:text-sm focus:tracking-widest focus:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-stone-900 focus:px-4 focus:py-2 focus:text-sm focus:tracking-widest focus:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
       >
         Skip to categories
       </a>
@@ -132,13 +132,13 @@ const WorksPage: React.FC = () => {
                 美容、旅、アート、文化、音声配信まで。媒体ごとの文脈に寄り添いながら、体験を言葉と導線に整えてきた活動をまとめています。
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#featured-works" className="border border-stone-800 bg-stone-800 px-5 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:bg-earth-terra">
+                <a href="#featured-works" className="border border-stone-800 bg-stone-800 px-5 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:bg-stone-700">
                   Featured
                 </a>
-                <a href="#link-library" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra">
+                <a href="#link-library" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
                   Link Library
                 </a>
-                <a href="#/media-kit" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra">
+                <a href="#/media-kit" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
                   Media Kit
                 </a>
               </div>
@@ -147,7 +147,7 @@ const WorksPage: React.FC = () => {
             <div className="relative z-10 grid grid-cols-1 gap-3">
               {worksMetrics.map((metric) => (
                 <div key={metric.label} className="border border-stone-200 bg-stone-50/90 p-5 backdrop-blur">
-                  <span className="block font-serif text-4xl text-earth-gold">{metric.value}</span>
+                  <span className="block font-serif text-4xl text-stone-900">{metric.value}</span>
                   <span className="mt-2 block text-xs uppercase tracking-widest text-stone-500">{metric.label}</span>
                   <p className="mt-3 text-sm leading-relaxed text-stone-600">{metric.note}</p>
                 </div>
@@ -190,7 +190,7 @@ const WorksPage: React.FC = () => {
                   href={work.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col overflow-hidden border border-stone-200 bg-stone-50 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                  className="group flex flex-col overflow-hidden border border-stone-200 bg-stone-50 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300">
                     {work.keyVisual ? (
@@ -224,7 +224,7 @@ const WorksPage: React.FC = () => {
                         “{work.quote}”
                       </blockquote>
                     )}
-                    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-earth-terra">
+                    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-stone-900">
                       View
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </span>
@@ -283,7 +283,7 @@ const WorksPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={clearTopics}
-                  className="text-[11px] uppercase tracking-widest text-earth-terra transition-colors hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                  className="text-[11px] uppercase tracking-widest text-stone-700 transition-colors hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                 >
                   Clear ({activeTopics.length})
                 </button>
@@ -300,8 +300,8 @@ const WorksPage: React.FC = () => {
                     aria-pressed={isActive}
                     className={
                       isActive
-                        ? 'border border-earth-terra bg-earth-terra px-3 py-1.5 text-xs text-stone-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60'
-                        : 'border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60'
+                        ? 'border border-stone-900 bg-stone-900 px-3 py-1.5 text-xs text-stone-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900'
+                        : 'border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900'
                     }
                   >
                     {topic}
@@ -323,10 +323,10 @@ const WorksPage: React.FC = () => {
                   key={category.name}
                   href={`#works-${category.slug}`}
                   className={
-                    'flex-none border px-4 py-2 text-xs uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60 ' +
+                    'flex-none border px-4 py-2 text-xs uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ' +
                     (isActive
-                      ? 'border-earth-terra bg-earth-terra/10 text-earth-terra'
-                      : 'border-stone-200 bg-stone-50 text-stone-700 hover:border-earth-terra/60 hover:text-earth-terra')
+                      ? 'border-stone-900 bg-stone-100 text-stone-900'
+                      : 'border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-700 hover:text-stone-900')
                   }
                 >
                   <span className="font-serif text-sm">{category.name}</span>
@@ -343,7 +343,7 @@ const WorksPage: React.FC = () => {
               <button
                 type="button"
                 onClick={clearTopics}
-                className="mt-6 inline-flex items-center gap-2 border border-stone-400 px-5 py-2 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                className="mt-6 inline-flex items-center gap-2 border border-stone-400 px-5 py-2 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
               >
                 Clear filters
               </button>
@@ -361,11 +361,11 @@ const WorksPage: React.FC = () => {
               >
                 <div className="grid grid-cols-1 gap-5 lg:grid-cols-[280px_1fr] lg:gap-10">
                   <div>
-                    <span className="text-xs uppercase tracking-widest text-earth-terra">{category.items.length} Links</span>
+                    <span className="text-xs uppercase tracking-widest text-stone-700">{category.items.length} Links</span>
                     <h4
                       id={`works-heading-${category.slug}`}
                       tabIndex={-1}
-                      className="mt-3 font-serif text-2xl text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                      className="mt-3 font-serif text-2xl text-stone-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                     >
                       {category.name}
                     </h4>
@@ -385,7 +385,7 @@ const WorksPage: React.FC = () => {
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="work-link group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+                          className="work-link group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
                         >
                           <p className="work-title text-sm leading-relaxed text-stone-800 md:text-base">{link.title}</p>
                           {metaParts.length > 0 && (
@@ -395,7 +395,7 @@ const WorksPage: React.FC = () => {
                           )}
                           <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
                             <span className="min-w-0 truncate text-stone-500">{getDomainLabel(link.url)}</span>
-                            <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
+                            <span className="inline-flex flex-none items-center gap-1 text-stone-700">
                               {getCta(link)}
                               <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                             </span>
@@ -408,14 +408,14 @@ const WorksPage: React.FC = () => {
                         href={category.viewAllUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col justify-between border border-dashed border-stone-300 bg-stone-50 px-5 py-4 transition-colors hover:border-earth-terra/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60 md:col-span-2"
+                        className="group flex flex-col justify-between border border-dashed border-stone-300 bg-stone-50 px-5 py-4 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 md:col-span-2"
                       >
                         <p className="font-serif text-base leading-relaxed text-stone-800 md:text-lg">
                           {category.viewAllLabel ?? 'すべて見る'}
                         </p>
                         <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
                           <span className="min-w-0 truncate text-stone-500">{getDomainLabel(category.viewAllUrl)}</span>
-                          <span className="inline-flex flex-none items-center gap-1 text-earth-terra">
+                          <span className="inline-flex flex-none items-center gap-1 text-stone-700">
                             View all
                             <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
                           </span>
@@ -434,7 +434,7 @@ const WorksPage: React.FC = () => {
           <div className="mx-auto max-w-screen-xl px-6 py-14 md:py-20">
             <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_auto] md:items-center">
               <div>
-                <span className="block text-xs uppercase tracking-[0.3em] text-earth-gold">For Editors / Partners</span>
+                <span className="block text-xs uppercase tracking-[0.3em] text-stone-900">For Editors / Partners</span>
                 <h3 className="mt-3 font-serif text-3xl leading-tight md:text-4xl">取材・寄稿・依頼の方へ</h3>
                 <p className="mt-4 max-w-2xl text-sm leading-loose text-stone-300">
                   媒体やテーマに合わせた企画にも対応しています。まずはメディアキットで概要をご確認の上、ご相談ください。
@@ -443,14 +443,14 @@ const WorksPage: React.FC = () => {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-stone-50 px-6 py-3 text-xs uppercase tracking-widest text-stone-900 transition-colors hover:bg-earth-terra hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                  className="inline-flex items-center justify-center gap-2 bg-stone-50 px-6 py-3 text-xs uppercase tracking-widest text-stone-900 transition-colors hover:bg-stone-700 hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
                 >
                   Contact
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href="#/media-kit"
-                  className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
+                  className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
                 >
                   Media Kit
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

@@ -13,9 +13,9 @@ const Concept: React.FC = () => {
 
       <div className="max-w-screen-md mx-auto px-6">
         <div className="text-center mb-14">
-          <span className="block text-xs tracking-[0.4em] text-earth-gold uppercase mb-5">Introduction</span>
+          <span className="block text-xs tracking-[0.4em] text-earth-sage uppercase mb-5">Introduction</span>
           <h2 className="text-3xl md:text-5xl font-medium font-serif text-stone-50 tracking-widest">五感美容とは</h2>
-          <div className="mt-6 mx-auto h-[1px] w-16 bg-earth-gold/60" />
+          <div className="mt-6 mx-auto h-[1px] w-16 bg-stone-500" />
         </div>
 
         <div className="font-serif text-stone-200 leading-loose text-justify md:text-center space-y-8 text-base md:text-lg">
@@ -31,7 +31,7 @@ const Concept: React.FC = () => {
         </div>
 
         <div className="mt-16 flex justify-center">
-          <div className="h-2 w-2 rounded-full bg-earth-gold" />
+          <div className="h-2 w-2 rounded-full bg-stone-400" />
         </div>
       </div>
     </section>
