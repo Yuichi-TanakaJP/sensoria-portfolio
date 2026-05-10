@@ -25,9 +25,11 @@ const Profile: React.FC = () => {
           <div className="mx-auto lg:mx-0 w-full max-w-[240px]">
             <div className="relative aspect-[3/4] w-full">
               <img
-                src="https://picsum.photos/id/64/480/640"
-                alt="Portrait of ぺんぺんすけ (placeholder)"
+                src="/profile-portrait.jpg"
+                alt="ぺんぺんすけ ポートレート"
                 className="h-full w-full object-cover grayscale transition-all duration-700 ease-out hover:grayscale-0"
+                loading="lazy"
+                decoding="async"
               />
               <div aria-hidden="true" className="absolute -bottom-3 -right-3 h-full w-full border border-stone-300 -z-10" />
             </div>
