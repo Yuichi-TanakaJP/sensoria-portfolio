@@ -35,6 +35,7 @@
 - [08-issue15-data-collection-rules.md](08-issue15-data-collection-rules.md) — Issue #15 のデータ収集ルール。
 - [09-issue15-source-audit.md](09-issue15-source-audit.md) — Issue #15 の採用前確認ログ。
 - [10-works-page-redesign-notes.md](10-works-page-redesign-notes.md) — Works Page リデザインの設計メモ（Notes）。
+- [11-color-palette-references.md](11-color-palette-references.md) — ファッション誌系 Web の配色パターン集（採用候補のメニュー）。
 
 Reference / Log:
 
