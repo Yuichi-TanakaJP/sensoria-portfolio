@@ -47,7 +47,7 @@ const MediaKitPage: React.FC = () => {
               <p className="mt-6 font-serif text-2xl leading-relaxed text-stone-900">
                 五感を切り口に、体験と読者の暮らしをつなぐ発信者。
               </p>
-              <a href="#media-kit-profile" className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-earth-terra">
+              <a href="#media-kit-profile" className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-700">
                 View Profile
                 <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -99,12 +99,12 @@ const MediaKitPage: React.FC = () => {
             </article>
 
             <article className="bg-stone-900 p-6 text-stone-50">
-              <BriefcaseBusiness className="h-6 w-6 text-earth-gold" aria-hidden="true" />
+              <BriefcaseBusiness className="h-6 w-6 text-stone-900" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl">依頼の相談</h3>
               <p className="mt-6 text-sm leading-loose text-stone-300">
                 記事制作、体験取材、音声企画、アンバサダー相談など、媒体や目的に合わせて整理できます。
               </p>
-              <a href="#contact" className="mt-8 inline-flex items-center gap-2 border border-stone-500 px-4 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-earth-terra hover:text-earth-terra">
+              <a href="#contact" className="mt-8 inline-flex items-center gap-2 border border-stone-500 px-4 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:text-stone-900">
                 Contact
                 <Mail className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -121,7 +121,7 @@ const MediaKitPage: React.FC = () => {
                 #15 の根拠確認が進んだら、媒体掲載履歴や専門領域別実績をこのページにも反映します。
               </p>
             </div>
-            <a href="#/works" className="inline-flex items-center justify-center gap-2 border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra">
+            <a href="#/works" className="inline-flex items-center justify-center gap-2 border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
               <Download className="h-4 w-4" aria-hidden="true" />
               Works
             </a>

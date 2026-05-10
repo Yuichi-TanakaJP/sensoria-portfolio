@@ -98,7 +98,7 @@ const SelectField = <Value extends string>({ label, value, labels, onChange }: S
     <select
       value={value}
       onChange={(event) => onChange(event.target.value as Value)}
-      className="mt-2 w-full border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+      className="mt-2 w-full border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-stone-900 focus:ring-2 focus:ring-stone-300"
     >
       {Object.entries(labels).map(([optionValue, optionLabel]) => (
         <option key={optionValue} value={optionValue}>
@@ -221,11 +221,11 @@ const Issue15AuditPage: React.FC = () => {
     <div className="min-h-screen bg-stone-50 text-stone-800">
       <header className="sticky top-0 z-20 border-b border-stone-200 bg-stone-50/95 backdrop-blur">
         <div className="mx-auto flex max-w-screen-xl items-center justify-between px-6 py-5">
-          <a href="#/works" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
+          <a href="#/works" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-stone-900">
             Works
           </a>
           <p className="text-sm tracking-widest text-stone-500">Issue #15 Audit</p>
-          <a href="#" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-earth-terra">
+          <a href="#" className="text-sm uppercase tracking-widest text-stone-600 transition-colors hover:text-stone-900">
             Top
           </a>
         </div>
@@ -255,7 +255,7 @@ const Issue15AuditPage: React.FC = () => {
             ['未判定', pending],
           ].map(([label, value]) => (
             <div key={label} className="border border-stone-200 bg-white p-5">
-              <span className="block font-serif text-3xl text-earth-gold">{value}</span>
+              <span className="block font-serif text-3xl text-stone-900">{value}</span>
               <span className="mt-2 block text-xs tracking-widest text-stone-500">{label}</span>
             </div>
           ))}
@@ -263,7 +263,7 @@ const Issue15AuditPage: React.FC = () => {
 
         <section className="mb-8 border border-stone-200 bg-white p-5 md:p-6">
           <div className="flex items-start gap-3">
-            <FileSearch className="mt-1 h-5 w-5 flex-none text-earth-terra" aria-hidden="true" />
+            <FileSearch className="mt-1 h-5 w-5 flex-none text-stone-700" aria-hidden="true" />
             <div>
               <h2 className="font-serif text-xl text-stone-900">チェックランの順序</h2>
               <p className="mt-2 text-sm leading-loose text-stone-600">
@@ -285,7 +285,7 @@ const Issue15AuditPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={copyExportJson}
-                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900"
                 >
                   <Copy className="h-4 w-4" aria-hidden="true" />
                   JSONをコピー
@@ -293,7 +293,7 @@ const Issue15AuditPage: React.FC = () => {
                 <button
                   type="button"
                   onClick={downloadExportJson}
-                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                  className="inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900"
                 >
                   <Download className="h-4 w-4" aria-hidden="true" />
                   JSONを保存
@@ -317,12 +317,12 @@ const Issue15AuditPage: React.FC = () => {
                 onChange={(event) => setImportText(event.target.value)}
                 rows={8}
                 placeholder="保存済みのJSONを貼り付け"
-                className="mt-4 w-full border border-stone-200 bg-stone-50 px-3 py-2 font-mono text-xs leading-relaxed text-stone-700 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+                className="mt-4 w-full border border-stone-200 bg-stone-50 px-3 py-2 font-mono text-xs leading-relaxed text-stone-700 outline-none transition-colors focus:border-stone-900 focus:ring-2 focus:ring-stone-300"
               />
               <button
                 type="button"
                 onClick={importJson}
-                className="mt-3 inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                className="mt-3 inline-flex items-center gap-2 border border-stone-300 bg-white px-4 py-2 text-xs tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900"
               >
                 <Upload className="h-4 w-4" aria-hidden="true" />
                 JSONを取り込む
@@ -348,7 +348,7 @@ const Issue15AuditPage: React.FC = () => {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 break-all text-sm text-earth-terra transition-colors hover:text-stone-900"
+                    className="mt-4 inline-flex items-center gap-2 break-all text-sm text-stone-700 transition-colors hover:text-stone-900"
                   >
                     {item.url}
                     <ExternalLink className="h-4 w-4 flex-none" aria-hidden="true" />
@@ -396,12 +396,12 @@ const Issue15AuditPage: React.FC = () => {
                       type="date"
                       value={item.checkedAt ?? ''}
                       onChange={(event) => updateCandidate(item.id, 'checkedAt', event.target.value || null)}
-                      className="min-w-0 flex-1 border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+                      className="min-w-0 flex-1 border border-stone-200 bg-white px-3 py-2 text-sm text-stone-800 outline-none transition-colors focus:border-stone-900 focus:ring-2 focus:ring-stone-300"
                     />
                     <button
                       type="button"
                       onClick={() => markCheckedNow(item.id)}
-                      className="border border-stone-300 bg-white px-3 py-2 text-xs tracking-widest text-stone-600 transition-colors hover:border-earth-terra hover:text-earth-terra"
+                      className="border border-stone-300 bg-white px-3 py-2 text-xs tracking-widest text-stone-600 transition-colors hover:border-stone-900 hover:text-stone-900"
                     >
                       今日
                     </button>
@@ -416,7 +416,7 @@ const Issue15AuditPage: React.FC = () => {
                     value={item.notes}
                     onChange={(event) => updateCandidate(item.id, 'notes', event.target.value)}
                     rows={3}
-                    className="mt-2 w-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm leading-loose text-stone-700 outline-none transition-colors focus:border-earth-terra focus:ring-2 focus:ring-earth-terra/20"
+                    className="mt-2 w-full border border-stone-200 bg-stone-50 px-3 py-2 text-sm leading-loose text-stone-700 outline-none transition-colors focus:border-stone-900 focus:ring-2 focus:ring-stone-300"
                   />
                 </div>
               </div>

@@ -9,14 +9,60 @@
   - 過剰な影・過剰なアニメーション
 
 ## 2. Colors
-- Background: `stone-50` (`#fafaf9`)
-- Surface: `stone-100` (`#f5f5f4`)
-- Text primary: `stone-900` (`#1c1917`)
-- Text secondary: `stone-800` (`#292524`)
-- Accent 1: `earth-terra` (`#b45309`)
-- Accent 2: `earth-sage` (`#4d7c5f`)
-- Accent 3: `earth-gold` (`#a16207`)
-- Link: default `stone-600` -> hover `earth-terra`
+
+### Palette (2026-05-10 一新)
+配色の "色数を減らす" 方向に整理。装飾用の暖色（terra / gold）は廃止し、無彩色 stone を基調に据える。
+
+| Role | Token | Hex | Usage |
+|---|---|---|---|
+| Canvas | `stone-50` | `#fafaf9` | デフォルト背景 |
+| Surface | `stone-100` | `#f5f5f4` | セクション差し替え |
+| Dark canvas | `stone-900` | `#1c1917` | ダーク帯（章ブレイク）/ 主 CTA 面 |
+| Text primary | `stone-900` | `#1c1917` | 本文 / 見出し |
+| Text secondary | `stone-700` | `#44403c` | 副見出し / リード |
+| Text tertiary | `stone-500` | `#78716c` | キャプション |
+| Border | `stone-200` / `stone-300` / `stone-400` | — | 罫線 |
+| **Brand accent** | `earth-sage` | `#4d7c5f` | **唯一の有彩色**。Chapter 見出しのアイブロウのみ使用 |
+
+### 使わなくなった色（将来も使わない）
+- `earth-terra` (`#b45309`) — クラフト寄りでブランドに合わなかったため廃止
+- `earth-gold` (`#a16207`) — 同上、廃止
+
+> 既存実装には残っているが、新規追加はしない。リファクタ時に随時剥離。
+
+### リンク・ホバー方針
+- 通常の文字リンク: `stone-700` → hover `stone-900`
+- アンダーライン使用 OK（hover 時のみ表示）
+- 色のシフトでホバーを表現しない（濃度・下線・微小スケールで表す）
+
+## 2-bis. Buttons / CTA System
+
+3 種類だけに統一する。新規ボタンを増やす場合はまず既存に当てはめ、足りなければここを更新する。
+
+### Primary（最重要 CTA）
+- bg: `stone-900`
+- text: `stone-50`
+- hover: `bg-stone-700`
+- 例: メインの問い合わせボタン、各ページの主導線
+
+### Secondary（罫線型）
+- bg: 透明（または `stone-50`）
+- border: `stone-400`
+- text: `stone-700`
+- hover: `border-stone-900` + `text-stone-900`
+- 例: SNS、副 CTA、Media Kit などの補助導線
+
+### Ghost / Inline（文字リンク）
+- text: `stone-700`
+- hover: `text-stone-900` + `underline`
+- 例: パンくず、補助テキストリンク
+
+### 共通ルール
+- すべて `focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2` を必須
+- 角丸なし（直角を維持、編集物トーン）
+- アニメーションは `transition-colors` のみ（色変化以外しない）
+- アイコン併用時は `gap-2` 〜 `gap-3`
+- 文言と遷移先の整合は [04-navigation-and-structure-spec.md](04-navigation-and-structure-spec.md) §5 を参照
 
 ## 3. Typography
 - Heading font: `Zen Old Mincho` (fallback: `Shippori Mincho`, `Yu Mincho`, serif)

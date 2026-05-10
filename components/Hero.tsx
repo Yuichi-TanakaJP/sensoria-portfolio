@@ -33,7 +33,7 @@ const Hero: React.FC = () => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(circle at 50% 30%, rgba(180, 83, 9, 0.05), transparent 55%)',
+            'radial-gradient(circle at 50% 30%, rgba(28, 25, 23, 0.04), transparent 55%)',
         }}
       />
 

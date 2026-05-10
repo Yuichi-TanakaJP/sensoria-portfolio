@@ -34,7 +34,7 @@ const Works: React.FC = () => {
             </p>
             <a
               href="#/works"
-              className="mt-10 inline-flex items-center gap-3 bg-stone-900 px-6 py-4 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:bg-earth-terra focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60"
+              className="mt-10 inline-flex items-center gap-3 bg-stone-900 px-6 py-4 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:bg-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
             >
               実績ページを見る
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
@@ -46,7 +46,7 @@ const Works: React.FC = () => {
             {summaryItems.map((item) => (
               <div key={item.label}>
                 <dt className="text-[11px] uppercase tracking-widest text-stone-500">{item.label}</dt>
-                <dd className="mt-3 font-serif text-3xl text-earth-gold md:text-5xl">{item.value}</dd>
+                <dd className="mt-3 font-serif text-3xl text-stone-900 md:text-5xl">{item.value}</dd>
               </div>
             ))}
           </dl>

@@ -53,11 +53,11 @@ const Profile: React.FC = () => {
             <dl className="mt-12 grid grid-cols-2 gap-8 border-t border-stone-200 pt-8 md:grid-cols-3">
               <div>
                 <dt className="text-[11px] uppercase tracking-widest text-stone-500">Articles</dt>
-                <dd className="mt-2 font-serif text-3xl text-earth-gold md:text-4xl">300+</dd>
+                <dd className="mt-2 font-serif text-3xl text-stone-900 md:text-4xl">300+</dd>
               </div>
               <div>
                 <dt className="text-[11px] uppercase tracking-widest text-stone-500">Experience</dt>
-                <dd className="mt-2 font-serif text-3xl text-earth-gold md:text-4xl">10yr</dd>
+                <dd className="mt-2 font-serif text-3xl text-stone-900 md:text-4xl">10yr</dd>
               </div>
               <div className="col-span-2 md:col-span-1">
                 <dt className="text-[11px] uppercase tracking-widest text-stone-500">Themes</dt>
