@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, Instagram } from 'lucide-react';
+import { buttonPrimary, buttonSecondary } from '../lib/buttonStyles';
 
 const Contact: React.FC = () => {
   return (
@@ -26,22 +27,22 @@ const Contact: React.FC = () => {
           <div className="space-y-3">
             <a
               href="mailto:contact@sensoria.example"
-              className="group flex items-center justify-between gap-4 bg-stone-900 px-6 py-5 text-sm tracking-widest text-stone-50 transition-colors hover:bg-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
+              className={`${buttonPrimary} w-full`}
             >
-              <span className="uppercase">メールで連絡する</span>
-              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              メールで連絡する
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
               href="https://www.instagram.com/rika05181/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-4 border border-stone-400 px-6 py-5 text-sm tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+              className={`${buttonSecondary} w-full`}
             >
-              <span className="uppercase inline-flex items-center gap-3">
+              <span className="inline-flex items-center gap-3">
                 <Instagram className="h-4 w-4" aria-hidden="true" />
                 Instagram で見る
               </span>
-              <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </div>

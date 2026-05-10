@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, BriefcaseBusiness, Download, Mail, MessageSquareText, Newspaper, Sparkles } from 'lucide-react';
 import Header from './Header';
+import { buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
 
 const profileFacts = [
   ['Theme', '五感美容 / 旅 / アート / 暮らし'],
@@ -104,7 +105,7 @@ const MediaKitPage: React.FC = () => {
               <p className="mt-6 text-sm leading-loose text-stone-300">
                 記事制作、体験取材、音声企画、アンバサダー相談など、媒体や目的に合わせて整理できます。
               </p>
-              <a href="#contact" className="mt-8 inline-flex items-center gap-2 border border-stone-500 px-4 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:text-stone-900">
+              <a href="#contact" className={`mt-8 ${buttonSecondaryOnDark}`}>
                 Contact
                 <Mail className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -121,9 +122,12 @@ const MediaKitPage: React.FC = () => {
                 #15 の根拠確認が進んだら、媒体掲載履歴や専門領域別実績をこのページにも反映します。
               </p>
             </div>
-            <a href="#/works" className="inline-flex items-center justify-center gap-2 border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
-              <Download className="h-4 w-4" aria-hidden="true" />
-              Works
+            <a href="#/works" className={buttonSecondary}>
+              <span className="inline-flex items-center gap-3">
+                <Download className="h-4 w-4" aria-hidden="true" />
+                Works
+              </span>
+              <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
         </section>

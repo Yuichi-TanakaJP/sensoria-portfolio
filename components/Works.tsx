@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { buttonPrimary } from '../lib/buttonStyles';
 
 type SummaryItem = {
   value: string;
@@ -32,10 +33,7 @@ const Works: React.FC = () => {
               執筆、取材、音声配信、外部掲載までの活動を専用ページに集約しています。
               媒体ごとのトーンを大切にしながら、体験の感触を残す記録を続けてきました。
             </p>
-            <a
-              href="#/works"
-              className="mt-10 inline-flex items-center gap-3 bg-stone-900 px-6 py-4 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:bg-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
-            >
+            <a href="#/works" className={`mt-10 ${buttonPrimary}`}>
               実績ページを見る
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
