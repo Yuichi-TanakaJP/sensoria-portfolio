@@ -36,6 +36,7 @@
 - [09-issue15-source-audit.md](09-issue15-source-audit.md) — Issue #15 の採用前確認ログ。
 - [10-works-page-redesign-notes.md](10-works-page-redesign-notes.md) — Works Page リデザインの設計メモ（Notes）。
 - [11-color-palette-references.md](11-color-palette-references.md) — ファッション誌系 Web の配色パターン集（採用候補のメニュー）。
+- [12-site-audit.md](12-site-audit.md) — サイト全体の棚卸しと優先度付き改善案（2026-05-10 時点）。
 
 Reference / Log:
 
