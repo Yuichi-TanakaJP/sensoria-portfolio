@@ -10,23 +10,29 @@
 
 ## 2. Colors
 
-### Palette (2026-05-10 一新)
-配色の "色数を減らす" 方向に整理。装飾用の暖色（terra / gold）は廃止し、無彩色 stone を基調に据える。
+### Active Palette (2026-05-10): Pattern D — Quiet Luxe
+T Magazine / MR PORTER / Departures 系の "クリーム + インク + ブロンズ" 路線。
+パターン全比較は [11-color-palette-references.md](11-color-palette-references.md) を参照。
 
-| Role | Token | Hex | Usage |
+| Role | Tailwind class | Hex | Usage |
 |---|---|---|---|
-| Canvas | `stone-50` | `#fafaf9` | デフォルト背景 |
-| Surface | `stone-100` | `#f5f5f4` | セクション差し替え |
-| Dark canvas | `stone-900` | `#1c1917` | ダーク帯（章ブレイク）/ 主 CTA 面 |
-| Text primary | `stone-900` | `#1c1917` | 本文 / 見出し |
-| Text secondary | `stone-700` | `#44403c` | 副見出し / リード |
-| Text tertiary | `stone-500` | `#78716c` | キャプション |
-| Border | `stone-200` / `stone-300` / `stone-400` | — | 罫線 |
-| **Brand accent** | `earth-sage` | `#4d7c5f` | **唯一の有彩色**。Chapter 見出しのアイブロウのみ使用 |
+| Canvas | `stone-50` | `#f5efe6` | cream — デフォルト背景 |
+| Surface | `stone-100` | `#e8e1d6` | warm-grey — セクション差し替え |
+| Dark canvas | `stone-900` | `#1a1816` | ink — ダーク帯 / 主 CTA 面 |
+| Text primary | `stone-900` | `#1a1816` | 本文 / 見出し |
+| Text secondary | `stone-600` | `#65605a` | warm-mute — 副見出し / リード |
+| Text tertiary | `stone-500` | `#7d7568` | キャプション |
+| Border | `stone-200` / `stone-300` / `stone-400` | `#dcd4c5` / `#cdc4b3` / `#a39a85` | 薄→中→強 |
+| **Brand accent** | `earth-sage` | `#7a5a37` | bronze — Chapter アイブロウ等で点使い |
+| Optional | `earth-gold` | `#c9b48a` | champagne — 写真キャプチャや薄面のハイライト |
 
-### 使わなくなった色（将来も使わない）
-- `earth-terra` (`#b45309`) — クラフト寄りでブランドに合わなかったため廃止
-- `earth-gold` (`#a16207`) — 同上、廃止
+### トークン名の引きずり
+- `earth-sage` / `earth-terra` / `earth-gold` の **名前は歴史的に残しているが、中身の hex 値は Pattern D に置換済み**。
+- `earth-sage` と `earth-terra` はどちらも bronze (`#7a5a37`) を指す（リファクタを段階的にするため）。
+- 新しいコードでは `earth-sage` を使用する。
+
+### Tailwind 設定の場所
+[index.html](../index.html) の `tailwind.config.theme.extend.colors`。`stone` スケールを 50〜900 まで全上書き、`earth.*` はエイリアス含めて Pattern D 値に置換。
 
 > 既存実装には残っているが、新規追加はしない。リファクタ時に随時剥離。
 
