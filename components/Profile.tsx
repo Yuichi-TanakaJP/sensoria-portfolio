@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
               <img
                 src="/profile-portrait.jpg"
                 alt="ぺんぺんすけ ポートレート"
-                className="h-full w-full object-cover grayscale transition-all duration-700 ease-out hover:grayscale-0"
+                className="h-full w-full object-cover"
                 loading="lazy"
                 decoding="async"
               />
