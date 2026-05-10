@@ -30,9 +30,7 @@ const Concept: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-16 flex justify-center">
-          <div className="h-2 w-2 rounded-full bg-stone-400" />
-        </div>
+        <div className="mt-16 mx-auto h-[1px] w-16 bg-stone-500" />
       </div>
     </section>
   );

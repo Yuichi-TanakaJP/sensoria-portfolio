@@ -2,6 +2,18 @@ import React from 'react';
 import { ArrowUpRight, BookOpenText, Headphones, Landmark, Newspaper, Sparkles } from 'lucide-react';
 import Header from './Header';
 import { buttonPrimary, buttonPrimaryOnDark, buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
+import {
+  card,
+  cardCompactInteractive,
+  cardDashed,
+  cardDashedInteractive,
+  cardFlat,
+  cardFrameInteractive,
+  chip,
+  chipActive,
+  pill,
+  pillActive,
+} from '../lib/surfaces';
 import { WorksLinkItem } from '../types';
 import {
   achievementLinkCategories,
@@ -150,7 +162,7 @@ const WorksPage: React.FC = () => {
 
             <div className="relative z-10 grid grid-cols-1 gap-3">
               {worksMetrics.map((metric) => (
-                <div key={metric.label} className="border border-stone-200 bg-stone-50/90 p-5 backdrop-blur">
+                <div key={metric.label} className={card}>
                   <span className="block font-serif text-4xl text-stone-900">{metric.value}</span>
                   <span className="mt-2 block text-xs uppercase tracking-widest text-stone-500">{metric.label}</span>
                   <p className="mt-3 text-sm leading-relaxed text-stone-600">{metric.note}</p>
@@ -194,7 +206,7 @@ const WorksPage: React.FC = () => {
                   href={work.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex flex-col overflow-hidden border border-stone-200 bg-stone-50 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                  className={`${cardFrameInteractive} group flex flex-col overflow-hidden`}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300">
                     {work.keyVisual ? (
@@ -255,7 +267,7 @@ const WorksPage: React.FC = () => {
               {worksDetailItems.map((item, index) => {
                 const Icon = categoryIcons[index] ?? Sparkles;
                 return (
-                  <article key={item.title} className="bg-stone-50 p-5 md:p-6">
+                  <article key={item.title} className={cardFlat}>
                     <Icon className="h-5 w-5 text-stone-600" aria-hidden="true" />
                     <span className="mt-5 block text-xs uppercase tracking-widest text-stone-500">{item.category}</span>
                     <h4 className="mt-3 font-serif text-lg leading-relaxed text-stone-900">{item.title}</h4>
@@ -302,11 +314,7 @@ const WorksPage: React.FC = () => {
                     type="button"
                     onClick={() => toggleTopic(topic)}
                     aria-pressed={isActive}
-                    className={
-                      isActive
-                        ? 'border border-stone-900 bg-stone-900 px-3 py-1.5 text-xs text-stone-50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900'
-                        : 'border border-stone-300 bg-stone-50 px-3 py-1.5 text-xs text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900'
-                    }
+                    className={isActive ? chipActive : chip}
                   >
                     {topic}
                   </button>
@@ -326,12 +334,7 @@ const WorksPage: React.FC = () => {
                 <a
                   key={category.name}
                   href={`#works-${category.slug}`}
-                  className={
-                    'flex-none border px-4 py-2 text-xs uppercase tracking-widest transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 ' +
-                    (isActive
-                      ? 'border-stone-900 bg-stone-100 text-stone-900'
-                      : 'border-stone-200 bg-stone-50 text-stone-700 hover:border-stone-700 hover:text-stone-900')
-                  }
+                  className={`${isActive ? pillActive : pill} flex-none`}
                 >
                   <span className="font-serif text-sm">{category.name}</span>
                   <span className="ml-2 text-[10px] text-stone-500">{category.items.length}</span>
@@ -341,7 +344,7 @@ const WorksPage: React.FC = () => {
           </nav>
 
           {noResults ? (
-            <div className="border border-dashed border-stone-300 bg-stone-50 px-6 py-12 text-center">
+            <div className={`${cardDashed} text-center`}>
               <p className="font-serif text-lg text-stone-700">該当する掲載が見つかりませんでした。</p>
               <p className="mt-3 text-sm leading-loose text-stone-500">フィルタを解除すると、すべての掲載リンクが表示されます。</p>
               <button
@@ -389,7 +392,7 @@ const WorksPage: React.FC = () => {
                           href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="work-link group border border-stone-200 bg-stone-50 px-5 py-4 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900"
+                          className={`work-link ${cardCompactInteractive} group`}
                         >
                           <p className="work-title text-sm leading-relaxed text-stone-800 md:text-base">{link.title}</p>
                           {metaParts.length > 0 && (
@@ -412,7 +415,7 @@ const WorksPage: React.FC = () => {
                         href={category.viewAllUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group flex flex-col justify-between border border-dashed border-stone-300 bg-stone-50 px-5 py-4 transition-colors hover:border-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 md:col-span-2"
+                        className={`${cardDashedInteractive} group flex flex-col justify-between md:col-span-2`}
                       >
                         <p className="font-serif text-base leading-relaxed text-stone-800 md:text-lg">
                           {category.viewAllLabel ?? 'すべて見る'}
