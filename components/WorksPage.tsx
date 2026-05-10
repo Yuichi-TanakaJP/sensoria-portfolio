@@ -220,7 +220,7 @@ const WorksPage: React.FC = () => {
                     <h4 className="mt-3 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
                     <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
                     {work.quote && (
-                      <blockquote className="mt-5 border-l-2 border-earth-terra pl-4 font-serif text-sm italic leading-loose text-earth-sage">
+                      <blockquote className="mt-5 border-l-2 border-stone-300 pl-4 font-serif text-sm italic leading-loose text-stone-600">
                         “{work.quote}”
                       </blockquote>
                     )}
@@ -252,7 +252,7 @@ const WorksPage: React.FC = () => {
                 const Icon = categoryIcons[index] ?? Sparkles;
                 return (
                   <article key={item.title} className="bg-stone-50 p-5 md:p-6">
-                    <Icon className="h-5 w-5 text-earth-terra" aria-hidden="true" />
+                    <Icon className="h-5 w-5 text-stone-600" aria-hidden="true" />
                     <span className="mt-5 block text-xs uppercase tracking-widest text-stone-500">{item.category}</span>
                     <h4 className="mt-3 font-serif text-lg leading-relaxed text-stone-900">{item.title}</h4>
                     <p className="mt-4 text-sm leading-loose text-stone-600">{item.overview}</p>

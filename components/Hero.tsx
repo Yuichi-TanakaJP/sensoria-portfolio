@@ -14,14 +14,14 @@ const Hero: React.FC = () => {
       {/* Editorial gutter marks (large screens) */}
       <div aria-hidden="true" className="pointer-events-none absolute left-8 top-1/2 hidden -translate-y-1/2 lg:block">
         <div className="flex flex-col items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-stone-400">
-          <span className="font-serif text-base text-earth-terra">01</span>
+          <span className="font-serif text-base text-stone-700">01</span>
           <div className="h-16 w-[1px] bg-stone-400" />
           <span style={{ writingMode: 'vertical-rl' }}>Cover</span>
         </div>
       </div>
       <div aria-hidden="true" className="pointer-events-none absolute right-8 top-1/2 hidden -translate-y-1/2 lg:block">
         <div className="flex flex-col items-center gap-3 text-[10px] uppercase tracking-[0.4em] text-stone-400">
-          <span className="font-serif text-base text-earth-terra">2026</span>
+          <span className="font-serif text-base text-stone-700">2026</span>
           <div className="h-16 w-[1px] bg-stone-400" />
           <span style={{ writingMode: 'vertical-rl' }}>Vol. 01</span>
         </div>

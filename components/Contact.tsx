@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
           <div className="space-y-3">
             <a
               href="mailto:contact@sensoria.example"
-              className="group flex items-center justify-between gap-4 bg-earth-terra px-6 py-5 text-sm tracking-widest text-stone-50 transition-colors hover:bg-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-earth-terra/60 focus-visible:ring-offset-2"
+              className="group flex items-center justify-between gap-4 bg-stone-900 px-6 py-5 text-sm tracking-widest text-stone-50 transition-colors hover:bg-stone-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2"
             >
               <span className="uppercase">メールで連絡する</span>
               <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
