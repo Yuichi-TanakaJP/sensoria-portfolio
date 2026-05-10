@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, BookOpenText, Headphones, Landmark, Newspaper, Sparkles } from 'lucide-react';
 import Header from './Header';
+import { buttonPrimary, buttonPrimaryOnDark, buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
 import { WorksLinkItem } from '../types';
 import {
   achievementLinkCategories,
@@ -132,14 +133,17 @@ const WorksPage: React.FC = () => {
                 美容、旅、アート、文化、音声配信まで。媒体ごとの文脈に寄り添いながら、体験を言葉と導線に整えてきた活動をまとめています。
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#featured-works" className="border border-stone-800 bg-stone-800 px-5 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:bg-stone-700">
+                <a href="#featured-works" className={buttonPrimary}>
                   Featured
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <a href="#link-library" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
+                <a href="#link-library" className={buttonSecondary}>
                   Link Library
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <a href="#/media-kit" className="border border-stone-300 px-5 py-3 text-xs uppercase tracking-widest text-stone-700 transition-colors hover:border-stone-900 hover:text-stone-900">
+                <a href="#/media-kit" className={buttonSecondary}>
                   Media Kit
+                  <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -441,17 +445,11 @@ const WorksPage: React.FC = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#contact"
-                  className="inline-flex items-center justify-center gap-2 bg-stone-50 px-6 py-3 text-xs uppercase tracking-widest text-stone-900 transition-colors hover:bg-stone-700 hover:text-stone-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
-                >
+                <a href="#contact" className={buttonPrimaryOnDark}>
                   Contact
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
-                <a
-                  href="#/media-kit"
-                  className="inline-flex items-center justify-center gap-2 border border-stone-500 px-6 py-3 text-xs uppercase tracking-widest text-stone-50 transition-colors hover:border-stone-900 hover:text-stone-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2 focus-visible:ring-offset-stone-900"
-                >
+                <a href="#/media-kit" className={buttonSecondaryOnDark}>
                   Media Kit
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </a>
