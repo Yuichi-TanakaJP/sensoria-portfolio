@@ -23,7 +23,7 @@ const Profile: React.FC = () => {
         {/* Asymmetric: small portrait left, copy right (lg only) */}
         <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
           <div className="mx-auto lg:mx-0 w-full max-w-[240px]">
-            <div className="relative aspect-[3/4] w-full">
+            <div className="aspect-[3/4] w-full">
               <img
                 src="/profile-portrait.jpg"
                 alt="ぺんぺんすけ ポートレート"
@@ -31,7 +31,6 @@ const Profile: React.FC = () => {
                 loading="lazy"
                 decoding="async"
               />
-              <div aria-hidden="true" className="absolute -bottom-3 -right-3 h-full w-full border border-stone-300 -z-10" />
             </div>
             <div className="mt-6 text-center text-xs tracking-widest text-stone-400 uppercase lg:text-left">
               Writer / Editor

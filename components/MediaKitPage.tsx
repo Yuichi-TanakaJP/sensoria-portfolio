@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowUpRight, BriefcaseBusiness, Download, Mail, MessageSquareText, Newspaper, Sparkles } from 'lucide-react';
 import Header from './Header';
 import { buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
+import { card, cardDark, cardFlat } from '../lib/surfaces';
 
 const profileFacts = [
   ['Theme', '五感美容 / 旅 / アート / 暮らし'],
@@ -43,7 +44,7 @@ const MediaKitPage: React.FC = () => {
                 プロフィール、得意テーマ、掲載媒体、問い合わせ導線をまとめた簡易メディアキットです。取材、寄稿、アンバサダー、音声企画などの検討に使えます。
               </p>
             </div>
-            <div className="border border-stone-200 bg-stone-50/90 p-6 backdrop-blur">
+            <div className={card}>
               <Sparkles className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <p className="mt-6 font-serif text-2xl leading-relaxed text-stone-900">
                 五感を切り口に、体験と読者の暮らしをつなぐ発信者。
@@ -64,7 +65,7 @@ const MediaKitPage: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 gap-px overflow-hidden border border-stone-200 bg-stone-200 md:grid-cols-3">
               {profileFacts.map(([label, value]) => (
-                <div key={label} className="bg-stone-50 p-6">
+                <div key={label} className={cardFlat}>
                   <span className="text-xs uppercase tracking-widest text-stone-500">{label}</span>
                   <p className="mt-4 text-sm leading-loose text-stone-700">{value}</p>
                 </div>
@@ -75,7 +76,7 @@ const MediaKitPage: React.FC = () => {
 
         <section className="border-y border-stone-200 bg-stone-100/70">
           <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-6 py-16 md:grid-cols-3 md:py-20">
-            <article className="bg-stone-50 p-6">
+            <article className={cardFlat}>
               <MessageSquareText className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl text-stone-900">話せるテーマ</h3>
               <ul className="mt-6 space-y-4">
@@ -87,7 +88,7 @@ const MediaKitPage: React.FC = () => {
               </ul>
             </article>
 
-            <article className="bg-stone-50 p-6">
+            <article className={cardFlat}>
               <Newspaper className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl text-stone-900">掲載・発信先</h3>
               <div className="mt-6 flex flex-wrap gap-2">
@@ -99,7 +100,7 @@ const MediaKitPage: React.FC = () => {
               </div>
             </article>
 
-            <article className="bg-stone-900 p-6 text-stone-50">
+            <article className={cardDark}>
               <BriefcaseBusiness className="h-6 w-6 text-stone-900" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl">依頼の相談</h3>
               <p className="mt-6 text-sm leading-loose text-stone-300">
@@ -114,7 +115,7 @@ const MediaKitPage: React.FC = () => {
         </section>
 
         <section className="mx-auto max-w-screen-xl px-6 py-16 md:py-20">
-          <div className="grid grid-cols-1 gap-8 border border-stone-200 bg-stone-50 p-6 md:grid-cols-[1fr_auto] md:items-center md:p-8">
+          <div className={`${card} grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center`}>
             <div>
               <span className="block text-xs uppercase tracking-[0.3em] text-earth-sage">Assets</span>
               <h3 className="mt-3 font-serif text-3xl text-stone-900">素材と実績は段階的に整備中</h3>
