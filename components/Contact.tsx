@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowUpRight, Instagram } from 'lucide-react';
-import { buttonPrimary, buttonSecondary } from '../lib/buttonStyles';
+import { ArrowUpRight, Instagram, Mail } from 'lucide-react';
+import { buttonSecondary } from '../lib/buttonStyles';
 
 const Contact: React.FC = () => {
   return (
@@ -27,9 +27,12 @@ const Contact: React.FC = () => {
           <div className="space-y-3">
             <a
               href="mailto:contact@sensoria.example"
-              className={`${buttonPrimary} w-full`}
+              className={`${buttonSecondary} w-full`}
             >
-              メールで連絡する
+              <span className="inline-flex items-center gap-3">
+                <Mail className="h-4 w-4" aria-hidden="true" />
+                メールで連絡する
+              </span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
