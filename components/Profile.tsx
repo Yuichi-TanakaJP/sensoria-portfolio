@@ -15,7 +15,7 @@ const Profile: React.FC = () => {
         <blockquote className="mx-auto max-w-3xl text-center">
           <p className="font-serif text-3xl leading-snug text-stone-900 md:text-5xl md:leading-tight">
             五感を通じて、<br />
-            <span className="text-earth-terra">美意識を磨く</span>。
+            <em className="not-italic font-serif">美意識を磨く</em>。
           </p>
           <footer className="mt-8 text-sm tracking-widest text-stone-500 uppercase">— Editorial Stance</footer>
         </blockquote>

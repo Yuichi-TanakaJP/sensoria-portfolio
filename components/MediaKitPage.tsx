@@ -43,7 +43,7 @@ const MediaKitPage: React.FC = () => {
               </p>
             </div>
             <div className="border border-stone-200 bg-stone-50/90 p-6 backdrop-blur">
-              <Sparkles className="h-6 w-6 text-earth-terra" aria-hidden="true" />
+              <Sparkles className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <p className="mt-6 font-serif text-2xl leading-relaxed text-stone-900">
                 五感を切り口に、体験と読者の暮らしをつなぐ発信者。
               </p>
@@ -64,7 +64,7 @@ const MediaKitPage: React.FC = () => {
             <div className="grid grid-cols-1 gap-px overflow-hidden border border-stone-200 bg-stone-200 md:grid-cols-3">
               {profileFacts.map(([label, value]) => (
                 <div key={label} className="bg-stone-50 p-6">
-                  <span className="text-xs uppercase tracking-widest text-earth-terra">{label}</span>
+                  <span className="text-xs uppercase tracking-widest text-stone-500">{label}</span>
                   <p className="mt-4 text-sm leading-loose text-stone-700">{value}</p>
                 </div>
               ))}
@@ -75,7 +75,7 @@ const MediaKitPage: React.FC = () => {
         <section className="border-y border-stone-200 bg-stone-100/70">
           <div className="mx-auto grid max-w-screen-xl grid-cols-1 gap-8 px-6 py-16 md:grid-cols-3 md:py-20">
             <article className="bg-stone-50 p-6">
-              <MessageSquareText className="h-6 w-6 text-earth-terra" aria-hidden="true" />
+              <MessageSquareText className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl text-stone-900">話せるテーマ</h3>
               <ul className="mt-6 space-y-4">
                 {topics.map((topic) => (
@@ -87,7 +87,7 @@ const MediaKitPage: React.FC = () => {
             </article>
 
             <article className="bg-stone-50 p-6">
-              <Newspaper className="h-6 w-6 text-earth-terra" aria-hidden="true" />
+              <Newspaper className="h-6 w-6 text-stone-600" aria-hidden="true" />
               <h3 className="mt-6 font-serif text-2xl text-stone-900">掲載・発信先</h3>
               <div className="mt-6 flex flex-wrap gap-2">
                 {pressMentions.map((name) => (

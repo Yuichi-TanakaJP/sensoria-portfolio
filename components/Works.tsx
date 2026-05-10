@@ -15,9 +15,6 @@ const summaryItems: SummaryItem[] = [
 const Works: React.FC = () => {
   return (
     <section id="works" className="relative bg-stone-100">
-      {/* Inset terra strip — gives the section a clear visual anchor */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-earth-terra" />
-
       <div className="mx-auto max-w-screen-xl px-6 py-24 md:py-32">
         <div className="mb-12 grid grid-cols-1 gap-3 md:mb-16 md:grid-cols-[auto_1fr_auto] md:items-end">
           <span className="text-[11px] uppercase tracking-[0.4em] text-earth-sage">Chapter 03 — Works</span>
@@ -29,7 +26,7 @@ const Works: React.FC = () => {
           <div>
             <h2 className="font-serif text-4xl leading-tight text-stone-900 md:text-6xl">
               読まれる文脈に、<br />
-              <span className="text-earth-terra">書く</span>。
+              <em className="not-italic font-serif">書く</em>。
             </h2>
             <p className="mt-8 max-w-xl text-base leading-loose text-stone-600">
               執筆、取材、音声配信、外部掲載までの活動を専用ページに集約しています。
