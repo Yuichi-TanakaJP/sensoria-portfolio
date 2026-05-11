@@ -6,6 +6,10 @@ const Footer: React.FC = () => {
     <footer className="bg-stone-900 text-stone-400 py-16 md:py-24">
       <div className="max-w-screen-xl mx-auto px-6 flex flex-col items-center">
         
+        <span className="mb-4 block text-[10px] uppercase tracking-[0.4em] text-stone-500">
+          Vol. 01 — 2026
+        </span>
+
         <a href="#top" className="text-3xl font-serif tracking-widest text-stone-200 mb-8 hover:opacity-80 transition-opacity">
           Sensoria
         </a>
