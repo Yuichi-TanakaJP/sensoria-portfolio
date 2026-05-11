@@ -42,96 +42,11 @@
       "image": "https://sensoria-portfolio.vercel.app/profile-portrait.jpg"
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              // Pattern D: Quiet Luxe — see docs/11-color-palette-references.md §D
-              stone: {
-                50:  '#f5efe6', // cream canvas
-                100: '#e8e1d6', // warm-grey surface
-                200: '#dcd4c5', // light border
-                300: '#cdc4b3', // mid border
-                400: '#a39a85', // mute border / disabled
-                500: '#7d7568', // mute text
-                600: '#65605a', // text secondary (warm-mute)
-                700: '#4a4540', // strong text
-                800: '#2a2520', // deeper
-                900: '#1a1816', // ink (primary text / dark canvas)
-              },
-              earth: {
-                terra: '#7a5a37', // Pattern D: bronze (legacy alias for selection)
-                sage:  '#7a5a37', // Pattern D: bronze (Chapter eyebrow accent)
-                gold:  '#c9b48a', // Pattern D: champagne
-                bronze: '#7a5a37',
-                champagne: '#c9b48a',
-              }
-            },
-            fontFamily: {
-              serif: ['"Zen Old Mincho"', '"Shippori Mincho"', '"Yu Mincho"', '"YuMincho"', '"Hiragino Mincho ProN"', 'serif'],
-              sans: ['"Helvetica Neue"', 'Arial', '"Hiragino Kaku Gothic ProN"', '"Hiragino Sans"', 'sans-serif'],
-            },
-            letterSpacing: {
-              widest: '.25em',
-            }
-          }
-        }
-      }
-    </script>
+    <!-- Tailwind: built at compile time via PostCSS — see tailwind.config.js + src/index.css -->
     <!-- Loading Google Fonts: Zen Old Mincho for soft elegance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-      body {
-        font-family: "Zen Old Mincho", "Yu Mincho", serif;
-        -webkit-font-smoothing: antialiased;
-        background-color: #f5efe6; /* stone-50 / Pattern D cream */
-        color: #2a2520; /* stone-800 / Pattern D deeper ink */
-      }
-      /* Smooth scrolling */
-      html {
-        scroll-behavior: smooth;
-      }
-      .fade-in-up {
-        animation: fadeInUp 1s ease-out forwards;
-        opacity: 0;
-      }
-      /* Works link visited state — only color is allowed by browser :visited rules */
-      a.work-link:visited .work-title {
-        color: #7d7568; /* stone-500 / Pattern D mute */
-      }
-      /* Reduced motion: silence non-essential transitions and animations */
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-        .fade-in-up {
-          animation: none;
-          opacity: 1;
-          transform: none;
-        }
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.001ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.001ms !important;
-        }
-      }
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
   <script type="importmap">
 {
   "imports": {
