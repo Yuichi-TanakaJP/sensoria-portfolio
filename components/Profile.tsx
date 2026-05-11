@@ -20,9 +20,9 @@ const Profile: React.FC = () => {
           <footer className="mt-8 text-sm tracking-widest text-stone-500 uppercase">— Editorial Stance</footer>
         </blockquote>
 
-        {/* Asymmetric: small portrait left, copy right (lg only) */}
-        <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-[240px_1fr] lg:gap-16">
-          <div className="mx-auto lg:mx-0 w-full max-w-[240px]">
+        {/* Asymmetric: portrait left, copy right (lg only) */}
+        <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-[320px_1fr] lg:gap-20">
+          <div className="mx-auto lg:mx-0 w-full max-w-[320px]">
             <div className="aspect-[3/4] w-full">
               <img
                 src="/profile-portrait.jpg"

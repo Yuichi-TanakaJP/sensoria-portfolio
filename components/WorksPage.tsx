@@ -3,7 +3,6 @@ import { ArrowUpRight, BookOpenText, Headphones, Landmark, Newspaper, Sparkles }
 import Header from './Header';
 import { buttonPrimary, buttonPrimaryOnDark, buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
 import {
-  card,
   cardCompactInteractive,
   cardDashed,
   cardDashedInteractive,
@@ -19,7 +18,6 @@ import {
   achievementLinkCategories,
   featuredWorks,
   worksDetailItems,
-  worksMetrics,
 } from '../data/works';
 
 const getCta = (item: WorksLinkItem): WorksLinkItem['cta'] => {
@@ -160,15 +158,15 @@ const WorksPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="relative z-10 grid grid-cols-1 gap-3">
-              {worksMetrics.map((metric) => (
-                <div key={metric.label} className={card}>
-                  <span className="block font-serif text-4xl text-stone-900">{metric.value}</span>
-                  <span className="mt-2 block text-xs uppercase tracking-widest text-stone-500">{metric.label}</span>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-600">{metric.note}</p>
-                </div>
-              ))}
-            </div>
+            <aside className="relative z-10 border-l-2 border-stone-300 pl-8">
+              <span className="block text-[11px] uppercase tracking-[0.4em] text-stone-500">Issue 01 — 2026</span>
+              <p className="mt-8 font-serif text-2xl leading-loose text-stone-900 md:text-3xl">
+                媒体ごとの空気を読み、<br />生活者の感覚に翻訳する。
+              </p>
+              <span className="mt-8 block text-xs uppercase tracking-widest text-stone-500">
+                Editorial Portfolio
+              </span>
+            </aside>
           </div>
         </section>
 
@@ -263,7 +261,7 @@ const WorksPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 gap-px overflow-hidden border border-stone-200 bg-stone-200 md:grid-cols-2 lg:grid-cols-5">
+            <div className="grid grid-cols-1 gap-px overflow-hidden border border-stone-200 bg-stone-200 md:grid-cols-2 lg:grid-cols-3">
               {worksDetailItems.map((item, index) => {
                 const Icon = categoryIcons[index] ?? Sparkles;
                 return (

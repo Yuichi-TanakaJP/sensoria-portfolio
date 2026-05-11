@@ -2,7 +2,7 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-stone-100 via-stone-50 to-stone-50">
+    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden bg-gradient-to-b from-stone-100 via-stone-50 to-stone-50">
       {/* Decorative serif watermark — museum-catalog feel */}
       <span
         aria-hidden="true"
@@ -40,11 +40,11 @@ const Hero: React.FC = () => {
       {/* Bottom fade for seamless transition into next section */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-stone-50"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-stone-50"
       />
 
       {/* Content */}
-      <div className="relative z-10 max-w-screen-md mx-auto px-6 text-center pt-20">
+      <div className="relative z-10 max-w-screen-md mx-auto px-6 text-center pt-24">
         <p
           className="text-earth-sage font-medium tracking-[0.3em] text-sm md:text-base mb-6 uppercase fade-in-up"
           style={{ animationDelay: '0.2s' }}
@@ -58,21 +58,29 @@ const Hero: React.FC = () => {
         ></div>
 
         <p
-          className="text-stone-800 text-lg md:text-xl font-serif leading-relaxed tracking-wider fade-in-up"
+          className="text-stone-900 text-2xl md:text-5xl font-serif leading-snug tracking-wider fade-in-up"
           style={{ animationDelay: '0.8s' }}
         >
           アート、旅、美容で紡ぐ
-          <br className="md:hidden" />
+          <br />
           「五感美容」の記録。
         </p>
 
         <p
-          className="mt-8 text-sm text-stone-600 tracking-widest fade-in-up"
+          className="mt-10 text-sm md:text-base text-stone-600 tracking-widest leading-loose fade-in-up"
           style={{ animationDelay: '1s' }}
         >
           日経Webでの300本の連載を経てたどり着いた、
           <br className="md:hidden" />
           心地よい暮らしの美学。
+        </p>
+
+        {/* Mobile decoration (small issue marker) — only when gutter is hidden */}
+        <p
+          className="mt-12 text-[10px] uppercase tracking-[0.4em] text-stone-500 fade-in-up lg:hidden"
+          style={{ animationDelay: '1.2s' }}
+        >
+          Vol. 01 — 2026
         </p>
       </div>
     </section>
