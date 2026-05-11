@@ -196,58 +196,115 @@ const WorksPage: React.FC = () => {
             <span className="text-xs uppercase tracking-widest text-stone-500">{featuredWorks.length} Highlights</span>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {featuredWorks.map((work, index) => {
-              const meta = [work.year ? String(work.year) : null, work.mediaName ?? null].filter(Boolean) as string[];
-              return (
+          {(() => {
+            const [lead, ...rest] = featuredWorks;
+            const leadMeta = [lead.year ? String(lead.year) : null, lead.mediaName ?? null].filter(Boolean) as string[];
+            return (
+              <div className="space-y-6 lg:space-y-8">
+                {/* Lead feature — horizontal on lg */}
                 <a
-                  key={work.title}
-                  href={work.url}
+                  key={lead.title}
+                  href={lead.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${cardFrameInteractive} group flex flex-col overflow-hidden`}
+                  className={`${cardFrameInteractive} group flex flex-col overflow-hidden lg:flex-row`}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300">
-                    {work.keyVisual ? (
+                  <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300 lg:aspect-square lg:w-1/2 lg:flex-none">
+                    {lead.keyVisual ? (
                       <img
-                        src={work.keyVisual}
+                        src={lead.keyVisual}
                         alt=""
                         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                        loading={index === 0 ? 'eager' : 'lazy'}
-                        decoding={index === 0 ? 'sync' : 'async'}
-                        {...(index === 0 ? { fetchpriority: 'high' as const } : {})}
+                        loading="eager"
+                        decoding="sync"
+                        {...{ fetchpriority: 'high' as const }}
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <span aria-hidden="true" className="select-none font-serif text-[8rem] leading-none text-stone-400/60 transition-transform duration-700 ease-out group-hover:scale-105">
-                          0{index + 1}
+                        <span aria-hidden="true" className="select-none font-serif text-[10rem] leading-none text-stone-400/60 transition-transform duration-700 ease-out group-hover:scale-105">
+                          01
                         </span>
                       </div>
                     )}
                     <span className="absolute left-4 top-4 inline-flex items-center bg-stone-900/85 px-3 py-1 text-[11px] uppercase tracking-widest text-stone-50 backdrop-blur">
-                      {work.label}
+                      {lead.label}
                     </span>
                   </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    {meta.length > 0 && (
-                      <span className="text-[11px] uppercase tracking-widest text-stone-500">{meta.join(' · ')}</span>
+                  <div className="flex flex-1 flex-col p-6 md:p-8 lg:p-12 lg:justify-center">
+                    <span className="block text-[11px] uppercase tracking-[0.4em] text-stone-500">Lead Feature</span>
+                    {leadMeta.length > 0 && (
+                      <span className="mt-4 block text-[11px] uppercase tracking-widest text-stone-500">{leadMeta.join(' · ')}</span>
                     )}
-                    <h4 className="mt-3 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
-                    <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
-                    {work.quote && (
-                      <blockquote className="mt-5 border-l-2 border-stone-300 pl-4 font-serif text-sm italic leading-loose text-stone-600">
-                        “{work.quote}”
+                    <h4 className="mt-3 font-serif text-3xl leading-tight text-stone-900 md:text-4xl">{lead.title}</h4>
+                    <p className="mt-5 text-base leading-loose text-stone-600">{lead.summary}</p>
+                    {lead.quote && (
+                      <blockquote className="mt-6 border-l-2 border-stone-300 pl-4 font-serif text-base italic leading-loose text-stone-600">
+                        “{lead.quote}”
                       </blockquote>
                     )}
-                    <span className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-stone-900">
-                      View
+                    <span className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-stone-900">
+                      View Lead
                       <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                     </span>
                   </div>
                 </a>
-              );
-            })}
-          </div>
+
+                {/* Supporting features — 2 columns on lg */}
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                  {rest.map((work, restIndex) => {
+                    const index = restIndex + 1;
+                    const meta = [work.year ? String(work.year) : null, work.mediaName ?? null].filter(Boolean) as string[];
+                    return (
+                      <a
+                        key={work.title}
+                        href={work.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${cardFrameInteractive} group flex flex-col overflow-hidden`}
+                      >
+                        <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-stone-100 via-stone-200 to-stone-300">
+                          {work.keyVisual ? (
+                            <img
+                              src={work.keyVisual}
+                              alt=""
+                              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                              loading="lazy"
+                              decoding="async"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <span aria-hidden="true" className="select-none font-serif text-[8rem] leading-none text-stone-400/60 transition-transform duration-700 ease-out group-hover:scale-105">
+                                0{index + 1}
+                              </span>
+                            </div>
+                          )}
+                          <span className="absolute left-4 top-4 inline-flex items-center bg-stone-900/85 px-3 py-1 text-[11px] uppercase tracking-widest text-stone-50 backdrop-blur">
+                            {work.label}
+                          </span>
+                        </div>
+                        <div className="flex flex-1 flex-col p-6">
+                          {meta.length > 0 && (
+                            <span className="text-[11px] uppercase tracking-widest text-stone-500">{meta.join(' · ')}</span>
+                          )}
+                          <h4 className="mt-3 font-serif text-2xl leading-relaxed text-stone-900">{work.title}</h4>
+                          <p className="mt-4 text-sm leading-loose text-stone-600">{work.summary}</p>
+                          {work.quote && (
+                            <blockquote className="mt-5 border-l-2 border-stone-300 pl-4 font-serif text-sm italic leading-loose text-stone-600">
+                              “{work.quote}”
+                            </blockquote>
+                          )}
+                          <span className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-stone-500 transition-colors group-hover:text-stone-900">
+                            View
+                            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                          </span>
+                        </div>
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            );
+          })()}
         </section>
 
         <section className="border-y border-stone-200 bg-stone-100/70">
