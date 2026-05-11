@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUpRight, BookOpenText, Headphones, Landmark, Newspaper, Sparkles } from 'lucide-react';
+import BackToTop from './BackToTop';
 import Header from './Header';
 import { buttonPrimary, buttonPrimaryOnDark, buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
 import {
@@ -462,6 +463,7 @@ const WorksPage: React.FC = () => {
           </div>
         </section>
       </main>
+      <BackToTop />
     </div>
   );
 };

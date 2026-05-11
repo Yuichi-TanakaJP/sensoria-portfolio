@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Instagram, Mail } from 'lucide-react';
 import { buttonSecondary } from '../lib/buttonStyles';
+import { pressMentions } from '../data/press';
 
 const Contact: React.FC = () => {
   return (
@@ -24,7 +25,22 @@ const Contact: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-6">
+            <div>
+              <span className="block text-[11px] uppercase tracking-[0.4em] text-stone-500">Press</span>
+              <ul className="mt-4 flex flex-wrap gap-x-3 gap-y-2 text-sm text-stone-700">
+                {pressMentions.map((name, i) => (
+                  <li key={name} className="inline-flex items-center">
+                    {name}
+                    {i < pressMentions.length - 1 && (
+                      <span aria-hidden="true" className="ml-3 text-stone-400">·</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-3">
             <a
               href="mailto:contact@sensoria.example"
               className={`${buttonSecondary} w-full`}
@@ -47,6 +63,7 @@ const Contact: React.FC = () => {
               </span>
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
             </a>
+            </div>
           </div>
         </div>
       </div>
