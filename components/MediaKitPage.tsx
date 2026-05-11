@@ -3,6 +3,7 @@ import { ArrowUpRight, BriefcaseBusiness, Download, Mail, MessageSquareText, New
 import Header from './Header';
 import { buttonSecondary, buttonSecondaryOnDark } from '../lib/buttonStyles';
 import { card, cardDark, cardFlat } from '../lib/surfaces';
+import { pressMentions } from '../data/press';
 
 const profileFacts = [
   ['Theme', '五感美容 / 旅 / アート / 暮らし'],
@@ -16,8 +17,6 @@ const topics = [
   '日常を整えるセルフケアと習慣',
   '媒体トーンに合わせた記事・企画づくり',
 ];
-
-const pressMentions = ['美的', '日経x woman', 'CREA', 'Hanako', 'シティリビング', 'Voicy'];
 
 const MediaKitPage: React.FC = () => {
   return (

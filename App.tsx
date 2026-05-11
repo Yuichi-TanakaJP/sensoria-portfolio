@@ -9,22 +9,21 @@ import Footer from './components/Footer';
 import WorksPage from './components/WorksPage';
 import Issue15AuditPage from './components/Issue15AuditPage';
 import MediaKitPage from './components/MediaKitPage';
+import NotFoundPage from './components/NotFoundPage';
 
-const getRoute = (): 'home' | 'works' | 'issue15Audit' | 'mediaKit' => {
-  if (window.location.hash.startsWith('#/media-kit')) {
-    return 'mediaKit';
-  }
-  if (window.location.hash.startsWith('#/issue15-audit')) {
-    return 'issue15Audit';
-  }
-  if (window.location.hash.startsWith('#/works')) {
-    return 'works';
-  }
+type Route = 'home' | 'works' | 'issue15Audit' | 'mediaKit' | 'notFound';
+
+const getRoute = (): Route => {
+  const hash = window.location.hash;
+  if (hash.startsWith('#/media-kit')) return 'mediaKit';
+  if (hash.startsWith('#/issue15-audit')) return 'issue15Audit';
+  if (hash.startsWith('#/works')) return 'works';
+  if (hash.startsWith('#/')) return 'notFound';
   return 'home';
 };
 
 const App: React.FC = () => {
-  const [route, setRoute] = React.useState<'home' | 'works' | 'issue15Audit' | 'mediaKit'>(getRoute);
+  const [route, setRoute] = React.useState<Route>(getRoute);
 
   React.useEffect(() => {
     const handleHashChange = () => setRoute(getRoute());
@@ -57,6 +56,10 @@ const App: React.FC = () => {
 
   if (route === 'mediaKit') {
     return <MediaKitPage />;
+  }
+
+  if (route === 'notFound') {
+    return <NotFoundPage />;
   }
 
   return (
