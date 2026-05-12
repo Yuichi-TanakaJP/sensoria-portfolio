@@ -17,6 +17,43 @@
     <meta name="twitter:title" content="Sensoria - 五感で紡ぐ、美の旅路 -" />
     <meta name="twitter:description" content="五感美容をテーマにした上質なポートフォリオ・Webマガジンサイト。アート、旅、美容を通じた美意識の記録。" />
     <meta name="twitter:image" content="https://sensoria-portfolio.vercel.app/og-image.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              stone: {
+                50: '#f5efe6',
+                100: '#e8e1d6',
+                200: '#dcd4c5',
+                300: '#cdc4b3',
+                400: '#a39a85',
+                500: '#7d7568',
+                600: '#65605a',
+                700: '#4a4540',
+                800: '#2a2520',
+                900: '#1a1816',
+              },
+              earth: {
+                terra: '#7a5a37',
+                sage: '#7a5a37',
+                gold: '#c9b48a',
+                bronze: '#7a5a37',
+                champagne: '#c9b48a',
+              },
+            },
+            fontFamily: {
+              serif: ['"Zen Old Mincho"', '"Shippori Mincho"', '"Yu Mincho"', '"YuMincho"', '"Hiragino Mincho ProN"', 'serif'],
+              sans: ['"Helvetica Neue"', 'Arial', '"Hiragino Kaku Gothic ProN"', '"Hiragino Sans"', 'sans-serif'],
+            },
+            letterSpacing: {
+              widest: '.25em',
+            },
+          },
+        },
+      };
+    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
