@@ -42,6 +42,7 @@ Reference / Log:
 
 - [concept-spec.md](concept-spec.md) — PoC 期のコンセプト参考資料（凍結）。
 - [project-log20260112.md](project-log20260112.md) — 2026-01-12 時点の作業ログ。
+- [../specification.md](../specification.md) — ルート直下のデザイン・コンセプト単票仕様（凍結。改訂時は `docs/` の Core Spec へ内容を昇格させる方針。§7 参照）。
 
 ## 4. 棲み分けの原則
 
