@@ -55,4 +55,6 @@ export interface WorksLinkCategory {
   displayLimit?: number;
   viewAllUrl?: string;
   viewAllLabel?: string;
+  archiveUrl?: string;
+  archiveLabel?: string;
 }

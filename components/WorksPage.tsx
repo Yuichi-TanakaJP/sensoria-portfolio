@@ -485,6 +485,25 @@ const WorksPage: React.FC = () => {
                         </div>
                       </a>
                     )}
+                    {category.archiveUrl && (
+                      <a
+                        href={category.archiveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`${cardDashedInteractive} group flex flex-col justify-between md:col-span-2`}
+                      >
+                        <p className="font-serif text-base leading-relaxed text-stone-800 md:text-lg">
+                          {category.archiveLabel ?? 'アーカイブを聴く'}
+                        </p>
+                        <div className="mt-4 flex items-center justify-between gap-4 text-[11px] uppercase tracking-widest">
+                          <span className="min-w-0 truncate text-stone-500">Archive</span>
+                          <span className="inline-flex flex-none items-center gap-1 text-stone-700">
+                            Listen
+                            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                          </span>
+                        </div>
+                      </a>
+                    )}
                   </div>
                 </div>
               </section>

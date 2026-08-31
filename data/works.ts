@@ -130,6 +130,8 @@ export const achievementLinkCategories: WorksLinkCategory[] = [
     displayLimit: 4,
     viewAllUrl: 'https://voicy.jp/channel/1073',
     viewAllLabel: '全 18 エピソードを Voicy で聴く',
+    archiveUrl: 'https://pub-6c2c0e030aa944369129f19041f58697.r2.dev/index.html',
+    archiveLabel: '全 18 回の音源アーカイブ（約 3 時間 43 分）',
     items: [
       { title: 'アートの力で心身共にキレイで健康に！', url: 'https://voicy.jp/channel/1073/227019', mediaName: 'Voicy 美容健康', topic: ['美容', 'アート'] },
       { title: '二の腕と猫背に効くエクササイズとは？', url: 'https://voicy.jp/channel/1073/223984', mediaName: 'Voicy 美容健康', topic: ['美容', '健康'] },
