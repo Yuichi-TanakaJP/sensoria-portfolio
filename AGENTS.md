@@ -21,14 +21,6 @@
 - コード変更では、リポジトリに定義済みの lint/test コマンドから変更範囲に必要なものを実行する。確認のためだけに依存を追加しない。
 - `next-env.d.ts` などの環境起因ファイルは、意図がない限りコミットしない。
 
-## Task Request Format
-
-- 新しい依頼は、可能な限り先頭に次のヘッダー形式を付ける。
-
-```text
-[repo:sensoria-portfolio] [type:<report|fix|review|investigation|docs>] [target:<artifact_or_scope>] [action:<specific_work>]
-```
-
 ## 1. 作業開始
 
 ```bash
