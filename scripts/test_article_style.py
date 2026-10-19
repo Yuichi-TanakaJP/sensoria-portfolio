@@ -5,14 +5,15 @@ import contextlib
 import io
 import json
 from unittest.mock import patch
-from article_style import AXES, digest, query, validate
+from article_style import AXES, digest, line_digest, query, validate
 
 
 class EvidenceValidation(unittest.TestCase):
     def setUp(self):
         self.corpus = [{"id": "A001", "body": "美しい。", "body_lines": [
             {"id": "A001-L0001", "text": "美しい。"}]}]
-        self.manifest = {"selection": [{"id": "A001", "body_sha256": digest("美しい。")}]}
+        self.manifest = {"selection": [{"id": "A001", "body_sha256": digest("美しい。"),
+            "body_lines_sha256": line_digest(self.corpus[0])}]}
         self.result = {"schema_version": "1.0", "articles": [{"id": "A001",
             **{axis: {"label": "短文", "observation": "短く切る", "refs": ["A001-L0001"]} for axis in AXES},
             "quotes": [{"ref": "A001-L0001", "text": "美しい。"}], "limits": "例示"}],
@@ -43,6 +44,20 @@ class EvidenceValidation(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Duplicate source"):
             validate(self.corpus, self.manifest, self.result)
 
+    def test_line_reassigned_to_existing_passage_rejected(self):
+        self.corpus[0]["body"] = "美しい。\n静か。"
+        self.corpus[0]["body_lines"].append({"id": "A001-L0002", "text": "静か。"})
+        self.manifest["selection"][0]["body_sha256"] = digest(self.corpus[0]["body"])
+        self.manifest["selection"][0]["body_lines_sha256"] = line_digest(self.corpus[0])
+        self.corpus[0]["body_lines"][0]["text"] = "静か。"
+        with self.assertRaisesRegex(ValueError, "line mapping changed"):
+            validate(self.corpus, self.manifest, self.result)
+
+    def test_legacy_manifest_requires_new_line_binding(self):
+        del self.manifest["selection"][0]["body_lines_sha256"]
+        with self.assertRaisesRegex(ValueError, "missing line mapping hash"):
+            validate(self.corpus, self.manifest, self.result)
+
     def test_wrong_article_reference_rejected(self):
         self.result["articles"][0]["rhythm_and_pause"]["refs"] = ["NT001-L0001"]
         with self.assertRaisesRegex(ValueError, "outside article"):
@@ -57,6 +72,13 @@ class EvidenceValidation(unittest.TestCase):
         self.result["synthesis_markdown"] = "A099-L0001"
         with self.assertRaisesRegex(ValueError, "synthesis reference"):
             validate(self.corpus, self.manifest, self.result)
+
+    def test_summary_reference_cannot_match_only_a_valid_prefix(self):
+        for ref in ["A001-L00010", "A001-L0001suffix", "OTHER12-L0001"]:
+            with self.subTest(ref=ref):
+                self.result["synthesis_markdown"] = ref
+                with self.assertRaisesRegex(ValueError, "synthesis reference"):
+                    validate(self.corpus, self.manifest, self.result)
 
     def test_query_returns_only_requested_axis(self):
         output = io.StringIO()

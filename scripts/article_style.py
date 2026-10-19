@@ -19,6 +19,11 @@ def digest(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
+def line_digest(article):
+    mapping = [[line["id"], line["text"]] for line in article["body_lines"]]
+    return digest(json.dumps(mapping, ensure_ascii=False, separators=(",", ":")))
+
+
 def index_sources(corpus):
     byid = {}
     for article in corpus:
@@ -49,6 +54,7 @@ def measure(article):
     return {
         "id": article["id"], "title": article["title"], "url": article["url"],
         "media": article["media"], "body_sha256": digest(body),
+        "body_lines_sha256": line_digest(article),
         "extracted_chars": len(body), "nonempty_extracted_lines": len(lines),
         "line_length_median": statistics.median(map(len, lines)) if lines else None,
         "punctuation_split_length_median": statistics.median(map(len, sentences)) if sentences else None,
@@ -126,6 +132,10 @@ def validate(corpus, manifest, result):
     for a in manifest["selection"]:
         if digest(byid[a["id"]]["body"]) != a["body_sha256"]:
             raise ValueError("Source changed: " + a["id"])
+        if not a.get("body_lines_sha256"):
+            raise ValueError("Manifest missing line mapping hash; prepare a new manifest from the verified source")
+        if line_digest(byid[a["id"]]) != a["body_lines_sha256"]:
+            raise ValueError("Source line mapping changed: " + a["id"])
 
     def evidence(item, aid=None):
         ref, quote = item["ref"], item["text"]
@@ -153,7 +163,9 @@ def validate(corpus, manifest, result):
             raise ValueError("Invalid comparison")
         for e in c["evidence"]:
             evidence(e)
-    for ref in re.findall(r"(?:A|NT)\d{3}-L\d{4}", result["synthesis_markdown"]):
+    # Match the entire reference-like token, not a valid prefix of an invalid ID.
+    pattern = r"(?<![A-Za-z0-9_-])[A-Za-z][A-Za-z0-9_-]*-L[A-Za-z0-9_]+(?![A-Za-z0-9_-])"
+    for ref in re.findall(pattern, result["synthesis_markdown"]):
         if ref not in refs:
             raise ValueError("Unknown synthesis reference: " + ref)
     return {"success": True, "articles": len(ids), "comparisons": len(result["comparisons"]),
