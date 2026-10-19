@@ -165,7 +165,11 @@ def validate(corpus, manifest, result):
             evidence(e)
     # Match the entire reference-like token, not a valid prefix of an invalid ID.
     pattern = r"(?<![A-Za-z0-9_-])[A-Za-z][A-Za-z0-9_-]*-L[A-Za-z0-9_-]+(?![A-Za-z0-9_-])"
-    for ref in re.findall(pattern, result["synthesis_markdown"]):
+    # Markdown emphasis underscores are delimiters when balanced around a token.
+    synthesis = re.sub(
+        r"(?<![A-Za-z0-9_-])(_+)([A-Za-z][A-Za-z0-9_-]*-L[A-Za-z0-9_-]+?)\1(?![A-Za-z0-9_-])",
+        r"\2", result["synthesis_markdown"])
+    for ref in re.findall(pattern, synthesis):
         if ref not in refs:
             raise ValueError("Unknown synthesis reference: " + ref)
     return {"success": True, "articles": len(ids), "comparisons": len(result["comparisons"]),

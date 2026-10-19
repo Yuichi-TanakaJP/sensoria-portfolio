@@ -74,11 +74,19 @@ class EvidenceValidation(unittest.TestCase):
             validate(self.corpus, self.manifest, self.result)
 
     def test_summary_reference_cannot_match_only_a_valid_prefix(self):
-        for ref in ["A001-L00010", "A001-L0001suffix", "A001-L0001-bad", "OTHER12-L0001"]:
+        for ref in ["A001-L00010", "A001-L0001suffix", "A001-L0001-bad", "OTHER12-L0001",
+                    "OTHER12-L0001-", "_A099-L0001_", "__A099-L0001__",
+                    "___A099-L0001___", "_A001-L0001-bad_"]:
             with self.subTest(ref=ref):
                 self.result["synthesis_markdown"] = ref
                 with self.assertRaisesRegex(ValueError, "synthesis reference"):
                     validate(self.corpus, self.manifest, self.result)
+
+    def test_markdown_emphasis_preserves_valid_references(self):
+        for ref in ["_A001-L0001_", "__A001-L0001__", "___A001-L0001___"]:
+            with self.subTest(ref=ref):
+                self.result["synthesis_markdown"] = "参照（" + ref + "）。"
+                self.assertTrue(validate(self.corpus, self.manifest, self.result)["success"])
 
     def test_query_returns_only_requested_axis(self):
         output = io.StringIO()
