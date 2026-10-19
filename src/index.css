@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: "Zen Old Mincho", "Yu Mincho", serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: #f5efe6; /* stone-50 / Pattern D cream */
+    color: #2a2520; /* stone-800 / Pattern D deeper ink */
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Works link visited state — only color is allowed by browser :visited rules */
+a.work-link:visited .work-title {
+  color: #7d7568; /* stone-500 / Pattern D mute */
+}
+
+/* Reduced motion: silence non-essential transitions and animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
