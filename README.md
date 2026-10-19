@@ -43,3 +43,5 @@ specification.md      # デザイン・コンセプトの単票仕様
 作業前に必ず [`docs/00-index.md`](docs/00-index.md)（ドキュメント構成のルールブック）を確認すること。プロジェクト概要・デザイン指針・ページ構造・SEO/計測方針・公開前チェックリスト等はすべて `docs/` 配下の連番ドキュメントにまとまっている。
 
 エージェント／コラボレーション運用ルールは [`AGENTS.md`](AGENTS.md) を参照。
+
+記事分析の公開可能な手順と集計は [`docs/article-research/README.md`](docs/article-research/README.md) を参照。個別記事の分析・入力・生成原稿はGit対象外でローカル保持する。分析用Pythonツールの検証は `python -B -m unittest discover -s scripts -p test_article_style.py -v`。サイトのビルドとは独立している。

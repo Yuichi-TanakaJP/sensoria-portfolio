@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "as_of": "2026-10-18",
+  "unit": "authored publication version; not unique manuscript",
+  "n": 383,
+  "counts": {
+    "theme_counts": {
+      "美容・健康": 30,
+      "美術・展覧会": 199,
+      "暮らし・仕事": 12,
+      "食・飲み物": 37,
+      "旅・宿泊": 39,
+      "工芸・伝統文化": 21,
+      "自然・環境・科学": 4,
+      "自己紹介・告知": 6,
+      "その他": 16,
+      "音楽・舞台": 7,
+      "映画・映像": 12
+    },
+    "form_counts": {
+      "体験レポート": 94,
+      "商品・サービス紹介": 25,
+      "鑑賞・訪問ガイド": 222,
+      "人物取材・インタビュー": 4,
+      "随筆・自己紹介": 4,
+      "告知・活動報告": 13,
+      "知識解説": 2,
+      "音声内容の再編集": 18,
+      "その他": 1
+    },
+    "lead_counts": {
+      "訪問の報告": 93,
+      "季節・時事": 36,
+      "対象の紹介・告知": 169,
+      "背景・基礎知識": 42,
+      "個人体験・悩み": 9,
+      "問いかけ": 23,
+      "複合": 7,
+      "発言・対話": 4
+    },
+    "end_counts": {
+      "複合": 25,
+      "誘い・行動喚起": 153,
+      "個人の感想": 38,
+      "情報・アクセス": 148,
+      "告知・予定": 7,
+      "日常への接続": 10,
+      "対話の結び": 2
+    },
+    "voice_counts": {
+      "混在": 244,
+      "一人称体験": 83,
+      "客観説明": 51,
+      "対話引用": 5
+    }
+  },
+  "scope": {
+    "detailed_style_sample": 28,
+    "structure_templates": 5,
+    "draft_trials": 3,
+    "skill_implemented": false
+  },
+  "limits": [
+    "Counts cover retrieved material, not all authored works.",
+    "Reprints and audio re-edits can be separate publication versions.",
+    "No article names, URLs, quotations, author records, images or per-article hashes are included.",
+    "Interpretive labels do not measure quality or popularity."
+  ]
+}

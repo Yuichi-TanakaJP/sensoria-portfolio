@@ -25,3 +25,13 @@ dist-ssr
 
 # Claude Code local settings
 .claude/
+
+# Local article research: source texts, per-article analysis, prompts and drafts.
+# Public-safe workflow and aggregates belong in docs/article-research/.
+/docs/article-analysis/
+/docs/13-article-analysis-audit-notes.md
+/docs/14-article-analysis-results-notes.md
+/docs/15-full-article-analysis-notes.md
+/docs/16-article-style-analysis-notes.md
+/docs/17-article-template-draft-trial-notes.md
+__pycache__/
