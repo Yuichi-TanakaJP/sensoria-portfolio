@@ -74,7 +74,7 @@ class EvidenceValidation(unittest.TestCase):
             validate(self.corpus, self.manifest, self.result)
 
     def test_summary_reference_cannot_match_only_a_valid_prefix(self):
-        for ref in ["A001-L00010", "A001-L0001suffix", "OTHER12-L0001"]:
+        for ref in ["A001-L00010", "A001-L0001suffix", "A001-L0001-bad", "OTHER12-L0001"]:
             with self.subTest(ref=ref):
                 self.result["synthesis_markdown"] = ref
                 with self.assertRaisesRegex(ValueError, "synthesis reference"):

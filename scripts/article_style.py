@@ -164,7 +164,7 @@ def validate(corpus, manifest, result):
         for e in c["evidence"]:
             evidence(e)
     # Match the entire reference-like token, not a valid prefix of an invalid ID.
-    pattern = r"(?<![A-Za-z0-9_-])[A-Za-z][A-Za-z0-9_-]*-L[A-Za-z0-9_]+(?![A-Za-z0-9_-])"
+    pattern = r"(?<![A-Za-z0-9_-])[A-Za-z][A-Za-z0-9_-]*-L[A-Za-z0-9_-]+(?![A-Za-z0-9_-])"
     for ref in re.findall(pattern, result["synthesis_markdown"]):
         if ref not in refs:
             raise ValueError("Unknown synthesis reference: " + ref)
