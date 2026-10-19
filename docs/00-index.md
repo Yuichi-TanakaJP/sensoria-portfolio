@@ -37,6 +37,7 @@
 - [10-works-page-redesign-notes.md](10-works-page-redesign-notes.md) — Works Page リデザインの設計メモ（Notes）。
 - [11-color-palette-references.md](11-color-palette-references.md) — ファッション誌系 Web の配色パターン集（採用候補のメニュー）。
 - [12-site-audit.md](12-site-audit.md) — サイト全体の棚卸しと優先度付き改善案（2026-05-10 時点）。
+- [18-article-research-preservation-notes.md](18-article-research-preservation-notes.md) — 記事分析の公開可能な手順・集計、非公開成果のローカル保管と未完了範囲（2026-10-19）。13〜17はローカル調査資料としてGit対象外。
 
 Reference / Log:
 

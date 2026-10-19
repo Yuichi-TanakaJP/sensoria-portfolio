@@ -19,3 +19,10 @@
 - Auth/permissions/secrets/billing/migrations, external send/publish controls, live-data/processed-state writes, scheduler execution controls (including retry/exit gating), production or broad high impact: independent specialist/domain and rollback scrutiny, related full suite/build and relevant UAT. Investigate unknown impact before granting a low-risk exemption.
 - Choose model/effort for risk; briefly report scope/results/untested coverage. Failed reviews do not count or waive required scope. Re-review material changes only. Required-check failures and correctness/safety/requirement findings block; optional polish does not.
 - Local checks first; optional Actions default off subject to enforced rules/domain exceptions. Preserve triggers; [skip ci] only when allowed, no default dispatch/reruns. No execution = NOT_RUN, never PASS. Existing merge/deletion/deploy/publication/paid-operation approvals remain.
+
+## Article research
+
+- Public-safe workflow and aggregate counts live in `docs/article-research/`. Source texts, per-article reports, prompts, images and generated drafts stay at ignored local paths; resume from `article-analysis.local/PRESERVATION.md`. Never stage them automatically.
+- Distinguish publication versions from unique manuscripts, author-written texts from interview-subject articles, and measured counts from interpretation. Analysis does not authorize new article proposals or publication.
+- Preserve source IDs and hashes, including ordered line mappings. Validation success does not establish interpretive correctness or author approval. When consulting Claude Code, use Opus 5.5 with medium reasoning or higher.
+- Run `python -B -m unittest discover -s scripts -p test_article_style.py -v` for tool changes. Store source-bearing temporary inputs and raw responses in the designated investigation scratch. Skill implementation and site restoration remain separate scopes.
